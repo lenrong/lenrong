@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenrong - Investor & Public Servant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts untuk font elegant -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Soft Elegant Color Palette */
+            --primary-dark: #0f0f13;
+            --secondary-dark: #1a1a23;
+            --accent-gold: #c9a959;
+            --accent-gold-light: #e0c986;
+            --accent-gold-dark: #a88c3a;
+            --text-primary: #f5f5f5;
+            --text-secondary: #ccccd6;
+            --border-color: #2d2d3a;
+            --card-bg: #1e1e28;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --transition-smooth: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            --shadow-light: 0 8px 32px rgba(0, 0, 0, 0.2);
+            --shadow-gold: 0 8px 32px rgba(201, 169, 89, 0.08);
+        }
+
+        body {
+            background-color: var(--primary-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+
+        /* Elegant Typography */
+        h1, h2, h3, h4, .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-light) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-gold), transparent);
+            border-radius: 2px;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 60px;
+            height: 1.5px;
+            background: var(--accent-gold);
+            transition: width 0.5s ease;
+        }
+
+        h2:hover::after {
+            width: 100px;
+        }
+
+        h3 {
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            color: var(--accent-gold);
+            margin-bottom: 1.2rem;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1.8rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            line-height: 1.8;
+        }
+
+        .highlight {
+            color: var(--accent-gold);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--accent-gold);
+            opacity: 0.4;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: clamp(4rem, 8vw, 6rem) 0;
+            position: relative;
+        }
+
+        /* Elegant Separator */
+        section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            position: relative;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background-color: rgba(15, 15, 19, 0.85);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            font-weight: 600;
+            color: var(--accent-gold);
+            letter-spacing: 1.5px;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -10px;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-gold);
+            border-radius: 2px;
+        }
+
+        .tagline {
+            font-size: clamp(0.85rem, 1.5vw, 1rem);
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+            text-align: right;
+            font-style: italic;
+            max-width: 300px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 4rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(201, 169, 89, 0.05) 0%, transparent 60%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            font-style: italic;
+            border-left: 2px solid var(--accent-gold);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        /* Elegant Cards */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: clamp(1.8rem, 3vw, 2.5rem);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(201, 169, 89, 0.03) 0%, transparent 100%);
+            z-index: 0;
+        }
+
+        .card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.8rem;
+            transition: var(--transition);
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.1);
+        }
+
+        /* Principles Grid */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+            gap: 2rem;
+        }
+
+        /* Investment Focus */
+        .investment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+            gap: 2rem;
+        }
+
+        .investment-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .investment-item:hover {
+            border-color: var(--accent-gold);
+            transform: translateX(10px);
+        }
+
+        .investment-icon {
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            min-width: 50px;
+            padding-top: 0.5rem;
+        }
+
+        /* Target Audience */
+        .audience-list {
+            list-style: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .audience-list li {
+            padding: 1.2rem 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            position: relative;
+            transition: var(--transition);
+            padding-left: 2.5rem;
+        }
+
+        .audience-list li:hover {
+            color: var(--text-primary);
+            padding-left: 3rem;
+        }
+
+        .audience-list li::before {
+            content: '→';
+            color: var(--accent-gold);
+            font-weight: 300;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .audience-list li:hover::before {
+            transform: translateX(5px);
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            transition: var(--transition);
+            background-color: rgba(30, 30, 40, 0.5);
+        }
+
+        .social-link:hover {
+            color: var(--accent-gold);
+            border-color: var(--accent-gold);
+            background-color: rgba(201, 169, 89, 0.05);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0 3rem;
+            text-align: center;
+            color: var(--text-secondary);
+            position: relative;
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        }
+
+        .footer-quote {
+            font-style: italic;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            line-height: 1.9;
+            color: var(--text-primary);
+            position: relative;
+            padding: 0 1rem;
+        }
+
+        .footer-quote::before,
+        .footer-quote::after {
+            content: '"';
+            color: var(--accent-gold);
+            font-size: 2.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            position: absolute;
+            opacity: 0.5;
+        }
+
+        .footer-quote::before {
+            top: -15px;
+            left: 0;
+        }
+
+        .footer-quote::after {
+            bottom: -35px;
+            right: 0;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .logo::before {
+                left: 50%;
+                transform: translateX(-50%);
+                width: 50px;
+                height: 3px;
+                top: -10px;
+            }
+            
+            .tagline {
+                text-align: center;
+                max-width: 100%;
+            }
+            
+            .hero {
+                min-height: auto;
+                padding: 3rem 0;
+            }
+            
+            h1::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .investment-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .investment-icon {
+                min-width: 40px;
+            }
+            
+            .audience-list li {
+                padding-left: 2rem;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-link {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+            
+            section::after {
+                left: 5%;
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1.2rem;
+            }
+            
+            .card, .investment-item {
+                padding: 1.5rem;
+            }
+            
+            .principles-grid, .investment-grid {
+                gap: 1.5rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        @keyframes subtleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .float {
+            animation: subtleFloat 6s ease-in-out infinite;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--secondary-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent-gold), var(--accent-gold-dark));
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--accent-gold-light), var(--accent-gold));
+        }
+
+        /* Selection */
+        ::selection {
+            background-color: rgba(201, 169, 89, 0.3);
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <div class="logo">LENRONG</div>
+                </div>
+                <div class="tagline">Investor • Public Servant • Private Thinker</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>Lenrong</h1>
+                <div class="hero-subtitle">
+                    Investor. Public servant by day. Private thinker by night.
+                </div>
+                <p>Saya berjalan di dalam sistem pemerintahan, namun saya tidak menggantungkan masa depan pada sistem itu.</p>
+                <p>Siang hari saya bekerja dengan struktur, aturan, dan stabilitas. Malam hari saya bekerja dengan nilai, risiko, dan waktu.</p>
+                <p><span class="highlight">Saya tidak mencari sorotan. Saya membangun posisi.</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tentang Saya</h2>
+            </div>
+            <div class="card fade-in">
+                <div class="card-content">
+                    <p>Saya adalah investor jangka panjang dengan fokus pada aset likuid yang dapat dinilai, dipantau, dan dikendalikan secara rasional.</p>
+                    <p>Latar belakang saya di sektor publik membentuk cara berpikir yang disiplin terhadap angka, anggaran, dan konsekuensi keputusan. Namun fokus utama saya berada di luar rutinitas formal: mengalokasikan modal untuk kemandirian jangka panjang.</p>
+                    <p><span class="highlight">Saya tidak mengejar gaya hidup investor. Saya mengejar opsionalitas hidup.</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Focus -->
+    <section id="investment">
+        <div class="container">
+            <div class="section-title">
+                <h2>Fokus Investasi</h2>
+            </div>
+            <p style="text-align: center; margin-bottom: 3rem;">Pendekatan saya terpusat pada aset yang likuid dan terukur:</p>
+            
+            <div class="investment-grid">
+                <div class="investment-item fade-in">
+                    <div class="investment-icon">
+                        <i class="fas fa-coins float"></i>
+                    </div>
+                    <div>
+                        <h3>Bitcoin</h3>
+                        <p>Sebagai lindung nilai jangka panjang dan aset dengan karakteristik kelangkaan.</p>
+                    </div>
+                </div>
+                
+                <div class="investment-item fade-in">
+                    <div class="investment-icon">
+                        <i class="fas fa-chart-line float"></i>
+                    </div>
+                    <div>
+                        <h3>Saham AS</h3>
+                        <p>Untuk eksposur pada bisnis global berkualitas.</p>
+                    </div>
+                </div>
+                
+                <div class="investment-item fade-in">
+                    <div class="investment-icon">
+                        <i class="fas fa-building float"></i>
+                    </div>
+                    <div>
+                        <h3>Saham Indonesia</h3>
+                        <p>Untuk nilai, dividen, dan pemahaman konteks domestik.</p>
+                    </div>
+                </div>
+                
+                <div class="investment-item fade-in">
+                    <div class="investment-icon">
+                        <i class="fas fa-exchange-alt float"></i>
+                    </div>
+                    <div>
+                        <h3>Aset Likuid Lainnya</h3>
+                        <p>Yang memungkinkan fleksibilitas dan manajemen risiko.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 3rem;"><span class="highlight">Saya menghindari kompleksitas yang tidak perlu. Kesederhanaan adalah bagian dari strategi.</span></p>
+        </div>
+    </section>
+
+    <!-- Thinking Process -->
+    <section id="thinking">
+        <div class="container">
+            <div class="section-title">
+                <h2>Cara Saya Berpikir</h2>
+            </div>
+            <div class="card fade-in">
+                <div class="card-content">
+                    <p>Saya tidak mencoba meramal pasar. Saya menilai nilai intrinsik, risiko, dan margin of safety.</p>
+                    <p>Pasar bagi saya hanyalah mekanisme penetapan harga, bukan penentu kebenaran.</p>
+                    
+                    <div style="margin: 2.5rem 0;">
+                        <h3>Saya percaya:</h3>
+                        <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-top: 1rem;">
+                            <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">Fokus mengalahkan informasi berlebihan</li>
+                            <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">Proses mengalahkan hasil sesaat</li>
+                            <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem;">Konsistensi mengalahkan kecerdikan</li>
+                        </ul>
+                    </div>
+                    
+                    <p><span class="highlight">Diam bukan pasif. Diam adalah disiplin berpikir.</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Principles -->
+    <section id="principles">
+        <div class="container">
+            <div class="section-title">
+                <h2>Prinsip Utama</h2>
+            </div>
+            
+            <div class="principles-grid">
+                <div class="card fade-in">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3>Value over hype</h3>
+                        <p>Mengutamakan nilai intrinsik daripada sensasi pasar.</p>
+                    </div>
+                </div>
+                
+                <div class="card fade-in">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <h3>Liquidity over ilusi</h3>
+                        <p>Likuiditas lebih penting daripada ilusi keuntungan cepat.</p>
+                    </div>
+                </div>
+                
+                <div class="card fade-in">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Risk control over return</h3>
+                        <p>Kontrol risiko lebih penting daripada mengejar keuntungan.</p>
+                    </div>
+                </div>
+                
+                <div class="card fade-in">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-hourglass-half"></i>
+                        </div>
+                        <h3>Long term over short term</h3>
+                        <p>Jangka panjang mengalahkan kegembiraan sesaat.</p>
+                    </div>
+                </div>
+                
+                <div class="card fade-in">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                        <h3>Privasi over pamer</h3>
+                        <p>Privasi lebih berharga daripada pamer pencapaian.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 3rem;"><span class="highlight">Saya tidak tertarik terlihat benar hari ini jika itu membuat saya rapuh esok hari.</span></p>
+        </div>
+    </section>
+
+    <!-- What I Build -->
+    <section id="build">
+        <div class="container">
+            <div class="section-title">
+                <h2>Apa yang Saya Bangun</h2>
+            </div>
+            
+            <div class="card fade-in">
+                <div class="card-content">
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem;">
+                        <li style="margin-bottom: 1.5rem; padding-left: 1rem;"><span class="highlight">Portofolio investasi jangka panjang</span> berbasis aset likuid</li>
+                        <li style="margin-bottom: 1.5rem; padding-left: 1rem;"><span class="highlight">Sistem alokasi modal</span> yang rasional dan adaptif</li>
+                        <li style="margin-bottom: 1.5rem; padding-left: 1rem;"><span class="highlight">Kehidupan yang tidak bergantung</span> pada satu sumber penghasilan</li>
+                    </ul>
+                    
+                    <p style="margin-top: 2rem;">Tujuan akhirnya bukan sekadar akumulasi, melainkan kendali atas waktu, keputusan, dan arah hidup.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Audience -->
+    <section id="audience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Untuk Siapa Web Ini</h2>
+            </div>
+            
+            <div class="card fade-in">
+                <div class="card-content">
+                    <p style="text-align: center; margin-bottom: 2rem;"><span class="highlight">Web ini bukan untuk semua orang.</span></p>
+                    <p style="text-align: center; margin-bottom: 3rem;">Ini untuk mereka yang:</p>
+                    
+                    <ul class="audience-list">
+                        <li>Berpikir jangka panjang</li>
+                        <li>Nyaman bekerja dalam sunyi</li>
+                        <li>Tidak membutuhkan validasi publik</li>
+                        <li>Percaya bahwa ketenangan adalah bentuk kekuatan</li>
+                    </ul>
+                    
+                    <p style="text-align: center; margin-top: 3rem;"><span class="highlight">Jika Anda mencari sensasi, Anda tidak akan menemukannya di sini.</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Presence -->
+    <section id="digital">
+        <div class="container">
+            <div class="section-title">
+                <h2>Kehadiran Digital</h2>
+            </div>
+            
+            <div class="card fade-in">
+                <div class="card-content">
+                    <p style="text-align: center;">Saya tidak aktif untuk terlihat sibuk. Saya hadir seperlunya, dengan maksud yang jelas.</p>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                            <span>@lenrong_BTC</span>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                            <span>@lenrongeel</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-quote">
+                lenrong bukan etalase. Ini adalah dokumentasi cara berpikir. Tidak ada janji hasil. Tidak ada ajakan cepat. Hanya keyakinan bahwa masa depan dibangun dari keputusan sunyi yang konsisten.
+            </div>
+            
+            <p>&copy; <span id="currentYear"></span> Lenrong. All rights reserved.</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">Investor • Public Servant • Private Thinker</p>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Enhanced animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = `${entry.target.dataset.delay || 0}s`;
+                    entry.target.classList.add('fade-in');
+                    
+                    // Add staggered animation for child elements
+                    if (entry.target.querySelectorAll('.investment-item, .card').length > 0) {
+                        const items = entry.target.querySelectorAll('.investment-item, .card');
+                        items.forEach((item, index) => {
+                            item.style.animationDelay = `${0.1 * index}s`;
+                            item.classList.add('fade-in');
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach((el) => {
+            observer.observe(el);
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add hover effect to cards on mobile with touch
+        if ('ontouchstart' in window) {
+            document.querySelectorAll('.card, .investment-item').forEach(item => {
+                item.addEventListener('touchstart', function() {
+                    this.classList.add('hover-effect');
+                });
+                
+                item.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.classList.remove('hover-effect');
+                    }, 300);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
