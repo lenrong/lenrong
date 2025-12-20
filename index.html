@@ -22,6 +22,7 @@
             --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.08);
             --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --gradient-gold: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-light) 100%);
         }
 
         * {
@@ -49,7 +50,7 @@
 
         h1 {
             font-size: clamp(2.8rem, 5vw, 4rem);
-            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-light) 100%);
+            background: var(--gradient-gold);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -58,7 +59,7 @@
 
         h2 {
             font-size: clamp(2rem, 4vw, 2.8rem);
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
             position: relative;
             padding-bottom: 1rem;
             scroll-margin-top: 100px;
@@ -71,13 +72,14 @@
             left: 0;
             width: 60px;
             height: 2px;
-            background: var(--accent-gold);
+            background: var(--gradient-gold);
+            border-radius: 2px;
         }
 
         h3 {
             font-size: clamp(1.4rem, 3vw, 1.8rem);
             color: var(--accent-gold);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         p {
@@ -95,10 +97,6 @@
         section {
             padding: clamp(5rem, 8vw, 7rem) 0;
             border-bottom: 1px solid var(--border-color);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
 
         /* Language Switcher */
@@ -134,11 +132,11 @@
         }
 
         .lang-btn.active {
-            background: var(--accent-gold);
+            background: var(--gradient-gold);
             color: var(--primary-dark);
         }
 
-        /* Top Navigation - Desktop */
+        /* Top Navigation */
         .top-nav {
             position: fixed;
             top: 0;
@@ -166,7 +164,7 @@
 
         .top-nav-menu {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             list-style: none;
         }
 
@@ -190,11 +188,7 @@
             background: rgba(212, 175, 55, 0.1);
         }
 
-        .top-nav-menu a i {
-            font-size: 0.9rem;
-        }
-
-        /* Bottom Navigation - Desktop */
+        /* Bottom Navigation */
         .bottom-nav {
             position: fixed;
             bottom: 2rem;
@@ -234,10 +228,6 @@
         .bottom-nav-menu a.active {
             color: var(--accent-gold);
             background: rgba(212, 175, 55, 0.1);
-        }
-
-        .bottom-nav-menu a i {
-            font-size: 1rem;
         }
 
         /* Mobile Navigation */
@@ -289,10 +279,6 @@
             background: rgba(212, 175, 55, 0.1);
         }
 
-        .mobile-nav-menu a i {
-            font-size: 0.9rem;
-        }
-
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -332,7 +318,7 @@
             border-left: 3px solid var(--accent-gold);
         }
 
-        /* Cards */
+        /* Cards - Enhanced */
         .card {
             background-color: var(--card-bg);
             border-radius: 12px;
@@ -341,21 +327,33 @@
             transition: var(--transition);
             height: 100%;
             box-shadow: var(--shadow-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-gold);
+            transform: scaleX(0);
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover:before {
+            transform: scaleX(1);
         }
 
         .card:hover {
-            border-color: var(--accent-gold);
-            transform: translateY(-10px);
+            border-color: transparent;
+            transform: translateY(-8px);
             box-shadow: var(--shadow-gold);
         }
 
-        .card-icon {
-            font-size: 1.8rem;
-            color: var(--accent-gold);
-            margin-bottom: 1.2rem;
-        }
-
-        /* Philosophy Grid - LEBIH RAPAT */
+        /* Philosophy Grid - More Compact */
         .philosophy-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
@@ -369,11 +367,28 @@
             border: 1px solid var(--border-color);
             transition: var(--transition);
             height: 100%;
-            box-shadow: var(--shadow-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-gold);
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+        }
+
+        .philosophy-card:hover:before {
+            transform: scaleY(1);
         }
 
         .philosophy-card:hover {
-            border-color: var(--accent-gold);
+            border-color: transparent;
             transform: translateY(-5px);
             box-shadow: var(--shadow-gold);
         }
@@ -401,10 +416,29 @@
             border: 1px solid var(--border-color);
             margin-bottom: 1.5rem;
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .investment-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-gold);
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+        }
+
+        .investment-item:hover:before {
+            transform: scaleY(1);
         }
 
         .investment-item:hover {
-            border-color: var(--accent-gold);
+            border-color: transparent;
+            transform: translateX(10px);
         }
 
         .investment-number {
@@ -426,6 +460,12 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            transition: var(--transition);
+        }
+
+        .dont-do-list li:hover {
+            color: var(--text-primary);
+            padding-left: 0.5rem;
         }
 
         .dont-do-list li i {
@@ -446,7 +486,7 @@
             top: 0;
             bottom: 0;
             width: 2px;
-            background: var(--accent-gold);
+            background: var(--gradient-gold);
         }
 
         .timeline-item {
@@ -461,7 +501,7 @@
             top: 0;
             width: 60px;
             height: 60px;
-            background: var(--accent-gold);
+            background: var(--gradient-gold);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -471,25 +511,71 @@
             font-size: 0.9rem;
         }
 
-        /* End Game */
+        /* End Game - Updated */
         .end-game-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
             gap: 2rem;
+            margin-bottom: 3rem;
         }
 
-        .end-game-item {
-            text-align: center;
-            padding: 2rem;
+        .end-game-card {
             background-color: var(--card-bg);
-            border-radius: 10px;
+            border-radius: 12px;
+            padding: 2.5rem;
             border: 1px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
         }
 
-        .end-game-item i {
+        .end-game-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-gold);
+            transform: scaleX(0);
+            transition: transform 0.6s ease;
+        }
+
+        .end-game-card:hover:before {
+            transform: scaleX(1);
+        }
+
+        .end-game-card:hover {
+            border-color: transparent;
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .end-game-icon {
             font-size: 2.5rem;
             color: var(--accent-gold);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            padding: 1rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 12px;
+        }
+
+        .end-game-closing {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-gold);
+            margin-top: 2rem;
+        }
+
+        .end-game-closing p {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--accent-gold);
+            margin-bottom: 0;
         }
 
         /* Contact */
@@ -516,6 +602,7 @@
             color: var(--accent-gold);
             border-color: var(--accent-gold);
             background: rgba(212, 175, 55, 0.05);
+            transform: translateY(-3px);
         }
 
         /* Footer */
@@ -563,7 +650,6 @@
             }
             
             section {
-                min-height: auto;
                 padding: 4rem 0;
             }
             
@@ -609,16 +695,18 @@
             }
             
             .philosophy-grid {
-                grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+                grid-template-columns: 1fr;
                 gap: 1rem;
             }
             
-            .philosophy-card {
-                padding: 1.5rem;
+            .end-game-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             
-            .philosophy-card h3 {
-                font-size: 1.2rem;
+            .investment-item {
+                flex-direction: column;
+                gap: 1rem;
             }
         }
 
@@ -629,8 +717,15 @@
         }
 
         .fade-in {
+            opacity: 0;
             animation: fadeIn 0.8s ease-out forwards;
         }
+
+        .stagger-delay-1 { animation-delay: 0.1s; }
+        .stagger-delay-2 { animation-delay: 0.2s; }
+        .stagger-delay-3 { animation-delay: 0.3s; }
+        .stagger-delay-4 { animation-delay: 0.4s; }
+        .stagger-delay-5 { animation-delay: 0.5s; }
 
         ::-webkit-scrollbar {
             width: 10px;
@@ -641,7 +736,7 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: var(--accent-gold);
+            background: var(--gradient-gold);
             border-radius: 5px;
         }
     </style>
@@ -653,7 +748,7 @@
         <button class="lang-btn" id="langID">ID</button>
     </div>
 
-    <!-- Top Navigation - Desktop -->
+    <!-- Top Navigation -->
     <nav class="top-nav" id="topNav">
         <div class="container">
             <div class="top-nav-content">
@@ -671,7 +766,7 @@
         </div>
     </nav>
 
-    <!-- Bottom Navigation - Desktop -->
+    <!-- Bottom Navigation -->
     <nav class="bottom-nav" id="bottomNav">
         <ul class="bottom-nav-menu">
             <li><a href="#blueprint"><i class="fas fa-road"></i> <span data-i18n="nav.blueprint">Blueprint</span></a></li>
@@ -733,7 +828,7 @@
     <section id="founder">
         <div class="container">
             <h2 data-i18n="founder.title">The Founder</h2>
-            <div class="card fade-in">
+            <div class="card fade-in stagger-delay-1">
                 <h3 data-i18n="founder.name">Lenrong</h3>
                 <p style="color: var(--accent-gold); margin-bottom: 1.5rem;" data-i18n="founder.title2">Independent Investor | Capital Allocator | Market Practitioner</p>
                 <p data-i18n="founder.p1">5+ years experience in stock and crypto markets</p>
@@ -747,55 +842,37 @@
         </div>
     </section>
 
-    <!-- Core Philosophy - LEBIH RAPAT -->
+    <!-- Core Philosophy -->
     <section id="philosophy">
         <div class="container">
             <h2 data-i18n="philosophy.title">Core Philosophy</h2>
             <div class="philosophy-grid">
-                <div class="philosophy-card fade-in">
-                    <div class="card-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
+                <div class="philosophy-card fade-in stagger-delay-1">
                     <h3 data-i18n="philosophy.card1.title">Capital Preservation First</h3>
                     <p data-i18n="philosophy.card1.desc">Survival is always more important than looking smart.</p>
                 </div>
                 
-                <div class="philosophy-card fade-in">
-                    <div class="card-icon">
-                        <i class="fas fa-bullseye"></i>
-                    </div>
+                <div class="philosophy-card fade-in stagger-delay-2">
                     <h3 data-i18n="philosophy.card2.title">Focus Beats Complexity</h3>
                     <p data-i18n="philosophy.card2.desc">Complexity is the enemy of execution.</p>
                 </div>
                 
-                <div class="philosophy-card fade-in">
-                    <div class="card-icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
+                <div class="philosophy-card fade-in stagger-delay-3">
                     <h3 data-i18n="philosophy.card3.title">Asymmetric Risk Only</h3>
                     <p data-i18n="philosophy.card3.desc">Risk is limited, potential remains open.</p>
                 </div>
                 
-                <div class="philosophy-card fade-in">
-                    <div class="card-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
+                <div class="philosophy-card fade-in stagger-delay-4">
                     <h3 data-i18n="philosophy.card4.title">Process Over Outcome</h3>
                     <p data-i18n="philosophy.card4.desc">Results are consequences, not primary goals.</p>
                 </div>
                 
-                <div class="philosophy-card fade-in">
-                    <div class="card-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
+                <div class="philosophy-card fade-in stagger-delay-5">
                     <h3 data-i18n="philosophy.card5.title">Stoic Execution</h3>
                     <p data-i18n="philosophy.card5.desc">Emotions have no voting rights in decisions.</p>
                 </div>
                 
                 <div class="philosophy-card fade-in">
-                    <div class="card-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
                     <h3 data-i18n="philosophy.card6.title">Islamic Values & Accountability</h3>
                     <p data-i18n="philosophy.card6.desc">Halal, responsible, and aware of consequences.</p>
                 </div>
@@ -807,7 +884,7 @@
     <section id="investment">
         <div class="container">
             <h2 data-i18n="investment.title">Investment Universe</h2>
-            <div class="investment-item fade-in">
+            <div class="investment-item fade-in stagger-delay-1">
                 <div class="investment-number">1</div>
                 <div>
                     <h3 data-i18n="investment.item1.title">Bitcoin — Core Asset</h3>
@@ -815,7 +892,7 @@
                 </div>
             </div>
             
-            <div class="investment-item fade-in">
+            <div class="investment-item fade-in stagger-delay-2">
                 <div class="investment-number">2</div>
                 <div>
                     <h3 data-i18n="investment.item2.title">Public Equities</h3>
@@ -823,7 +900,7 @@
                 </div>
             </div>
             
-            <div class="investment-item fade-in">
+            <div class="investment-item fade-in stagger-delay-3">
                 <div class="investment-number">3</div>
                 <div>
                     <h3 data-i18n="investment.item3.title">Trading & Derivatives (Cashflow Engine)</h3>
@@ -872,25 +949,25 @@
         <div class="container">
             <h2 data-i18n="blueprint.title">Blueprint to 2045</h2>
             <div class="timeline">
-                <div class="timeline-item fade-in">
+                <div class="timeline-item fade-in stagger-delay-1">
                     <div class="timeline-year">2025-2027</div>
                     <h3 data-i18n="blueprint.phase1.title">PHASE I — FOUNDATION</h3>
                     <p data-i18n="blueprint.phase1.desc">Focus: discipline, consistency, and stability | Portfolio consolidation | Disciplined trading track record | Market as secondary income | Active work as risk cushion | Mature personal systems, journals, and SOPs</p>
                 </div>
                 
-                <div class="timeline-item fade-in">
+                <div class="timeline-item fade-in stagger-delay-2">
                     <div class="timeline-year">2027-2030</div>
                     <h3 data-i18n="blueprint.phase2.title">PHASE II — TRANSITION</h3>
                     <p data-i18n="blueprint.phase2.desc">Focus: early financial independence | Market income surpasses active income | Honorable release from formal work (if conditions met) | Bitcoin accumulation milestone achieved | Focus on capital allocation, not excessive activity</p>
                 </div>
                 
-                <div class="timeline-item fade-in">
+                <div class="timeline-item fade-in stagger-delay-3">
                     <div class="timeline-year">2030-2035</div>
                     <h3 data-i18n="blueprint.phase3.title">PHASE III — CONSOLIDATION</h3>
                     <p data-i18n="blueprint.phase3.desc">Focus: long-term resilience | Trading as opportunistic | Dividend & yield as backbone | Children's education and family stability | Zero lifestyle inflation</p>
                 </div>
                 
-                <div class="timeline-item fade-in">
+                <div class="timeline-item fade-in stagger-delay-4">
                     <div class="timeline-year">2035-2045</div>
                     <h3 data-i18n="blueprint.phase4.title">PHASE IV — FAMILY OFFICE MODE</h3>
                     <p data-i18n="blueprint.phase4.desc">Focus: legacy and complete freedom | Lenrong Capital functions as personal family office | Capital preservation > aggressiveness | Directed philanthropy | Living from results, not market pressure</p>
@@ -899,38 +976,47 @@
         </div>
     </section>
 
-    <!-- End Game -->
+    <!-- End Game - Updated -->
     <section id="endgame">
         <div class="container">
             <h2 data-i18n="endgame.title">End Game</h2>
             <div class="end-game-grid">
-                <div class="end-game-item fade-in">
-                    <i class="fas fa-clock"></i>
+                <div class="end-game-card fade-in stagger-delay-1">
+                    <div class="end-game-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
                     <h3 data-i18n="endgame.card1.title">Time Freedom</h3>
-                    <p data-i18n="endgame.card1.desc">Free time</p>
+                    <p data-i18n="endgame.card1.desc">Having full control over time. Daily activities are determined by life priorities—family, health, worship, and self-development—not by structural obligations or external pressure. Working by choice, not by necessity.</p>
                 </div>
                 
-                <div class="end-game-item fade-in">
-                    <i class="fas fa-globe"></i>
-                    <h3 data-i18n="endgame.card2.title">Location Freedom</h3>
-                    <p data-i18n="endgame.card2.desc">Free location</p>
+                <div class="end-game-card fade-in stagger-delay-2">
+                    <div class="end-game-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 data-i18n="endgame.card2.title">Location Independence</h3>
+                    <p data-i18n="endgame.card2.desc">Not tied to a single physical location. Work systems and asset management enable productivity and decision-making from anywhere, without compromising quality of life or results.</p>
                 </div>
                 
-                <div class="end-game-item fade-in">
-                    <i class="fas fa-hand-holding-usd"></i>
-                    <h3 data-i18n="endgame.card3.title">Financial Freedom</h3>
-                    <p data-i18n="endgame.card3.desc">Free from financial pressure</p>
+                <div class="end-game-card fade-in stagger-delay-3">
+                    <div class="end-game-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3 data-i18n="endgame.card3.title">Financial Resilience</h3>
+                    <p data-i18n="endgame.card3.desc">Free from financial anxiety. Life needs, family future, and unexpected risks are supported by a sustainable asset structure. Money returns to its role as a tool, not a source of pressure.</p>
                 </div>
                 
-                <div class="end-game-item fade-in">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3 data-i18n="endgame.card4.title">Family Legacy</h3>
-                    <p data-i18n="endgame.card4.desc">Children receive best education</p>
+                <div class="end-game-card fade-in stagger-delay-4">
+                    <div class="end-game-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 data-i18n="endgame.card4.title">Quality Education for the Next Generation</h3>
+                    <p data-i18n="endgame.card4.desc">The ability to provide the best education for children—based on quality, values, and environment—without being limited by short-term financial considerations. Being fully present as a parent, not just a breadwinner.</p>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 3rem; font-style: italic;" data-i18n="endgame.quote">
-                Monday morning coffee while opening the laptop—because we want to, not because we have to.
-            </p>
+            
+            <div class="end-game-closing fade-in">
+                <p data-i18n="endgame.quote">Monday morning coffee while opening the laptop—not as a forced routine, but as a symbol of life sovereignty. Still productive, still engaged, but entirely based on conscious choice.</p>
+            </div>
         </div>
     </section>
 
@@ -972,7 +1058,7 @@
         // Set current year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         
-        // Translation data
+        // Translation data with updated End Game
         const translations = {
             en: {
                 // Navigation
@@ -1069,17 +1155,17 @@
                 "blueprint.phase4.title": "PHASE IV — FAMILY OFFICE MODE",
                 "blueprint.phase4.desc": "Focus: legacy and complete freedom | Lenrong Capital functions as personal family office | Capital preservation > aggressiveness | Directed philanthropy | Living from results, not market pressure",
                 
-                // End Game
+                // End Game - UPDATED
                 "endgame.title": "End Game",
                 "endgame.card1.title": "Time Freedom",
-                "endgame.card1.desc": "Free time",
-                "endgame.card2.title": "Location Freedom",
-                "endgame.card2.desc": "Free location",
-                "endgame.card3.title": "Financial Freedom",
-                "endgame.card3.desc": "Free from financial pressure",
-                "endgame.card4.title": "Family Legacy",
-                "endgame.card4.desc": "Children receive best education",
-                "endgame.quote": "Monday morning coffee while opening the laptop—because we want to, not because we have to.",
+                "endgame.card1.desc": "Having full control over time. Daily activities are determined by life priorities—family, health, worship, and self-development—not by structural obligations or external pressure. Working by choice, not by necessity.",
+                "endgame.card2.title": "Location Independence",
+                "endgame.card2.desc": "Not tied to a single physical location. Work systems and asset management enable productivity and decision-making from anywhere, without compromising quality of life or results.",
+                "endgame.card3.title": "Financial Resilience",
+                "endgame.card3.desc": "Free from financial anxiety. Life needs, family future, and unexpected risks are supported by a sustainable asset structure. Money returns to its role as a tool, not a source of pressure.",
+                "endgame.card4.title": "Quality Education for the Next Generation",
+                "endgame.card4.desc": "The ability to provide the best education for children—based on quality, values, and environment—without being limited by short-term financial considerations. Being fully present as a parent, not just a breadwinner.",
+                "endgame.quote": "Monday morning coffee while opening the laptop—not as a forced routine, but as a symbol of life sovereignty. Still productive, still engaged, but entirely based on conscious choice.",
                 
                 // Contact
                 "contact.title": "Contact",
@@ -1184,17 +1270,17 @@
                 "blueprint.phase4.title": "FASE IV — MODE FAMILY OFFICE",
                 "blueprint.phase4.desc": "Fokus: legacy dan kebebasan penuh | Lenrong Capital berfungsi sebagai family office pribadi | Preservasi modal > agresivitas | Filantropi terarah | Hidup dari hasil, bukan tekanan market",
                 
-                // End Game
+                // End Game - UPDATED
                 "endgame.title": "Tujuan Akhir",
                 "endgame.card1.title": "Kebebasan Waktu",
-                "endgame.card1.desc": "Bebas waktu",
-                "endgame.card2.title": "Kebebasan Lokasi",
-                "endgame.card2.desc": "Bebas lokasi",
-                "endgame.card3.title": "Kebebasan Finansial",
-                "endgame.card3.desc": "Bebas tekanan finansial",
-                "endgame.card4.title": "Warisan Keluarga",
-                "endgame.card4.desc": "Anak mendapatkan pendidikan terbaik",
-                "endgame.quote": "Senin pagi ngopi sambil buka laptop — karena mau, bukan karena harus.",
+                "endgame.card1.desc": "Memiliki kendali penuh atas waktu. Aktivitas harian ditentukan oleh prioritas hidup—keluarga, kesehatan, ibadah, dan pengembangan diri—bukan oleh kewajiban struktural atau tekanan eksternal. Bekerja karena memilih, bukan karena terpaksa.",
+                "endgame.card2.title": "Independensi Lokasi",
+                "endgame.card2.desc": "Tidak terikat pada satu lokasi fisik. Sistem kerja dan pengelolaan aset memungkinkan produktivitas dan pengambilan keputusan dari mana pun, tanpa kompromi terhadap kualitas hidup maupun hasil.",
+                "endgame.card3.title": "Ketahanan Finansial",
+                "endgame.card3.desc": "Bebas dari kecemasan finansial. Kebutuhan hidup, masa depan keluarga, dan risiko tak terduga telah ditopang oleh struktur aset yang berkelanjutan. Uang kembali ke perannya sebagai alat, bukan sumber tekanan.",
+                "endgame.card4.title": "Pendidikan Berkualitas untuk Generasi Berikutnya",
+                "endgame.card4.desc": "Kemampuan untuk memberikan pendidikan terbaik bagi anak—berbasis kualitas, nilai, dan lingkungan—tanpa dibatasi oleh pertimbangan finansial jangka pendek. Hadir secara utuh sebagai orang tua, bukan sekadar penyedia nafkah.",
+                "endgame.quote": "Senin pagi ngopi sambil membuka laptop—bukan sebagai rutinitas yang memaksa, melainkan sebagai simbol kedaulatan hidup. Tetap produktif, tetap terlibat, namun sepenuhnya atas dasar pilihan sadar.",
                 
                 // Contact
                 "contact.title": "Kontak",
@@ -1322,7 +1408,7 @@
         }, observerOptions);
 
         // Observe semua elemen yang perlu di-animate
-        document.querySelectorAll('.card, .timeline-item, .end-game-item, .investment-item, .philosophy-card').forEach((el) => {
+        document.querySelectorAll('.card, .timeline-item, .end-game-card, .end-game-closing, .investment-item, .philosophy-card').forEach((el) => {
             observer.observe(el);
         });
     </script>
