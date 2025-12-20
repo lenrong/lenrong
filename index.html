@@ -37,6 +37,7 @@
             line-height: 1.7;
             overflow-x: hidden;
             scroll-behavior: smooth;
+            padding-top: 80px;
         }
 
         h1, h2, h3, h4, .logo {
@@ -100,18 +101,57 @@
             justify-content: center;
         }
 
-        /* Header */
-        header {
-            padding: 2rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background-color: rgba(10, 10, 10, 0.95);
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1001;
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(26, 26, 26, 0.9);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 0.5rem;
+            box-shadow: var(--shadow-dark);
         }
 
-        .header-content {
+        .lang-btn {
+            background: transparent;
+            color: var(--text-secondary);
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .lang-btn:hover {
+            color: var(--accent-gold);
+        }
+
+        .lang-btn.active {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+        }
+
+        /* Top Navigation - Desktop */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .top-nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -124,11 +164,133 @@
             letter-spacing: 2px;
         }
 
-        .tagline {
-            font-size: 0.9rem;
+        .top-nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .top-nav-menu a {
             color: var(--text-secondary);
-            letter-spacing: 1px;
-            text-align: right;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .top-nav-menu a:hover,
+        .top-nav-menu a.active {
+            color: var(--accent-gold);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .top-nav-menu a i {
+            font-size: 0.9rem;
+        }
+
+        /* Bottom Navigation - Desktop */
+        .bottom-nav {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            background: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 0.8rem 1.5rem;
+            box-shadow: var(--shadow-dark);
+            display: none;
+        }
+
+        .bottom-nav-menu {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .bottom-nav-menu a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            white-space: nowrap;
+        }
+
+        .bottom-nav-menu a:hover,
+        .bottom-nav-menu a.active {
+            color: var(--accent-gold);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .bottom-nav-menu a i {
+            font-size: 1rem;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 0.8rem;
+            box-shadow: var(--shadow-dark);
+            display: none;
+        }
+
+        .mobile-nav-menu {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+            overflow-x: auto;
+            max-width: 90vw;
+            padding: 0 0.5rem;
+        }
+
+        .mobile-nav-menu::-webkit-scrollbar {
+            display: none;
+        }
+
+        .mobile-nav-menu a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.75rem;
+            padding: 0.5rem 0.8rem;
+            border-radius: 25px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.2rem;
+            white-space: nowrap;
+        }
+
+        .mobile-nav-menu a:hover,
+        .mobile-nav-menu a.active {
+            color: var(--accent-gold);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .mobile-nav-menu a i {
+            font-size: 0.9rem;
         }
 
         /* Hero Section */
@@ -188,16 +350,44 @@
         }
 
         .card-icon {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--accent-gold);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
-        /* Philosophy Grid */
+        /* Philosophy Grid - LEBIH RAPAT */
         .philosophy-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+            gap: 1.5rem;
+        }
+
+        .philosophy-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.8rem;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            height: 100%;
+            box-shadow: var(--shadow-dark);
+        }
+
+        .philosophy-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .philosophy-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+        }
+
+        .philosophy-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+            line-height: 1.6;
         }
 
         /* Investment Items */
@@ -344,100 +534,64 @@
             color: var(--text-primary);
         }
 
-        /* Sidebar Navigation */
-        .sidebar {
-            position: fixed;
-            top: 50%;
-            right: 2rem;
-            transform: translateY(-50%);
-            z-index: 99;
-            background: rgba(26, 26, 26, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 1.5rem 1rem;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-dark);
-            display: none;
+        /* Responsive Design */
+        @media (min-width: 1025px) {
+            .bottom-nav {
+                display: block;
+            }
+            
+            .mobile-nav {
+                display: none !important;
+            }
+            
+            .top-nav-menu {
+                display: flex;
+            }
         }
 
-        .sidebar.active {
-            display: block;
+        @media (max-width: 1024px) {
+            .top-nav-menu {
+                display: none;
+            }
+            
+            .mobile-nav {
+                display: block;
+            }
+            
+            .bottom-nav {
+                display: none !important;
+            }
+            
+            section {
+                min-height: auto;
+                padding: 4rem 0;
+            }
+            
+            h2 {
+                scroll-margin-top: 80px;
+            }
+            
+            .language-switcher {
+                top: 1.5rem;
+                right: 1.5rem;
+            }
         }
 
-        .sidebar-nav {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .sidebar-nav li {
-            position: relative;
-        }
-
-        .sidebar-nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            padding: 0.5rem 1rem;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: var(--transition);
-            white-space: nowrap;
-        }
-
-        .sidebar-nav a:hover,
-        .sidebar-nav a.active {
-            color: var(--accent-gold);
-            background: rgba(212, 175, 55, 0.1);
-        }
-
-        .sidebar-nav a i {
-            font-size: 0.8rem;
-            opacity: 0.7;
-        }
-
-        .sidebar-toggle {
-            position: fixed;
-            top: 50%;
-            right: 1rem;
-            transform: translateY(-50%);
-            z-index: 100;
-            background: var(--accent-gold);
-            color: var(--primary-dark);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border: none;
-            font-size: 1.2rem;
-            transition: var(--transition);
-            box-shadow: var(--shadow-gold);
-        }
-
-        .sidebar-toggle:hover {
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        /* Mobile Responsiveness */
         @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+            
             .container {
                 padding: 0 1.5rem;
             }
             
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
+            .top-nav {
+                padding: 0.8rem 0;
             }
             
-            .tagline {
-                text-align: center;
+            .logo {
+                font-size: 1.6rem;
             }
             
             .timeline:before {
@@ -454,105 +608,17 @@
                 font-size: 0.8rem;
             }
             
-            .sidebar {
-                right: 1rem;
-                max-height: 70vh;
-                overflow-y: auto;
+            .philosophy-grid {
+                grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+                gap: 1rem;
             }
             
-            .sidebar-nav a span {
-                display: none;
+            .philosophy-card {
+                padding: 1.5rem;
             }
             
-            .sidebar-nav a {
-                padding: 0.5rem;
-                justify-content: center;
-            }
-            
-            .sidebar-nav a i {
-                font-size: 1rem;
-            }
-        }
-
-        /* Mobile Navigation */
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 99;
-            background: rgba(26, 26, 26, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 50px;
-            padding: 1rem;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-dark);
-        }
-
-        .mobile-nav.active {
-            display: block;
-        }
-
-        .mobile-nav-list {
-            list-style: none;
-            display: flex;
-            gap: 1rem;
-            overflow-x: auto;
-            max-width: 90vw;
-            padding: 0 1rem;
-        }
-
-        .mobile-nav-list a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.8rem;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            white-space: nowrap;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .mobile-nav-list a:hover,
-        .mobile-nav-list a.active {
-            color: var(--accent-gold);
-            background: rgba(212, 175, 55, 0.1);
-        }
-
-        .mobile-nav-list a i {
-            font-size: 1rem;
-        }
-
-        @media (max-width: 1024px) {
-            .sidebar {
-                display: none;
-            }
-            
-            .sidebar-toggle {
-                display: none;
-            }
-            
-            .mobile-nav {
-                display: block;
-            }
-            
-            section {
-                min-height: auto;
-                padding: 4rem 0;
-            }
-            
-            h2 {
-                scroll-margin-top: 80px;
-            }
-        }
-
-        @media (min-width: 1025px) {
-            .mobile-nav {
-                display: none !important;
+            .philosophy-card h3 {
+                font-size: 1.2rem;
             }
         }
 
@@ -581,57 +647,63 @@
     </style>
 </head>
 <body>
-    <!-- Sidebar Toggle Button -->
-    <button class="sidebar-toggle" id="sidebarToggle">
-        <i class="fas fa-bars"></i>
-    </button>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn active" id="langEN">EN</button>
+        <button class="lang-btn" id="langID">ID</button>
+    </div>
 
-    <!-- Desktop Sidebar -->
-    <nav class="sidebar" id="sidebar">
-        <ul class="sidebar-nav">
-            <li><a href="#hero"><i class="fas fa-home"></i> <span>Home</span></a></li>
-            <li><a href="#about"><i class="fas fa-building"></i> <span>About</span></a></li>
-            <li><a href="#founder"><i class="fas fa-user"></i> <span>Founder</span></a></li>
-            <li><a href="#philosophy"><i class="fas fa-brain"></i> <span>Philosophy</span></a></li>
-            <li><a href="#investment"><i class="fas fa-chart-line"></i> <span>Investment</span></a></li>
-            <li><a href="#dont-do"><i class="fas fa-ban"></i> <span>What We Don't Do</span></a></li>
-            <li><a href="#disclosure"><i class="fas fa-exclamation-triangle"></i> <span>Disclosure</span></a></li>
-            <li><a href="#blueprint"><i class="fas fa-road"></i> <span>Blueprint 2045</span></a></li>
-            <li><a href="#endgame"><i class="fas fa-flag-checkered"></i> <span>End Game</span></a></li>
-            <li><a href="#contact"><i class="fas fa-envelope"></i> <span>Contact</span></a></li>
+    <!-- Top Navigation - Desktop -->
+    <nav class="top-nav" id="topNav">
+        <div class="container">
+            <div class="top-nav-content">
+                <div class="logo">LENRONG CAPITAL</div>
+                <ul class="top-nav-menu">
+                    <li><a href="#hero"><i class="fas fa-home"></i> <span data-i18n="nav.home">Home</span></a></li>
+                    <li><a href="#about"><i class="fas fa-building"></i> <span data-i18n="nav.about">About</span></a></li>
+                    <li><a href="#founder"><i class="fas fa-user"></i> <span data-i18n="nav.founder">Founder</span></a></li>
+                    <li><a href="#philosophy"><i class="fas fa-brain"></i> <span data-i18n="nav.philosophy">Philosophy</span></a></li>
+                    <li><a href="#investment"><i class="fas fa-chart-line"></i> <span data-i18n="nav.investment">Investment</span></a></li>
+                    <li><a href="#dont-do"><i class="fas fa-ban"></i> <span data-i18n="nav.dontdo">What We Don't Do</span></a></li>
+                    <li><a href="#disclosure"><i class="fas fa-exclamation-triangle"></i> <span data-i18n="nav.disclosure">Disclosure</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Bottom Navigation - Desktop -->
+    <nav class="bottom-nav" id="bottomNav">
+        <ul class="bottom-nav-menu">
+            <li><a href="#blueprint"><i class="fas fa-road"></i> <span data-i18n="nav.blueprint">Blueprint</span></a></li>
+            <li><a href="#endgame"><i class="fas fa-flag-checkered"></i> <span data-i18n="nav.endgame">End Game</span></a></li>
+            <li><a href="#contact"><i class="fas fa-envelope"></i> <span data-i18n="nav.contact">Contact</span></a></li>
+            <li><a href="#hero" class="back-to-top"><i class="fas fa-arrow-up"></i> <span data-i18n="nav.top">Top</span></a></li>
         </ul>
     </nav>
 
     <!-- Mobile Navigation -->
     <nav class="mobile-nav" id="mobileNav">
-        <ul class="mobile-nav-list">
-            <li><a href="#hero"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="#about"><i class="fas fa-building"></i> About</a></li>
-            <li><a href="#founder"><i class="fas fa-user"></i> Founder</a></li>
-            <li><a href="#philosophy"><i class="fas fa-brain"></i> Philosophy</a></li>
-            <li><a href="#investment"><i class="fas fa-chart-line"></i> Investment</a></li>
+        <ul class="mobile-nav-menu">
+            <li><a href="#hero"><i class="fas fa-home"></i> <span data-i18n="nav.home">Home</span></a></li>
+            <li><a href="#about"><i class="fas fa-building"></i> <span data-i18n="nav.about">About</span></a></li>
+            <li><a href="#founder"><i class="fas fa-user"></i> <span data-i18n="nav.founder">Founder</span></a></li>
+            <li><a href="#philosophy"><i class="fas fa-brain"></i> <span data-i18n="nav.philosophy">Philosophy</span></a></li>
+            <li><a href="#investment"><i class="fas fa-chart-line"></i> <span data-i18n="nav.investment">Investment</span></a></li>
+            <li><a href="#dont-do"><i class="fas fa-ban"></i> <span data-i18n="nav.dontdo">Don't Do</span></a></li>
+            <li><a href="#blueprint"><i class="fas fa-road"></i> <span data-i18n="nav.blueprint">Blueprint</span></a></li>
+            <li><a href="#contact"><i class="fas fa-envelope"></i> <span data-i18n="nav.contact">Contact</span></a></li>
         </ul>
     </nav>
-
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">LENRONG CAPITAL</div>
-                <div class="tagline">Independent Capital Management</div>
-            </div>
-        </div>
-    </header>
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="container">
             <div class="hero-content fade-in">
-                <h1>Built for Freedom, Focus, and Long-Term Survival</h1>
-                <div class="hero-subtitle">
+                <h1 data-i18n="hero.title">Built for Freedom, Focus, and Long-Term Survival</h1>
+                <div class="hero-subtitle" data-i18n="hero.subtitle">
                     We don't chase returns. We build resilience, discipline, and long-term freedom.
                 </div>
-                <div class="hero-quote">
+                <div class="hero-quote" data-i18n="hero.quote">
                     "We don't chase quick returns. We build resilience, discipline, and long-term freedom."
                 </div>
             </div>
@@ -641,18 +713,18 @@
     <!-- About Section -->
     <section id="about">
         <div class="container">
-            <h2>About Lenrong Capital</h2>
+            <h2 data-i18n="about.title">About Lenrong Capital</h2>
             <div class="card fade-in">
-                <p>Lenrong Capital is a private, independent investment entity built to manage personal capital with a long-term, measurable, and disciplined approach.</p>
-                <p>This is not an asset management company. Not a hedge fund. Not an investment community.</p>
-                <p>Lenrong Capital is a private capital vehicle focused on:</p>
+                <p data-i18n="about.p1">Lenrong Capital is a private, independent investment entity built to manage personal capital with a long-term, measurable, and disciplined approach.</p>
+                <p data-i18n="about.p2">This is not an asset management company. Not a hedge fund. Not an investment community.</p>
+                <p data-i18n="about.p3">Lenrong Capital is a private capital vehicle focused on:</p>
                 <ul style="color: var(--text-secondary); margin-left: 2rem; margin-top: 1rem;">
-                    <li style="margin-bottom: 0.8rem;">Capital preservation</li>
-                    <li style="margin-bottom: 0.8rem;">Rational growth</li>
-                    <li style="margin-bottom: 0.8rem;">Long-term compounding</li>
-                    <li>Value-based life freedom</li>
+                    <li style="margin-bottom: 0.8rem;" data-i18n="about.li1">Capital preservation</li>
+                    <li style="margin-bottom: 0.8rem;" data-i18n="about.li2">Rational growth</li>
+                    <li style="margin-bottom: 0.8rem;" data-i18n="about.li3">Long-term compounding</li>
+                    <li data-i18n="about.li4">Value-based life freedom</li>
                 </ul>
-                <p>We believe money is a tool, not life's ultimate goal.</p>
+                <p data-i18n="about.p4">We believe money is a tool, not life's ultimate goal.</p>
             </div>
         </div>
     </section>
@@ -660,72 +732,72 @@
     <!-- The Founder -->
     <section id="founder">
         <div class="container">
-            <h2>The Founder</h2>
+            <h2 data-i18n="founder.title">The Founder</h2>
             <div class="card fade-in">
-                <h3>Lenrong</h3>
-                <p style="color: var(--accent-gold); margin-bottom: 1.5rem;">Independent Investor | Capital Allocator | Market Practitioner</p>
-                <p>5+ years experience in stock and crypto markets</p>
-                <p>Technical background and formal work discipline</p>
-                <p>Managing personal portfolio with measured defensive-aggressive approach</p>
-                <p>Does not sell signals</p>
-                <p>Does not manage others' funds</p>
-                <p>Does not pursue popularity</p>
-                <p style="margin-top: 1.5rem;">Lenrong builds capital while bearing family responsibilities—not from an empty space nor instant narratives.</p>
+                <h3 data-i18n="founder.name">Lenrong</h3>
+                <p style="color: var(--accent-gold); margin-bottom: 1.5rem;" data-i18n="founder.title2">Independent Investor | Capital Allocator | Market Practitioner</p>
+                <p data-i18n="founder.p1">5+ years experience in stock and crypto markets</p>
+                <p data-i18n="founder.p2">Technical background and formal work discipline</p>
+                <p data-i18n="founder.p3">Managing personal portfolio with measured defensive-aggressive approach</p>
+                <p data-i18n="founder.p4">Does not sell signals</p>
+                <p data-i18n="founder.p5">Does not manage others' funds</p>
+                <p data-i18n="founder.p6">Does not pursue popularity</p>
+                <p style="margin-top: 1.5rem;" data-i18n="founder.p7">Lenrong builds capital while bearing family responsibilities—not from an empty space nor instant narratives.</p>
             </div>
         </div>
     </section>
 
-    <!-- Core Philosophy -->
+    <!-- Core Philosophy - LEBIH RAPAT -->
     <section id="philosophy">
         <div class="container">
-            <h2>Core Philosophy</h2>
+            <h2 data-i18n="philosophy.title">Core Philosophy</h2>
             <div class="philosophy-grid">
-                <div class="card fade-in">
+                <div class="philosophy-card fade-in">
                     <div class="card-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h3>Capital Preservation First</h3>
-                    <p>Survival is always more important than looking smart.</p>
+                    <h3 data-i18n="philosophy.card1.title">Capital Preservation First</h3>
+                    <p data-i18n="philosophy.card1.desc">Survival is always more important than looking smart.</p>
                 </div>
                 
-                <div class="card fade-in">
+                <div class="philosophy-card fade-in">
                     <div class="card-icon">
                         <i class="fas fa-bullseye"></i>
                     </div>
-                    <h3>Focus Beats Complexity</h3>
-                    <p>Complexity is the enemy of execution.</p>
+                    <h3 data-i18n="philosophy.card2.title">Focus Beats Complexity</h3>
+                    <p data-i18n="philosophy.card2.desc">Complexity is the enemy of execution.</p>
                 </div>
                 
-                <div class="card fade-in">
+                <div class="philosophy-card fade-in">
                     <div class="card-icon">
                         <i class="fas fa-balance-scale"></i>
                     </div>
-                    <h3>Asymmetric Risk Only</h3>
-                    <p>Risk is limited, potential remains open.</p>
+                    <h3 data-i18n="philosophy.card3.title">Asymmetric Risk Only</h3>
+                    <p data-i18n="philosophy.card3.desc">Risk is limited, potential remains open.</p>
                 </div>
                 
-                <div class="card fade-in">
+                <div class="philosophy-card fade-in">
                     <div class="card-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3>Process Over Outcome</h3>
-                    <p>Results are consequences, not primary goals.</p>
+                    <h3 data-i18n="philosophy.card4.title">Process Over Outcome</h3>
+                    <p data-i18n="philosophy.card4.desc">Results are consequences, not primary goals.</p>
                 </div>
                 
-                <div class="card fade-in">
+                <div class="philosophy-card fade-in">
                     <div class="card-icon">
                         <i class="fas fa-brain"></i>
                     </div>
-                    <h3>Stoic Execution</h3>
-                    <p>Emotions have no voting rights in decisions.</p>
+                    <h3 data-i18n="philosophy.card5.title">Stoic Execution</h3>
+                    <p data-i18n="philosophy.card5.desc">Emotions have no voting rights in decisions.</p>
                 </div>
                 
-                <div class="card fade-in">
+                <div class="philosophy-card fade-in">
                     <div class="card-icon">
                         <i class="fas fa-hands-helping"></i>
                     </div>
-                    <h3>Islamic Values & Accountability</h3>
-                    <p>Halal, responsible, and aware of consequences.</p>
+                    <h3 data-i18n="philosophy.card6.title">Islamic Values & Accountability</h3>
+                    <p data-i18n="philosophy.card6.desc">Halal, responsible, and aware of consequences.</p>
                 </div>
             </div>
         </div>
@@ -734,28 +806,28 @@
     <!-- Investment Universe -->
     <section id="investment">
         <div class="container">
-            <h2>Investment Universe</h2>
+            <h2 data-i18n="investment.title">Investment Universe</h2>
             <div class="investment-item fade-in">
                 <div class="investment-number">1</div>
                 <div>
-                    <h3>Bitcoin — Core Asset</h3>
-                    <p>Long-term store of value | Hedge against monetary uncertainty | Not traded emotionally | Gradual and disciplined accumulation</p>
+                    <h3 data-i18n="investment.item1.title">Bitcoin — Core Asset</h3>
+                    <p data-i18n="investment.item1.desc">Long-term store of value | Hedge against monetary uncertainty | Not traded emotionally | Gradual and disciplined accumulation</p>
                 </div>
             </div>
             
             <div class="investment-item fade-in">
                 <div class="investment-number">2</div>
                 <div>
-                    <h3>Public Equities</h3>
-                    <p>High-quality Indonesian stocks | Global market ETFs (broad exposure) | Focus on few assets with high conviction | Avoiding over-diversification</p>
+                    <h3 data-i18n="investment.item2.title">Public Equities</h3>
+                    <p data-i18n="investment.item2.desc">High-quality Indonesian stocks | Global market ETFs (broad exposure) | Focus on few assets with high conviction | Avoiding over-diversification</p>
                 </div>
             </div>
             
             <div class="investment-item fade-in">
                 <div class="investment-number">3</div>
                 <div>
-                    <h3>Trading & Derivatives (Cashflow Engine)</h3>
-                    <p>Crypto futures and stock swings | Small risk, asymmetric reward | One position, one focus | Primary goal: increasing core asset ownership, not lifestyle</p>
+                    <h3 data-i18n="investment.item3.title">Trading & Derivatives (Cashflow Engine)</h3>
+                    <p data-i18n="investment.item3.desc">Crypto futures and stock swings | Small risk, asymmetric reward | One position, one focus | Primary goal: increasing core asset ownership, not lifestyle</p>
                 </div>
             </div>
         </div>
@@ -764,15 +836,15 @@
     <!-- What We Don't Do -->
     <section id="dont-do">
         <div class="container">
-            <h2>What We Don't Do</h2>
+            <h2 data-i18n="dontdo.title">What We Don't Do</h2>
             <div class="card fade-in">
                 <ul class="dont-do-list">
-                    <li><i class="fas fa-times"></i> Do not accept fund deposits</li>
-                    <li><i class="fas fa-times"></i> Do not manage third-party funds</li>
-                    <li><i class="fas fa-times"></i> Do not sell investment products</li>
-                    <li><i class="fas fa-times"></i> Do not provide trading signals</li>
-                    <li><i class="fas fa-times"></i> Do not promise returns</li>
-                    <li><i class="fas fa-times"></i> Do not chase hype and momentary narratives</li>
+                    <li><i class="fas fa-times"></i> <span data-i18n="dontdo.li1">Do not accept fund deposits</span></li>
+                    <li><i class="fas fa-times"></i> <span data-i18n="dontdo.li2">Do not manage third-party funds</span></li>
+                    <li><i class="fas fa-times"></i> <span data-i18n="dontdo.li3">Do not sell investment products</span></li>
+                    <li><i class="fas fa-times"></i> <span data-i18n="dontdo.li4">Do not provide trading signals</span></li>
+                    <li><i class="fas fa-times"></i> <span data-i18n="dontdo.li5">Do not promise returns</span></li>
+                    <li><i class="fas fa-times"></i> <span data-i18n="dontdo.li6">Do not chase hype and momentary narratives</span></li>
                 </ul>
             </div>
         </div>
@@ -781,16 +853,16 @@
     <!-- Important Disclosure -->
     <section id="disclosure">
         <div class="container">
-            <h2>Important Disclosure</h2>
+            <h2 data-i18n="disclosure.title">Important Disclosure</h2>
             <div class="card fade-in">
-                <p>Lenrong Capital uses 100% personal funds. There is no fund collection, management of others' funds, nor investment management cooperation.</p>
-                <p>All shared content is:</p>
+                <p data-i18n="disclosure.p1">Lenrong Capital uses 100% personal funds. There is no fund collection, management of others' funds, nor investment management cooperation.</p>
+                <p data-i18n="disclosure.p2">All shared content is:</p>
                 <ul style="color: var(--text-secondary); margin-left: 2rem; margin-top: 1rem;">
-                    <li style="margin-bottom: 0.8rem;">Educational</li>
-                    <li style="margin-bottom: 0.8rem;">Reflective</li>
-                    <li>Personal journey documentation</li>
+                    <li style="margin-bottom: 0.8rem;" data-i18n="disclosure.li1">Educational</li>
+                    <li style="margin-bottom: 0.8rem;" data-i18n="disclosure.li2">Reflective</li>
+                    <li data-i18n="disclosure.li3">Personal journey documentation</li>
                 </ul>
-                <p style="margin-top: 1.5rem;">Not financial advice and not investment solicitation.</p>
+                <p style="margin-top: 1.5rem;" data-i18n="disclosure.p3">Not financial advice and not investment solicitation.</p>
             </div>
         </div>
     </section>
@@ -798,30 +870,30 @@
     <!-- Blueprint to 2045 -->
     <section id="blueprint">
         <div class="container">
-            <h2>Blueprint to 2045</h2>
+            <h2 data-i18n="blueprint.title">Blueprint to 2045</h2>
             <div class="timeline">
                 <div class="timeline-item fade-in">
                     <div class="timeline-year">2025-2027</div>
-                    <h3>PHASE I — FOUNDATION</h3>
-                    <p>Focus: discipline, consistency, and stability | Portfolio consolidation | Disciplined trading track record | Market as secondary income | Active work as risk cushion | Mature personal systems, journals, and SOPs</p>
+                    <h3 data-i18n="blueprint.phase1.title">PHASE I — FOUNDATION</h3>
+                    <p data-i18n="blueprint.phase1.desc">Focus: discipline, consistency, and stability | Portfolio consolidation | Disciplined trading track record | Market as secondary income | Active work as risk cushion | Mature personal systems, journals, and SOPs</p>
                 </div>
                 
                 <div class="timeline-item fade-in">
                     <div class="timeline-year">2027-2030</div>
-                    <h3>PHASE II — TRANSITION</h3>
-                    <p>Focus: early financial independence | Market income surpasses active income | Honorable release from formal work (if conditions met) | Bitcoin accumulation milestone achieved | Focus on capital allocation, not excessive activity</p>
+                    <h3 data-i18n="blueprint.phase2.title">PHASE II — TRANSITION</h3>
+                    <p data-i18n="blueprint.phase2.desc">Focus: early financial independence | Market income surpasses active income | Honorable release from formal work (if conditions met) | Bitcoin accumulation milestone achieved | Focus on capital allocation, not excessive activity</p>
                 </div>
                 
                 <div class="timeline-item fade-in">
                     <div class="timeline-year">2030-2035</div>
-                    <h3>PHASE III — CONSOLIDATION</h3>
-                    <p>Focus: long-term resilience | Trading as opportunistic | Dividend & yield as backbone | Children's education and family stability | Zero lifestyle inflation</p>
+                    <h3 data-i18n="blueprint.phase3.title">PHASE III — CONSOLIDATION</h3>
+                    <p data-i18n="blueprint.phase3.desc">Focus: long-term resilience | Trading as opportunistic | Dividend & yield as backbone | Children's education and family stability | Zero lifestyle inflation</p>
                 </div>
                 
                 <div class="timeline-item fade-in">
                     <div class="timeline-year">2035-2045</div>
-                    <h3>PHASE IV — FAMILY OFFICE MODE</h3>
-                    <p>Focus: legacy and complete freedom | Lenrong Capital functions as personal family office | Capital preservation > aggressiveness | Directed philanthropy | Living from results, not market pressure</p>
+                    <h3 data-i18n="blueprint.phase4.title">PHASE IV — FAMILY OFFICE MODE</h3>
+                    <p data-i18n="blueprint.phase4.desc">Focus: legacy and complete freedom | Lenrong Capital functions as personal family office | Capital preservation > aggressiveness | Directed philanthropy | Living from results, not market pressure</p>
                 </div>
             </div>
         </div>
@@ -830,33 +902,33 @@
     <!-- End Game -->
     <section id="endgame">
         <div class="container">
-            <h2>End Game</h2>
+            <h2 data-i18n="endgame.title">End Game</h2>
             <div class="end-game-grid">
                 <div class="end-game-item fade-in">
                     <i class="fas fa-clock"></i>
-                    <h3>Time Freedom</h3>
-                    <p>Free time</p>
+                    <h3 data-i18n="endgame.card1.title">Time Freedom</h3>
+                    <p data-i18n="endgame.card1.desc">Free time</p>
                 </div>
                 
                 <div class="end-game-item fade-in">
                     <i class="fas fa-globe"></i>
-                    <h3>Location Freedom</h3>
-                    <p>Free location</p>
+                    <h3 data-i18n="endgame.card2.title">Location Freedom</h3>
+                    <p data-i18n="endgame.card2.desc">Free location</p>
                 </div>
                 
                 <div class="end-game-item fade-in">
                     <i class="fas fa-hand-holding-usd"></i>
-                    <h3>Financial Freedom</h3>
-                    <p>Free from financial pressure</p>
+                    <h3 data-i18n="endgame.card3.title">Financial Freedom</h3>
+                    <p data-i18n="endgame.card3.desc">Free from financial pressure</p>
                 </div>
                 
                 <div class="end-game-item fade-in">
                     <i class="fas fa-graduation-cap"></i>
-                    <h3>Family Legacy</h3>
-                    <p>Children receive best education</p>
+                    <h3 data-i18n="endgame.card4.title">Family Legacy</h3>
+                    <p data-i18n="endgame.card4.desc">Children receive best education</p>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 3rem; font-style: italic;">
+            <p style="text-align: center; margin-top: 3rem; font-style: italic;" data-i18n="endgame.quote">
                 Monday morning coffee while opening the laptop—because we want to, not because we have to.
             </p>
         </div>
@@ -865,7 +937,7 @@
     <!-- Contact -->
     <section id="contact">
         <div class="container">
-            <h2>Contact</h2>
+            <h2 data-i18n="contact.title">Contact</h2>
             <div class="card fade-in" style="text-align: center;">
                 <div class="social-links">
                     <a href="#" class="social-link">
@@ -877,7 +949,7 @@
                         <span>@lenrongeel</span>
                     </a>
                 </div>
-                <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--text-secondary);">
+                <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--text-secondary);" data-i18n="contact.desc">
                     These accounts are used to share macro thoughts, market reflections, and personal journey documentation.
                     Not promotion, not solicitation, not investment services.
                 </p>
@@ -888,7 +960,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="closing-statement">
+            <div class="closing-statement" data-i18n="footer.quote">
                 "We don't invite anyone to join. We just walk, build, and take responsibility for our own decisions."
             </div>
             <p>&copy; <span id="currentYear"></span> Lenrong Capital. All rights reserved.</p>
@@ -900,65 +972,317 @@
         // Set current year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         
-        // Sidebar functionality
-        const sidebar = document.getElementById('sidebar');
-        const sidebarToggle = document.getElementById('sidebarToggle');
-        const mobileNav = document.getElementById('mobileNav');
-        const navLinks = document.querySelectorAll('.sidebar-nav a, .mobile-nav-list a');
-        
-        // Toggle sidebar on desktop
-        sidebarToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-            sidebarToggle.innerHTML = sidebar.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-        
-        // Close sidebar when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
-                sidebar.classList.remove('active');
-                sidebarToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        // Translation data
+        const translations = {
+            en: {
+                // Navigation
+                "nav.home": "Home",
+                "nav.about": "About",
+                "nav.founder": "Founder",
+                "nav.philosophy": "Philosophy",
+                "nav.investment": "Investment",
+                "nav.dontdo": "What We Don't Do",
+                "nav.disclosure": "Disclosure",
+                "nav.blueprint": "Blueprint",
+                "nav.endgame": "End Game",
+                "nav.contact": "Contact",
+                "nav.top": "Top",
+                
+                // Hero
+                "hero.title": "Built for Freedom, Focus, and Long-Term Survival",
+                "hero.subtitle": "We don't chase returns. We build resilience, discipline, and long-term freedom.",
+                "hero.quote": '"We don\'t chase quick returns. We build resilience, discipline, and long-term freedom."',
+                
+                // About
+                "about.title": "About Lenrong Capital",
+                "about.p1": "Lenrong Capital is a private, independent investment entity built to manage personal capital with a long-term, measurable, and disciplined approach.",
+                "about.p2": "This is not an asset management company. Not a hedge fund. Not an investment community.",
+                "about.p3": "Lenrong Capital is a private capital vehicle focused on:",
+                "about.li1": "Capital preservation",
+                "about.li2": "Rational growth",
+                "about.li3": "Long-term compounding",
+                "about.li4": "Value-based life freedom",
+                "about.p4": "We believe money is a tool, not life's ultimate goal.",
+                
+                // Founder
+                "founder.title": "The Founder",
+                "founder.name": "Lenrong",
+                "founder.title2": "Independent Investor | Capital Allocator | Market Practitioner",
+                "founder.p1": "5+ years experience in stock and crypto markets",
+                "founder.p2": "Technical background and formal work discipline",
+                "founder.p3": "Managing personal portfolio with measured defensive-aggressive approach",
+                "founder.p4": "Does not sell signals",
+                "founder.p5": "Does not manage others' funds",
+                "founder.p6": "Does not pursue popularity",
+                "founder.p7": "Lenrong builds capital while bearing family responsibilities—not from an empty space nor instant narratives.",
+                
+                // Philosophy
+                "philosophy.title": "Core Philosophy",
+                "philosophy.card1.title": "Capital Preservation First",
+                "philosophy.card1.desc": "Survival is always more important than looking smart.",
+                "philosophy.card2.title": "Focus Beats Complexity",
+                "philosophy.card2.desc": "Complexity is the enemy of execution.",
+                "philosophy.card3.title": "Asymmetric Risk Only",
+                "philosophy.card3.desc": "Risk is limited, potential remains open.",
+                "philosophy.card4.title": "Process Over Outcome",
+                "philosophy.card4.desc": "Results are consequences, not primary goals.",
+                "philosophy.card5.title": "Stoic Execution",
+                "philosophy.card5.desc": "Emotions have no voting rights in decisions.",
+                "philosophy.card6.title": "Islamic Values & Accountability",
+                "philosophy.card6.desc": "Halal, responsible, and aware of consequences.",
+                
+                // Investment
+                "investment.title": "Investment Universe",
+                "investment.item1.title": "Bitcoin — Core Asset",
+                "investment.item1.desc": "Long-term store of value | Hedge against monetary uncertainty | Not traded emotionally | Gradual and disciplined accumulation",
+                "investment.item2.title": "Public Equities",
+                "investment.item2.desc": "High-quality Indonesian stocks | Global market ETFs (broad exposure) | Focus on few assets with high conviction | Avoiding over-diversification",
+                "investment.item3.title": "Trading & Derivatives (Cashflow Engine)",
+                "investment.item3.desc": "Crypto futures and stock swings | Small risk, asymmetric reward | One position, one focus | Primary goal: increasing core asset ownership, not lifestyle",
+                
+                // Don't Do
+                "dontdo.title": "What We Don't Do",
+                "dontdo.li1": "Do not accept fund deposits",
+                "dontdo.li2": "Do not manage third-party funds",
+                "dontdo.li3": "Do not sell investment products",
+                "dontdo.li4": "Do not provide trading signals",
+                "dontdo.li5": "Do not promise returns",
+                "dontdo.li6": "Do not chase hype and momentary narratives",
+                
+                // Disclosure
+                "disclosure.title": "Important Disclosure",
+                "disclosure.p1": "Lenrong Capital uses 100% personal funds. There is no fund collection, management of others' funds, nor investment management cooperation.",
+                "disclosure.p2": "All shared content is:",
+                "disclosure.li1": "Educational",
+                "disclosure.li2": "Reflective",
+                "disclosure.li3": "Personal journey documentation",
+                "disclosure.p3": "Not financial advice and not investment solicitation.",
+                
+                // Blueprint
+                "blueprint.title": "Blueprint to 2045",
+                "blueprint.phase1.title": "PHASE I — FOUNDATION",
+                "blueprint.phase1.desc": "Focus: discipline, consistency, and stability | Portfolio consolidation | Disciplined trading track record | Market as secondary income | Active work as risk cushion | Mature personal systems, journals, and SOPs",
+                "blueprint.phase2.title": "PHASE II — TRANSITION",
+                "blueprint.phase2.desc": "Focus: early financial independence | Market income surpasses active income | Honorable release from formal work (if conditions met) | Bitcoin accumulation milestone achieved | Focus on capital allocation, not excessive activity",
+                "blueprint.phase3.title": "PHASE III — CONSOLIDATION",
+                "blueprint.phase3.desc": "Focus: long-term resilience | Trading as opportunistic | Dividend & yield as backbone | Children's education and family stability | Zero lifestyle inflation",
+                "blueprint.phase4.title": "PHASE IV — FAMILY OFFICE MODE",
+                "blueprint.phase4.desc": "Focus: legacy and complete freedom | Lenrong Capital functions as personal family office | Capital preservation > aggressiveness | Directed philanthropy | Living from results, not market pressure",
+                
+                // End Game
+                "endgame.title": "End Game",
+                "endgame.card1.title": "Time Freedom",
+                "endgame.card1.desc": "Free time",
+                "endgame.card2.title": "Location Freedom",
+                "endgame.card2.desc": "Free location",
+                "endgame.card3.title": "Financial Freedom",
+                "endgame.card3.desc": "Free from financial pressure",
+                "endgame.card4.title": "Family Legacy",
+                "endgame.card4.desc": "Children receive best education",
+                "endgame.quote": "Monday morning coffee while opening the laptop—because we want to, not because we have to.",
+                
+                // Contact
+                "contact.title": "Contact",
+                "contact.desc": "These accounts are used to share macro thoughts, market reflections, and personal journey documentation. Not promotion, not solicitation, not investment services.",
+                
+                // Footer
+                "footer.quote": '"We don\'t invite anyone to join. We just walk, build, and take responsibility for our own decisions."'
+            },
+            
+            id: {
+                // Navigation
+                "nav.home": "Beranda",
+                "nav.about": "Tentang",
+                "nav.founder": "Pendiri",
+                "nav.philosophy": "Filosofi",
+                "nav.investment": "Investasi",
+                "nav.dontdo": "Yang Tidak Kami Lakukan",
+                "nav.disclosure": "Pernyataan",
+                "nav.blueprint": "Blueprint",
+                "nav.endgame": "Tujuan Akhir",
+                "nav.contact": "Kontak",
+                "nav.top": "Atas",
+                
+                // Hero
+                "hero.title": "Dibangun untuk Kebebasan, Fokus, dan Ketahanan Jangka Panjang",
+                "hero.subtitle": "Kami tidak mengejar return. Kami membangun ketahanan, disiplin, dan kebebasan jangka panjang.",
+                "hero.quote": '"Kami tidak mengejar return cepat. Kami membangun ketahanan, disiplin, dan kebebasan jangka panjang."',
+                
+                // About
+                "about.title": "Tentang Lenrong Capital",
+                "about.p1": "Lenrong Capital adalah entitas investasi pribadi dan independen yang dibangun untuk mengelola modal sendiri dengan pendekatan jangka panjang, terukur, dan disiplin.",
+                "about.p2": "Ini bukan perusahaan manajemen dana. Bukan hedge fund. Bukan komunitas investasi.",
+                "about.p3": "Lenrong Capital adalah private capital vehicle yang fokus pada:",
+                "about.li1": "Preservasi modal",
+                "about.li2": "Pertumbuhan rasional",
+                "about.li3": "Compounding jangka panjang",
+                "about.li4": "Kebebasan hidup berbasis nilai",
+                "about.p4": "Kami percaya bahwa uang adalah alat, bukan tujuan hidup.",
+                
+                // Founder
+                "founder.title": "Pendiri",
+                "founder.name": "Lenrong",
+                "founder.title2": "Investor Independen | Alokator Modal | Praktisi Pasar",
+                "founder.p1": "5+ tahun pengalaman di pasar saham dan kripto",
+                "founder.p2": "Latar belakang teknis dan disiplin kerja formal",
+                "founder.p3": "Mengelola portofolio pribadi dengan pendekatan defensif–agresif terukur",
+                "founder.p4": "Tidak menjual sinyal",
+                "founder.p5": "Tidak mengelola dana orang lain",
+                "founder.p6": "Tidak mengejar popularitas",
+                "founder.p7": "Lenrong membangun capital sambil memikul tanggung jawab keluarga, bukan dari ruang hampa dan bukan dari narasi instan.",
+                
+                // Philosophy
+                "philosophy.title": "Filosofi Inti",
+                "philosophy.card1.title": "Preservasi Modal Utama",
+                "philosophy.card1.desc": "Bertahan selalu lebih penting daripada terlihat pintar.",
+                "philosophy.card2.title": "Fokus Mengalahkan Kompleksitas",
+                "philosophy.card2.desc": "Kompleksitas adalah musuh eksekusi.",
+                "philosophy.card3.title": "Hanya Risiko Asimetris",
+                "philosophy.card3.desc": "Risiko dibatasi, potensi dibiarkan terbuka.",
+                "philosophy.card4.title": "Proses di Atas Hasil",
+                "philosophy.card4.desc": "Hasil adalah konsekuensi, bukan tujuan utama.",
+                "philosophy.card5.title": "Eksekusi Stoik",
+                "philosophy.card5.desc": "Emosi tidak memiliki hak suara dalam keputusan.",
+                "philosophy.card6.title": "Nilai Islam & Akuntabilitas",
+                "philosophy.card6.desc": "Halal, bertanggung jawab, dan sadar konsekuensi.",
+                
+                // Investment
+                "investment.title": "Alam Semesta Investasi",
+                "investment.item1.title": "Bitcoin — Aset Inti",
+                "investment.item1.desc": "Store of value jangka panjang | Hedge terhadap ketidakpastian moneter | Tidak diperdagangkan secara emosional | Akumulasi bertahap dan disiplin",
+                "investment.item2.title": "Ekuitas Publik",
+                "investment.item2.desc": "Saham Indonesia berkualitas tinggi | ETF pasar global (broad exposure) | Fokus pada sedikit aset dengan keyakinan tinggi | Menghindari over-diversification",
+                "investment.item3.title": "Trading & Derivatif (Mesin Cashflow)",
+                "investment.item3.desc": "Futures crypto dan swing saham | Risk kecil, reward asimetris | Satu posisi, satu fokus | Tujuan utama: menambah kepemilikan aset inti, bukan gaya hidup",
+                
+                // Don't Do
+                "dontdo.title": "Yang Tidak Kami Lakukan",
+                "dontdo.li1": "Tidak menerima titip dana",
+                "dontdo.li2": "Tidak mengelola dana pihak ketiga",
+                "dontdo.li3": "Tidak menjual produk investasi",
+                "dontdo.li4": "Tidak memberikan sinyal trading",
+                "dontdo.li5": "Tidak menjanjikan return",
+                "dontdo.li6": "Tidak mengejar hype dan narasi sesaat",
+                
+                // Disclosure
+                "disclosure.title": "Pernyataan Penting",
+                "disclosure.p1": "Lenrong Capital menggunakan 100% dana pribadi. Tidak ada pengumpulan dana, pengelolaan dana orang lain, maupun kerja sama pengelolaan investasi.",
+                "disclosure.p2": "Semua konten yang dibagikan bersifat:",
+                "disclosure.li1": "Edukatif",
+                "disclosure.li2": "Reflektif",
+                "disclosure.li3": "Dokumentasi perjalanan pribadi",
+                "disclosure.p3": "Bukan nasihat keuangan dan bukan ajakan investasi.",
+                
+                // Blueprint
+                "blueprint.title": "Blueprint ke 2045",
+                "blueprint.phase1.title": "FASE I — FONDASI",
+                "blueprint.phase1.desc": "Fokus: disiplin, konsistensi, dan stabilitas | Konsolidasi portofolio | Track record trading disiplin | Market sebagai secondary income | Pekerjaan aktif sebagai bantalan risiko | Sistem, jurnal, dan SOP pribadi matang",
+                "blueprint.phase2.title": "FASE II — TRANSISI",
+                "blueprint.phase2.desc": "Fokus: kemandirian finansial awal | Income market melampaui income aktif | Pelepasan pekerjaan formal secara terhormat (jika syarat terpenuhi) | Bitcoin accumulation milestone tercapai | Fokus capital allocation, bukan aktivitas berlebihan",
+                "blueprint.phase3.title": "FASE III — KONSOLIDASI",
+                "blueprint.phase3.desc": "Fokus: ketahanan jangka panjang | Trading bersifat oportunistik | Dividend & yield sebagai tulang punggung | Pendidikan anak dan stabilitas keluarga | Zero lifestyle inflation",
+                "blueprint.phase4.title": "FASE IV — MODE FAMILY OFFICE",
+                "blueprint.phase4.desc": "Fokus: legacy dan kebebasan penuh | Lenrong Capital berfungsi sebagai family office pribadi | Preservasi modal > agresivitas | Filantropi terarah | Hidup dari hasil, bukan tekanan market",
+                
+                // End Game
+                "endgame.title": "Tujuan Akhir",
+                "endgame.card1.title": "Kebebasan Waktu",
+                "endgame.card1.desc": "Bebas waktu",
+                "endgame.card2.title": "Kebebasan Lokasi",
+                "endgame.card2.desc": "Bebas lokasi",
+                "endgame.card3.title": "Kebebasan Finansial",
+                "endgame.card3.desc": "Bebas tekanan finansial",
+                "endgame.card4.title": "Warisan Keluarga",
+                "endgame.card4.desc": "Anak mendapatkan pendidikan terbaik",
+                "endgame.quote": "Senin pagi ngopi sambil buka laptop — karena mau, bukan karena harus.",
+                
+                // Contact
+                "contact.title": "Kontak",
+                "contact.desc": "Akun ini digunakan untuk berbagi pemikiran makro, refleksi pasar, dan dokumentasi perjalanan personal. Bukan promosi, bukan ajakan, bukan layanan investasi.",
+                
+                // Footer
+                "footer.quote": '"Kami tidak mengajak siapa pun ikut. Kami hanya berjalan, membangun, dan bertanggung jawab atas keputusan sendiri."'
             }
-        });
+        };
         
-        // Set active nav link on scroll
+        // Language switching
+        let currentLang = 'en';
+        const langBtns = document.querySelectorAll('.lang-btn');
+        const elementsToTranslate = document.querySelectorAll('[data-i18n]');
+        
+        function translatePage(lang) {
+            elementsToTranslate.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update active button
+            langBtns.forEach(btn => {
+                if (btn.id === `lang${lang.toUpperCase()}`) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            currentLang = lang;
+        }
+        
+        // Event listeners for language buttons
+        document.getElementById('langEN').addEventListener('click', () => translatePage('en'));
+        document.getElementById('langID').addEventListener('click', () => translatePage('id'));
+        
+        // Get all navigation links
+        const topNavLinks = document.querySelectorAll('.top-nav-menu a');
+        const bottomNavLinks = document.querySelectorAll('.bottom-nav-menu a');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-menu a');
+        const allNavLinks = [...topNavLinks, ...bottomNavLinks, ...mobileNavLinks];
+        
+        // Sections untuk active state
         const sections = document.querySelectorAll('section');
         
+        // Function untuk set active link
         const setActiveLink = () => {
             let current = '';
+            const scrollPosition = window.scrollY + 100;
+            
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
                     current = section.getAttribute('id');
                 }
             });
             
-            navLinks.forEach(link => {
+            // Update active state untuk semua links
+            allNavLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
+                const href = link.getAttribute('href').replace('#', '');
+                if (href === current) {
                     link.classList.add('active');
                 }
             });
             
-            // Show/hide mobile nav based on scroll position
-            if (window.innerWidth <= 1024) {
-                if (scrollY > 100) {
-                    mobileNav.classList.add('active');
+            // Show/hide bottom nav di desktop berdasarkan scroll position
+            const bottomNav = document.getElementById('bottomNav');
+            if (window.innerWidth >= 1025) {
+                if (window.scrollY > 500) {
+                    bottomNav.style.display = 'block';
                 } else {
-                    mobileNav.classList.remove('active');
+                    bottomNav.style.display = 'none';
                 }
             }
         };
         
-        window.addEventListener('scroll', setActiveLink);
-        
-        // Smooth scroll for nav links
-        navLinks.forEach(link => {
+        // Smooth scroll untuk semua nav links
+        allNavLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const targetId = link.getAttribute('href');
+                
                 if (targetId === '#hero') {
                     window.scrollTo({
                         top: 0,
@@ -973,14 +1297,15 @@
                         });
                     }
                 }
-                
-                // Close sidebar on mobile after click
-                if (window.innerWidth <= 1024) {
-                    sidebar.classList.remove('active');
-                    sidebarToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                }
             });
         });
+        
+        // Event listeners
+        window.addEventListener('scroll', setActiveLink);
+        window.addEventListener('resize', setActiveLink);
+        
+        // Initial call untuk set active link
+        setActiveLink();
         
         // Animation on scroll
         const observerOptions = {
@@ -996,13 +1321,10 @@
             });
         }, observerOptions);
 
-        // Observe all cards and timeline items
-        document.querySelectorAll('.card, .timeline-item, .end-game-item, .investment-item').forEach((el) => {
+        // Observe semua elemen yang perlu di-animate
+        document.querySelectorAll('.card, .timeline-item, .end-game-item, .investment-item, .philosophy-card').forEach((el) => {
             observer.observe(el);
         });
-        
-        // Initialize mobile nav visibility
-        setActiveLink();
     </script>
 </body>
 </html>
