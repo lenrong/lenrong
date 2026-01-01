@@ -26,6 +26,7 @@
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
+            --info: #3b82f6;
         }
 
         * {
@@ -62,7 +63,7 @@
 
         h2 {
             font-size: clamp(2rem, 4vw, 2.8rem);
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             position: relative;
             padding-bottom: 1rem;
             scroll-margin-top: 100px;
@@ -92,13 +93,13 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
         section {
-            padding: clamp(5rem, 8vw, 7rem) 0;
+            padding: clamp(4rem, 6vw, 6rem) 0;
             border-bottom: 1px solid var(--border-color);
         }
 
@@ -145,7 +146,7 @@
 
         /* Hero Section */
         .hero {
-            min-height: 70vh;
+            min-height: 60vh;
             display: flex;
             align-items: center;
             position: relative;
@@ -183,16 +184,6 @@
             padding-left: 1.5rem;
         }
 
-        .hero-quote {
-            font-size: clamp(1.1rem, 2vw, 1.3rem);
-            color: var(--accent-gold);
-            font-style: italic;
-            margin-top: 3rem;
-            padding: 1.5rem;
-            background: rgba(212, 175, 55, 0.05);
-            border-left: 3px solid var(--accent-gold);
-        }
-
         /* Cards */
         .card {
             background-color: var(--card-bg);
@@ -200,7 +191,6 @@
             padding: 2.5rem;
             border: 1px solid var(--border-color);
             transition: var(--transition);
-            height: 100%;
             box-shadow: var(--shadow-dark);
             position: relative;
             overflow: hidden;
@@ -224,7 +214,7 @@
 
         .card:hover {
             border-color: transparent;
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             box-shadow: var(--shadow-gold);
         }
 
@@ -260,99 +250,53 @@
             background: rgba(212, 175, 55, 0.1);
         }
 
-        /* Problem & Solution Grid */
-        .ps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .problem-card {
-            border-top: 4px solid var(--danger);
-        }
-
-        .solution-card {
-            border-top: 4px solid var(--success);
-        }
-
-        /* User Target Grid */
-        .user-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .user-for {
-            border-top: 4px solid var(--success);
-        }
-
-        .user-not-for {
-            border-top: 4px solid var(--warning);
-        }
-
-        /* Input System Tabs */
-        .input-tabs {
+        /* Input Form */
+        .input-form {
             display: flex;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            background: var(--card-bg);
-            padding: 0.5rem;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .input-section {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
             border-radius: 10px;
             border: 1px solid var(--border-color);
         }
 
-        .tab-btn {
-            flex: 1;
-            min-width: 150px;
-            padding: 1rem 1.5rem;
-            background: transparent;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 500;
-            text-align: center;
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .tab-btn:hover {
-            color: var(--accent-gold);
-            border-color: var(--accent-gold);
-        }
-
-        .tab-btn.active {
-            background: rgba(212, 175, 55, 0.1);
-            border-color: var(--accent-gold);
-            color: var(--accent-gold);
-        }
-
-        .tab-content {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 2.5rem;
-            border: 1px solid var(--border-color);
-            margin-bottom: 2rem;
-        }
-
-        .tab-pane {
-            display: none;
-        }
-
-        .tab-pane.active {
-            display: block;
+        .section-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--gradient-gold);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            font-weight: bold;
         }
 
         /* Input Fields */
         .input-group {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+            grid-template-columns: 1fr;
             gap: 1.5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .input-group {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .input-field {
@@ -380,6 +324,12 @@
             color: var(--text-primary);
         }
 
+        .input-hint {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
         /* Range Input Styling */
         .range-container {
             padding: 1rem;
@@ -402,7 +352,7 @@
             margin-top: 3rem;
         }
 
-        /* Results Modal */
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -427,7 +377,7 @@
             background: var(--card-bg);
             border-radius: 12px;
             width: 100%;
-            max-width: 900px;
+            max-width: 800px;
             max-height: 90vh;
             overflow-y: auto;
             padding: 2.5rem;
@@ -458,12 +408,32 @@
             color: var(--accent-gold);
         }
 
+        /* Results Container */
+        .results-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .result-header {
+            text-align: center;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .investor-profile {
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+
         /* Results Grid */
         .results-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 1.5rem;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
         }
 
         .result-card {
@@ -490,10 +460,11 @@
         .risk { color: var(--warning); }
         .strategy { color: var(--success); }
         .goal { color: var(--accent-gold-light); }
+        .info { color: var(--info); }
 
         /* Asset Allocation */
         .asset-allocation {
-            margin: 2rem 0;
+            margin: 1.5rem 0;
             padding: 1.5rem;
             background: rgba(212, 175, 55, 0.05);
             border-radius: 8px;
@@ -502,7 +473,6 @@
 
         .asset-item {
             display: flex;
-            justify-content: space-between;
             align-items: center;
             padding: 1rem 0;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
@@ -512,8 +482,13 @@
             border-bottom: none;
         }
 
-        .asset-bar {
+        .asset-name {
             flex: 1;
+            min-width: 150px;
+        }
+
+        .asset-bar {
+            flex: 2;
             height: 10px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 5px;
@@ -528,18 +503,16 @@
             transition: width 1s ease;
         }
 
-        /* Brutal Truth Section */
-        .brutal-truth {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: rgba(239, 68, 68, 0.1);
-            border-radius: 8px;
-            border-left: 4px solid var(--danger);
+        .asset-percentage {
+            min-width: 60px;
+            text-align: right;
+            font-weight: bold;
+            color: var(--accent-gold);
         }
 
-        /* Progress Bar */
+        /* Progress Bars */
         .progress-container {
-            margin: 2rem 0;
+            margin: 1.5rem 0;
         }
 
         .progress-label {
@@ -561,6 +534,52 @@
             background: var(--gradient-gold);
             border-radius: 5px;
             transition: width 1s ease;
+        }
+
+        /* Recommendations */
+        .recommendations {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(59, 130, 246, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid var(--info);
+        }
+
+        .warning-box {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid var(--danger);
+        }
+
+        .success-box {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid var(--success);
+        }
+
+        /* Input Summary */
+        .input-summary {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .summary-item {
+            padding: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         /* Footer */
@@ -590,15 +609,11 @@
             }
             
             section {
-                padding: 4rem 0;
+                padding: 3rem 0;
             }
             
             h2 {
                 scroll-margin-top: 80px;
-            }
-            
-            .tab-btn {
-                min-width: 100%;
             }
             
             .input-group {
@@ -612,6 +627,17 @@
             .results-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .asset-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .asset-bar {
+                width: 100%;
+                margin: 0.5rem 0;
+            }
         }
 
         @media (max-width: 480px) {
@@ -619,7 +645,7 @@
                 grid-template-columns: 1fr;
             }
             
-            .hero-subtitle, .hero-quote {
+            .hero-subtitle {
                 padding-left: 1rem;
             }
         }
@@ -654,6 +680,23 @@
             background: var(--gradient-gold);
             border-radius: 5px;
         }
+
+        /* Loading Spinner */
+        .spinner {
+            display: none;
+            border: 3px solid rgba(212, 175, 55, 0.1);
+            border-top: 3px solid var(--accent-gold);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -676,220 +719,300 @@
                 </div>
                 <h1>FINANCIAL INTELLIGENCE ENGINE</h1>
                 <div class="hero-subtitle">
-                    Sistem profiling investasi berbasis AI yang memetakan kondisi finansial + psikologi risiko Anda, menghitung kelayakan strategi, dan memberikan rekomendasi investasi yang boleh dan tidak boleh.
-                </div>
-                <div class="hero-quote">
-                    "Kami tidak memberi jawaban yang Anda inginkan. Kami memberi jawaban yang Anda butuhkan."
+                    Sistem profiling investasi AI yang memetakan kondisi finansial + psikologi risiko Anda, menghitung kelayakan strategi, dan memberikan rekomendasi investasi yang personal.
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Problem & Solution -->
-    <section id="problem">
-        <div class="container">
-            <h2>Masalah yang Diselesaikan</h2>
-            <p class="section-description">
-                Identifikasi dan solusi untuk masalah umum dalam pengambilan keputusan investasi
-            </p>
-            
-            <div class="ps-grid">
-                <div class="card problem-card fade-in stagger-delay-1">
-                    <h3><i class="fas fa-exclamation-triangle"></i> Masalah Umum</h3>
-                    <ul style="color: var(--text-secondary); list-style-position: inside;">
-                        <li style="margin-bottom: 0.8rem;">Salah menilai profil risiko diri sendiri</li>
-                        <li style="margin-bottom: 0.8rem;">Tidak mengetahui posisi finansial riil</li>
-                        <li style="margin-bottom: 0.8rem;">Lompat ke instrumen tanpa strategi hidup</li>
-                        <li style="margin-bottom: 0.8rem;">Terpengaruh emosi dan hype pasar</li>
-                        <li>Tidak memiliki batasan risiko yang jelas</li>
-                    </ul>
-                </div>
-                
-                <div class="card solution-card fade-in stagger-delay-2">
-                    <h3><i class="fas fa-robot"></i> Solusi Sistem</h3>
-                    <ul style="color: var(--text-secondary); list-style-position: inside;">
-                        <li style="margin-bottom: 0.8rem;">Memetakan kondisi finansial + psikologi risiko</li>
-                        <li style="margin-bottom: 0.8rem;">Menghitung kelayakan strategi berdasarkan realitas</li>
-                        <li style="margin-bottom: 0.8rem;">Rekomendasi investasi yang boleh dan tidak boleh</li>
-                        <li style="margin-bottom: 0.8rem;">Bukan janji kaya, tapi mesin pengambilan keputusan</li>
-                        <li>Guardrail system pencegah kesalahan fatal</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Target User -->
-    <section id="target">
-        <div class="container">
-            <h2>Target Pengguna Sistem</h2>
-            <p class="section-description">
-                Sistem ini dirancang untuk investor yang serius, bukan untuk spekulan
-            </p>
-            
-            <div class="user-grid">
-                <div class="card user-for fade-in stagger-delay-1">
-                    <h3><i class="fas fa-user-check"></i> Untuk Anda Jika:</h3>
-                    <ul style="color: var(--text-secondary); list-style-position: inside;">
-                        <li style="margin-bottom: 0.8rem;">Profesional dengan income aktif stabil</li>
-                        <li style="margin-bottom: 0.8rem;">Investor ritel yang serius dan disiplin</li>
-                        <li style="margin-bottom: 0.8rem;">Founder / PNS / karyawan senior ingin naik kelas</li>
-                        <li style="margin-bottom: 0.8rem;">Siap menerima fakta dan realitas finansial</li>
-                        <li>Mengutamakan perencanaan jangka panjang</li>
-                    </ul>
-                </div>
-                
-                <div class="card user-not-for fade-in stagger-delay-2">
-                    <h3><i class="fas fa-user-times"></i> Bukan Untuk Anda Jika:</h3>
-                    <ul style="color: var(--text-secondary); list-style-position: inside;">
-                        <li style="margin-bottom: 0.8rem;">Pemburu sinyal dan tips investasi instan</li>
-                        <li style="margin-bottom: 0.8rem;">Memiliki mental "get rich quick"</li>
-                        <li style="margin-bottom: 0.8rem;">Risk blind gambler di pasar finansial</li>
-                        <li style="margin-bottom: 0.8rem;">Ingin janji return tertentu dalam waktu singkat</li>
-                        <li>Tidak siap menghadapi fakta pahit tentang risiko</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Input System -->
+    <!-- Input Form -->
     <section id="input">
         <div class="container">
-            <h2>Input System (Lengkap & Elegan)</h2>
+            <h2>Profil Investasi Anda</h2>
             <p class="section-description">
-                Data yang diperlukan untuk membangun profil investasi akurat Anda
+                Isi data berikut untuk mendapatkan analisis investasi yang personal
             </p>
             
-            <div class="input-tabs">
-                <button class="tab-btn active" data-tab="financial">
-                    <i class="fas fa-wallet"></i> Finansial
-                </button>
-                <button class="tab-btn" data-tab="goals">
-                    <i class="fas fa-bullseye"></i> Tujuan
-                </button>
-                <button class="tab-btn" data-tab="risk">
-                    <i class="fas fa-chart-line"></i> Risiko
-                </button>
-            </div>
-            
-            <div class="tab-content">
-                <!-- Financial Tab -->
-                <div class="tab-pane active" id="financial-tab">
-                    <h3>A. Financial Reality Layer</h3>
-                    <p>Analisis kondisi finansial riil Anda untuk menghitung kemampuan investasi sebenarnya.</p>
+            <form class="input-form" id="calculatorForm">
+                <!-- Section 1: Profil Dasar -->
+                <div class="card input-section fade-in">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <div>
+                            <h3>Profil Dasar</h3>
+                            <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0;">Identitas dan status finansial dasar</p>
+                        </div>
+                    </div>
                     
                     <div class="input-group">
                         <div>
-                            <label class="input-label">Umur</label>
-                            <input type="number" id="age" class="input-field" placeholder="Contoh: 35" min="18" max="70">
+                            <label class="input-label">Umur Anda</label>
+                            <input type="number" id="age" class="input-field" placeholder="Contoh: 35" min="18" max="70" required>
+                            <div class="input-hint">Rentang: 18 - 70 tahun</div>
                         </div>
                         <div>
                             <label class="input-label">Status Keluarga</label>
-                            <select id="familyStatus" class="input-field">
+                            <select id="familyStatus" class="input-field" required>
+                                <option value="">Pilih status</option>
                                 <option value="single">Lajang</option>
                                 <option value="married_no_kids">Menikah tanpa anak</option>
                                 <option value="married_kids">Menikah dengan anak</option>
+                                <option value="single_parent">Orang tua tunggal</option>
                             </select>
                         </div>
                         <div>
-                            <label class="input-label">Income Aktif (Bulanan)</label>
-                            <input type="text" id="income" class="input-field" placeholder="Contoh: 15000000">
+                            <label class="input-label">Pendidikan Terakhir</label>
+                            <select id="education" class="input-field" required>
+                                <option value="">Pilih pendidikan</option>
+                                <option value="high_school">SMA/SMK</option>
+                                <option value="bachelor">Sarjana (S1)</option>
+                                <option value="master">Magister (S2)</option>
+                                <option value="doctorate">Doktor (S3)</option>
+                            </select>
                         </div>
                         <div>
-                            <label class="input-label">Income Pasif (Bulanan)</label>
-                            <input type="text" id="passiveIncome" class="input-field" placeholder="Contoh: 3000000">
-                        </div>
-                        <div>
-                            <label class="input-label">Pengeluaran Wajib (Bulanan)</label>
-                            <input type="text" id="expenses" class="input-field" placeholder="Contoh: 8000000">
-                        </div>
-                        <div>
-                            <label class="input-label">Aset Likuid</label>
-                            <input type="text" id="liquidAssets" class="input-field" placeholder="Contoh: 50000000">
+                            <label class="input-label">Pekerjaan</label>
+                            <select id="occupation" class="input-field" required>
+                                <option value="">Pilih pekerjaan</option>
+                                <option value="employee">Karyawan Swasta</option>
+                                <option value="pns">PNS/ASN</option>
+                                <option value="entrepreneur">Wiraswasta/Pengusaha</option>
+                                <option value="professional">Profesional (Dokter, Pengacara, dll)</option>
+                                <option value="freelancer">Freelancer</option>
+                                <option value="student">Pelajar/Mahasiswa</option>
+                            </select>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Goals Tab -->
-                <div class="tab-pane" id="goals-tab">
-                    <h3>B. Goal & Time Layer</h3>
-                    <p>Target finansial dan horizon waktu investasi Anda.</p>
+                <!-- Section 2: Kondisi Finansial -->
+                <div class="card input-section fade-in stagger-delay-1">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <div>
+                            <h3>Kondisi Finansial</h3>
+                            <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0;">Realitas finansial saat ini</p>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div>
+                            <label class="input-label">Total Pendapatan Bulanan (Rp)</label>
+                            <input type="text" id="income" class="input-field" placeholder="Contoh: 15.000.000" required>
+                            <div class="input-hint">Gaji + pendapatan lainnya</div>
+                        </div>
+                        <div>
+                            <label class="input-label">Pengeluaran Wajib Bulanan (Rp)</label>
+                            <input type="text" id="expenses" class="input-field" placeholder="Contoh: 8.000.000" required>
+                            <div class="input-hint">Cicilan, biaya hidup, dll</div>
+                        </div>
+                        <div>
+                            <label class="input-label">Modal yang Siap Diinvestasikan (Rp)</label>
+                            <input type="text" id="capital" class="input-field" placeholder="Contoh: 50.000.000" required>
+                            <div class="input-hint">Dana yang benar-benar siap</div>
+                        </div>
+                        <div>
+                            <label class="input-label">Aset Likuid Lainnya (Rp)</label>
+                            <input type="text" id="liquidAssets" class="input-field" placeholder="Contoh: 20.000.000">
+                            <div class="input-hint">Tabungan, deposito, emas</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="input-label">Jumlah Tanggungan Finansial</label>
+                        <input type="number" id="dependents" class="input-field" placeholder="Contoh: 2" min="0" max="10" required>
+                        <div class="input-hint">Orang yang bergantung secara finansial pada Anda</div>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Pengalaman Investasi -->
+                <div class="card input-section fade-in stagger-delay-2">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <div>
+                            <h3>Pengalaman Investasi</h3>
+                            <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0;">Track record dan pengetahuan Anda</p>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div>
+                            <label class="input-label">Lama Pengalaman Investasi</label>
+                            <select id="experienceYears" class="input-field" required>
+                                <option value="">Pilih pengalaman</option>
+                                <option value="0">Pemula (0-1 tahun)</option>
+                                <option value="2">Menengah (2-4 tahun)</option>
+                                <option value="5">Berpengalaman (5-7 tahun)</option>
+                                <option value="8">Expert (8+ tahun)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="input-label">Jenis Investasi yang Pernah Dicoba</label>
+                            <select id="investmentTypes" class="input-field" required multiple style="height: 120px;">
+                                <option value="savings">Tabungan/Deposito</option>
+                                <option value="mutual_funds">Reksadana</option>
+                                <option value="stocks">Saham</option>
+                                <option value="bonds">Obligasi</option>
+                                <option value="gold">Emas/Logam Mulia</option>
+                                <option value="crypto">Cryptocurrency</option>
+                                <option value="property">Properti</option>
+                                <option value="forex">Forex</option>
+                            </select>
+                            <div class="input-hint">Tekan Ctrl untuk pilih banyak</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="input-label">Portofolio Terbesar yang Pernah Dikelola (Rp)</label>
+                        <input type="text" id="largestPortfolio" class="input-field" placeholder="Contoh: 100.000.000" required>
+                        <div class="input-hint">Nilai tertinggi portofolio Anda</div>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Tujuan & Risiko -->
+                <div class="card input-section fade-in stagger-delay-3">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <div>
+                            <h3>Tujuan & Toleransi Risiko</h3>
+                            <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0;">Apa yang ingin dicapai dan risiko yang bisa ditanggung</p>
+                        </div>
+                    </div>
                     
                     <div class="input-group">
                         <div>
                             <label class="input-label">Target Finansial (Rp)</label>
-                            <input type="text" id="targetAmount" class="input-field" placeholder="Contoh: 5000000000">
+                            <input type="text" id="targetAmount" class="input-field" placeholder="Contoh: 1.000.000.000" required>
+                            <div class="input-hint">Jumlah yang ingin dicapai</div>
                         </div>
                         <div>
-                            <label class="input-label">Horizon Waktu (Tahun)</label>
-                            <input type="number" id="timeHorizon" class="input-field" placeholder="Contoh: 10" min="1" max="40">
+                            <label class="input-label">Jangka Waktu Target (Tahun)</label>
+                            <input type="number" id="timeHorizon" class="input-field" placeholder="Contoh: 10" min="1" max="40" required>
+                            <div class="input-hint">Kapan ingin mencapai target</div>
                         </div>
-                        <div>
-                            <label class="input-label">Tujuan Utama</label>
-                            <select id="goalType" class="input-field">
-                                <option value="growth">Growth (Pertumbuhan)</option>
-                                <option value="income">Income (Pendapatan)</option>
-                                <option value="preservation">Preservation (Pelestarian)</option>
-                                <option value="hybrid">Hybrid (Kombinasi)</option>
-                            </select>
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <label class="input-label">Tujuan Utama Investasi</label>
+                        <select id="goalType" class="input-field" required>
+                            <option value="">Pilih tujuan</option>
+                            <option value="wealth_growth">Pertumbuhan kekayaan</option>
+                            <option value="passive_income">Pendapatan pasif</option>
+                            <option value="retirement">Persiapan pensiun</option>
+                            <option value="education">Pendidikan anak</option>
+                            <option value="house">Membeli rumah</option>
+                            <option value="capital_preservation">Melindungi modal</option>
+                        </select>
+                    </div>
+                    
+                    <div class="range-container">
+                        <label class="input-label">Toleransi Risiko (0-10)</label>
+                        <input type="range" id="riskTolerance" min="0" max="10" value="5" class="input-field" style="width: 100%;" required>
+                        <div class="range-labels">
+                            <span>Sangat Rendah</span>
+                            <span>Sedang</span>
+                            <span>Sangat Tinggi</span>
                         </div>
+                        <div id="riskValue" style="text-align: center; margin-top: 0.5rem; font-weight: bold; color: var(--accent-gold);">5</div>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <label class="input-label">Reaksi terhadap Kerugian 20%</label>
+                        <select id="lossReaction" class="input-field" required>
+                            <option value="">Pilih reaksi</option>
+                            <option value="panic">Panik dan jual semua</option>
+                            <option value="worry">Khawatir tapi hold</option>
+                            <option value="calm">Tenang, evaluasi ulang</option>
+                            <option value="opportunistic">Lihat peluang beli lebih</option>
+                        </select>
                     </div>
                 </div>
                 
-                <!-- Risk Tab -->
-                <div class="tab-pane" id="risk-tab">
-                    <h3>C. Risk & Psychology Layer</h3>
-                    <p>Profil risiko dan psikologi investasi Anda.</p>
+                <!-- Section 5: Komitmen Waktu -->
+                <div class="card input-section fade-in stagger-delay-4">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <div>
+                            <h3>Komitmen Waktu & Pengetahuan</h3>
+                            <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0;">Ketersediaan Anda untuk mengelola investasi</p>
+                        </div>
+                    </div>
                     
                     <div class="input-group">
                         <div>
-                            <label class="input-label">Risk Appetite (0-10)</label>
-                            <div class="range-container">
-                                <input type="range" id="riskAppetite" min="0" max="10" value="5" class="input-field" style="width: 100%;">
-                                <div class="range-labels">
-                                    <span>Konservatif</span>
-                                    <span>Moderat</span>
-                                    <span>Agresif</span>
-                                </div>
-                                <div id="riskValue" style="text-align: center; margin-top: 0.5rem; font-weight: bold; color: var(--accent-gold);">5</div>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="input-label">Pengalaman Investasi</label>
-                            <select id="experience" class="input-field">
-                                <option value="beginner">Pemula (< 2 tahun)</option>
-                                <option value="intermediate">Menengah (2-5 tahun)</option>
-                                <option value="advanced">Lanjutan (> 5 tahun)</option>
+                            <label class="input-label">Waktu yang Dialokasikan per Minggu</label>
+                            <select id="timeCommitment" class="input-field" required>
+                                <option value="">Pilih waktu</option>
+                                <option value="low">≤ 2 jam (Pasif)</option>
+                                <option value="medium">2-5 jam (Moderat)</option>
+                                <option value="high">5-10 jam (Aktif)</option>
+                                <option value="very_high">> 10 jam (Sangat Aktif)</option>
                             </select>
                         </div>
                         <div>
-                            <label class="input-label">Reaksi terhadap Kerugian</label>
-                            <select id="lossReaction" class="input-field">
-                                <option value="panic">Panik & jual semua</option>
-                                <option value="hold">Hold & tunggu pulih</option>
-                                <option value="buy_more">Beli lebih banyak</option>
-                                <option value="rebalance">Rebalance portofolio</option>
+                            <label class="input-label">Tingkat Pengetahuan Investasi</label>
+                            <select id="knowledgeLevel" class="input-field" required>
+                                <option value="">Pilih tingkat</option>
+                                <option value="basic">Dasar (paham konsep)</option>
+                                <option value="intermediate">Menengah (bisa analisis sederhana)</option>
+                                <option value="advanced">Lanjutan (baca laporan keuangan)</option>
+                                <option value="expert">Expert (analisis teknikal/fundamental)</option>
                             </select>
                         </div>
                     </div>
+                    
+                    <div>
+                        <label class="input-label">Sumber Informasi Investasi Utama</label>
+                        <select id="informationSources" class="input-field" multiple style="height: 100px;">
+                            <option value="news">Berita finansial</option>
+                            <option value="social_media">Media sosial</option>
+                            <option value="analyst">Analis profesional</option>
+                            <option value="courses">Kursus/edukasi</option>
+                            <option value="books">Buku investasi</option>
+                            <option value="community">Komunitas investor</option>
+                        </select>
+                        <div class="input-hint">Tekan Ctrl untuk pilih banyak</div>
+                    </div>
                 </div>
+                
+                <div class="calculate-btn-container">
+                    <button type="button" class="btn" id="reviewBtn" style="padding: 1.2rem 3rem; font-size: 1.1rem;">
+                        <i class="fas fa-eye"></i> Review Data Saya
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Review Modal -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 style="color: var(--accent-gold);">Review Data Anda</h2>
+                <button class="close-modal" id="closeReviewModal">&times;</button>
             </div>
             
-            <div class="calculate-btn-container">
-                <button class="btn" id="calculateBtn" style="padding: 1.2rem 3rem; font-size: 1.1rem;">
-                    <i class="fas fa-calculator"></i> Hitung Profil Saya
+            <div id="reviewContent">
+                <!-- Review content will be inserted here -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn btn-secondary" id="editDataBtn">
+                    <i class="fas fa-edit"></i> Edit Data
+                </button>
+                <button class="btn" id="confirmCalculateBtn" style="margin-left: 1rem;">
+                    <i class="fas fa-calculator"></i> Ya, Hitung Profil Saya
                 </button>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Results Modal -->
     <div id="resultModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 style="color: var(--accent-gold);">Hasil Profil Investasi Anda</h2>
-                <button class="close-modal" id="closeModal">&times;</button>
+                <button class="close-modal" id="closeResultModal">&times;</button>
             </div>
             
             <div id="resultContent">
@@ -897,13 +1020,22 @@
             </div>
             
             <div style="text-align: center; margin-top: 2rem;">
-                <button class="btn btn-secondary" id="closeModalBtn">
+                <button class="btn btn-secondary" id="closeResultBtn">
                     <i class="fas fa-times"></i> Tutup
                 </button>
                 <button class="btn" id="saveResultsBtn" style="margin-left: 1rem;">
                     <i class="fas fa-download"></i> Simpan Hasil
                 </button>
             </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="modal" style="display: none;">
+        <div class="modal-content" style="text-align: center; padding: 4rem;">
+            <div class="spinner"></div>
+            <h3 style="margin-top: 1.5rem; color: var(--accent-gold);">Menganalisis Profil Anda...</h3>
+            <p style="color: var(--text-secondary);">Mengolah data dan membuat rekomendasi personal</p>
         </div>
     </div>
 
@@ -922,59 +1054,17 @@
         // Set current year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Tab System
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabPanes = document.querySelectorAll('.tab-pane');
-        
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const tabId = btn.getAttribute('data-tab');
-                
-                // Remove active class from all buttons and panes
-                tabBtns.forEach(b => b.classList.remove('active'));
-                tabPanes.forEach(p => p.classList.remove('active'));
-                
-                // Add active class to clicked button and corresponding pane
-                btn.classList.add('active');
-                document.getElementById(tabId + '-tab').classList.add('active');
-            });
-        });
-
-        // Update risk appetite value display
-        const riskSlider = document.getElementById('riskAppetite');
+        // Update risk tolerance value display
+        const riskSlider = document.getElementById('riskTolerance');
         const riskValueDisplay = document.getElementById('riskValue');
         
         riskSlider.addEventListener('input', () => {
             riskValueDisplay.textContent = riskSlider.value;
         });
 
-        // Modal functionality
-        const modal = document.getElementById('resultModal');
-        const closeModal = document.getElementById('closeModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const calculateBtn = document.getElementById('calculateBtn');
-        const saveResultsBtn = document.getElementById('saveResultsBtn');
-        
-        closeModal.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-        
-        closeModalBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-        
-        saveResultsBtn.addEventListener('click', () => {
-            alert('Fitur penyimpanan akan tersedia dalam versi berikutnya!');
-        });
-        
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-
         // Format number to Indonesian currency
         function formatCurrency(num) {
+            if (!num) return 'Rp 0';
             return new Intl.NumberFormat('id-ID', {
                 style: 'currency',
                 currency: 'IDR',
@@ -983,224 +1073,669 @@
             }).format(num);
         }
 
-        // Calculate Profile Function
-        calculateBtn.addEventListener('click', () => {
-            // Get all input values
-            const age = parseInt(document.getElementById('age').value) || 35;
-            const income = parseFloat(document.getElementById('income').value.replace(/\D/g, '')) || 15000000;
-            const familyStatus = document.getElementById('familyStatus').value;
-            const passiveIncome = parseFloat(document.getElementById('passiveIncome').value.replace(/\D/g, '')) || 3000000;
-            const expenses = parseFloat(document.getElementById('expenses').value.replace(/\D/g, '')) || 8000000;
-            const liquidAssets = parseFloat(document.getElementById('liquidAssets').value.replace(/\D/g, '')) || 50000000;
-            const targetAmount = parseFloat(document.getElementById('targetAmount').value.replace(/\D/g, '')) || 5000000000;
-            const timeHorizon = parseInt(document.getElementById('timeHorizon').value) || 10;
-            const goalType = document.getElementById('goalType').value;
-            const riskAppetite = parseInt(document.getElementById('riskAppetite').value);
-            const experience = document.getElementById('experience').value;
-            const lossReaction = document.getElementById('lossReaction').value;
-            
-            // Validasi input dasar
-            if (!age || !income || !expenses || !targetAmount || !timeHorizon) {
-                alert('Harap isi semua field yang diperlukan!');
+        // Parse currency input
+        function parseCurrency(str) {
+            if (!str) return 0;
+            return parseFloat(str.replace(/[^\d]/g, '')) || 0;
+        }
+
+        // Modal functionality
+        const reviewModal = document.getElementById('reviewModal');
+        const resultModal = document.getElementById('resultModal');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const closeReviewModal = document.getElementById('closeReviewModal');
+        const closeResultModal = document.getElementById('closeResultModal');
+        const reviewBtn = document.getElementById('reviewBtn');
+        const editDataBtn = document.getElementById('editDataBtn');
+        const confirmCalculateBtn = document.getElementById('confirmCalculateBtn');
+        const closeResultBtn = document.getElementById('closeResultBtn');
+        const saveResultsBtn = document.getElementById('saveResultsBtn');
+
+        // Review button click
+        reviewBtn.addEventListener('click', () => {
+            // Validate form
+            const form = document.getElementById('calculatorForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
                 return;
             }
+
+            // Get all input values for review
+            const age = document.getElementById('age').value;
+            const familyStatus = document.getElementById('familyStatus').value;
+            const education = document.getElementById('education').value;
+            const occupation = document.getElementById('occupation').value;
+            const income = parseCurrency(document.getElementById('income').value);
+            const expenses = parseCurrency(document.getElementById('expenses').value);
+            const capital = parseCurrency(document.getElementById('capital').value);
+            const liquidAssets = parseCurrency(document.getElementById('liquidAssets').value);
+            const dependents = document.getElementById('dependents').value;
+            const experienceYears = document.getElementById('experienceYears').value;
+            const investmentTypes = Array.from(document.getElementById('investmentTypes').selectedOptions).map(opt => opt.value);
+            const largestPortfolio = parseCurrency(document.getElementById('largestPortfolio').value);
+            const targetAmount = parseCurrency(document.getElementById('targetAmount').value);
+            const timeHorizon = document.getElementById('timeHorizon').value;
+            const goalType = document.getElementById('goalType').value;
+            const riskTolerance = document.getElementById('riskTolerance').value;
+            const lossReaction = document.getElementById('lossReaction').value;
+            const timeCommitment = document.getElementById('timeCommitment').value;
+            const knowledgeLevel = document.getElementById('knowledgeLevel').value;
+            const informationSources = Array.from(document.getElementById('informationSources').selectedOptions).map(opt => opt.value);
+
+            // Map values to display names
+            const familyStatusMap = {
+                'single': 'Lajang',
+                'married_no_kids': 'Menikah tanpa anak',
+                'married_kids': 'Menikah dengan anak',
+                'single_parent': 'Orang tua tunggal'
+            };
+
+            const educationMap = {
+                'high_school': 'SMA/SMK',
+                'bachelor': 'Sarjana (S1)',
+                'master': 'Magister (S2)',
+                'doctorate': 'Doktor (S3)'
+            };
+
+            const occupationMap = {
+                'employee': 'Karyawan Swasta',
+                'pns': 'PNS/ASN',
+                'entrepreneur': 'Wiraswasta/Pengusaha',
+                'professional': 'Profesional',
+                'freelancer': 'Freelancer',
+                'student': 'Pelajar/Mahasiswa'
+            };
+
+            const goalTypeMap = {
+                'wealth_growth': 'Pertumbuhan kekayaan',
+                'passive_income': 'Pendapatan pasif',
+                'retirement': 'Persiapan pensiun',
+                'education': 'Pendidikan anak',
+                'house': 'Membeli rumah',
+                'capital_preservation': 'Melindungi modal'
+            };
+
+            const lossReactionMap = {
+                'panic': 'Panik dan jual semua',
+                'worry': 'Khawatir tapi hold',
+                'calm': 'Tenang, evaluasi ulang',
+                'opportunistic': 'Lihat peluang beli lebih'
+            };
+
+            const timeCommitmentMap = {
+                'low': '≤ 2 jam (Pasif)',
+                'medium': '2-5 jam (Moderat)',
+                'high': '5-10 jam (Aktif)',
+                'very_high': '> 10 jam (Sangat Aktif)'
+            };
+
+            const knowledgeLevelMap = {
+                'basic': 'Dasar',
+                'intermediate': 'Menengah',
+                'advanced': 'Lanjutan',
+                'expert': 'Expert'
+            };
+
+            // Calculate savings rate
+            const savingsRate = income > 0 ? ((income - expenses) / income * 100).toFixed(1) : 0;
+
+            // Generate review HTML
+            const reviewHTML = `
+                <div class="input-summary">
+                    <h3 style="color: var(--accent-gold); margin-bottom: 1rem;">Ringkasan Data Anda</h3>
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <strong>Umur:</strong> ${age} tahun
+                        </div>
+                        <div class="summary-item">
+                            <strong>Status:</strong> ${familyStatusMap[familyStatus]}
+                        </div>
+                        <div class="summary-item">
+                            <strong>Pendidikan:</strong> ${educationMap[education]}
+                        </div>
+                        <div class="summary-item">
+                            <strong>Pekerjaan:</strong> ${occupationMap[occupation]}
+                        </div>
+                        <div class="summary-item">
+                            <strong>Pendapatan Bulanan:</strong> ${formatCurrency(income)}
+                        </div>
+                        <div class="summary-item">
+                            <strong>Pengeluaran Bulanan:</strong> ${formatCurrency(expenses)}
+                        </div>
+                        <div class="summary-item">
+                            <strong>Savings Rate:</strong> ${savingsRate}%
+                        </div>
+                        <div class="summary-item">
+                            <strong>Modal Investasi:</strong> ${formatCurrency(capital)}
+                        </div>
+                        <div class="summary-item">
+                            <strong>Target Finansial:</strong> ${formatCurrency(targetAmount)}
+                        </div>
+                        <div class="summary-item">
+                            <strong>Jangka Waktu:</strong> ${timeHorizon} tahun
+                        </div>
+                        <div class="summary-item">
+                            <strong>Tujuan:</strong> ${goalTypeMap[goalType]}
+                        </div>
+                        <div class="summary-item">
+                            <strong>Toleransi Risiko:</strong> ${riskTolerance}/10
+                        </div>
+                        <div class="summary-item">
+                            <strong>Pengalaman:</strong> ${experienceYears === '0' ? 'Pemula' : experienceYears + '+ tahun'}
+                        </div>
+                        <div class="summary-item">
+                            <strong>Portofolio Terbesar:</strong> ${formatCurrency(largestPortfolio)}
+                        </div>
+                        <div class="summary-item">
+                            <strong>Komitmen Waktu:</strong> ${timeCommitmentMap[timeCommitment]}
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; padding: 1.5rem; background: rgba(212, 175, 55, 0.05); border-radius: 8px; margin-top: 1.5rem;">
+                    <p style="color: var(--accent-gold); font-style: italic; margin-bottom: 0;">
+                        <i class="fas fa-info-circle"></i> Pastikan data di atas sudah benar sebelum melanjutkan ke perhitungan.
+                    </p>
+                </div>
+            `;
+
+            // Store data for calculation
+            window.calculationData = {
+                age, familyStatus, education, occupation, income, expenses, capital, liquidAssets, 
+                dependents, experienceYears, investmentTypes, largestPortfolio, targetAmount, 
+                timeHorizon, goalType, riskTolerance, lossReaction, timeCommitment, knowledgeLevel, 
+                informationSources, savingsRate
+            };
+
+            // Display review modal
+            document.getElementById('reviewContent').innerHTML = reviewHTML;
+            reviewModal.style.display = 'flex';
+        });
+
+        // Close review modal
+        closeReviewModal.addEventListener('click', () => {
+            reviewModal.style.display = 'none';
+        });
+
+        // Edit data button
+        editDataBtn.addEventListener('click', () => {
+            reviewModal.style.display = 'none';
+            // Scroll to top of form
+            document.getElementById('input').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Confirm calculation button
+        confirmCalculateBtn.addEventListener('click', () => {
+            reviewModal.style.display = 'none';
+            loadingSpinner.style.display = 'flex';
             
-            // Calculate financial metrics
-            const monthlySavings = (income + passiveIncome) - expenses;
+            // Simulate calculation delay
+            setTimeout(() => {
+                calculateProfile(window.calculationData);
+                loadingSpinner.style.display = 'none';
+                resultModal.style.display = 'flex';
+            }, 1500);
+        });
+
+        // Close result modal
+        closeResultModal.addEventListener('click', () => {
+            resultModal.style.display = 'none';
+        });
+
+        closeResultBtn.addEventListener('click', () => {
+            resultModal.style.display = 'none';
+        });
+
+        // Save results button
+        saveResultsBtn.addEventListener('click', () => {
+            const resultContent = document.getElementById('resultContent').innerHTML;
+            const blob = new Blob([`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Hasil Profil Investasi - Lenrong Capital</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 20px; }
+                        h1 { color: #d4af37; }
+                        .result-card { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px; }
+                    </style>
+                </head>
+                <body>
+                    <h1>Hasil Profil Investasi Anda</h1>
+                    <p>Dihasilkan pada: ${new Date().toLocaleDateString('id-ID')}</p>
+                    ${resultContent.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ')}
+                </body>
+                </html>
+            `], { type: 'text/html' });
+            
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `profil-investasi-${Date.now()}.html`;
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            alert('Hasil telah disimpan!');
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === reviewModal) reviewModal.style.display = 'none';
+            if (e.target === resultModal) resultModal.style.display = 'none';
+            if (e.target === loadingSpinner) loadingSpinner.style.display = 'none';
+        });
+
+        // Calculate profile function with advanced logic
+        function calculateProfile(data) {
+            // Convert strings to numbers
+            const age = parseInt(data.age);
+            const income = parseFloat(data.income);
+            const expenses = parseFloat(data.expenses);
+            const capital = parseFloat(data.capital);
+            const liquidAssets = parseFloat(data.liquidAssets) || 0;
+            const dependents = parseInt(data.dependents) || 0;
+            const experienceYears = parseInt(data.experienceYears) || 0;
+            const largestPortfolio = parseFloat(data.largestPortfolio) || 0;
+            const targetAmount = parseFloat(data.targetAmount);
+            const timeHorizon = parseInt(data.timeHorizon);
+            const riskTolerance = parseInt(data.riskTolerance);
+            const savingsRate = parseFloat(data.savingsRate);
+
+            // Advanced calculations
+            const monthlySavings = income - expenses;
             const annualSavings = monthlySavings * 12;
-            const savingsRate = (monthlySavings / (income + passiveIncome)) * 100;
+            const netWorth = capital + liquidAssets + (annualSavings * Math.max(age - 25, 5) * 0.4);
             
-            // Calculate net worth estimate
-            const yearsWorking = Math.max(age - 22, 1);
-            const netWorth = liquidAssets + (annualSavings * yearsWorking * 0.6);
+            // Calculate required CAGR with more sophisticated formula
+            const yearsToRetirement = Math.max(65 - age, 10);
+            const adjustedTimeHorizon = Math.min(timeHorizon, yearsToRetirement);
+            const requiredCAGR = (Math.pow(targetAmount / (netWorth + annualSavings * adjustedTimeHorizon * 0.5), 1/adjustedTimeHorizon) - 1) * 100;
             
-            // Calculate required CAGR
-            const requiredCAGR = (Math.pow(targetAmount / netWorth, 1/timeHorizon) - 1) * 100;
-            
-            // Calculate risk score
+            // Risk profile calculation with multiple factors
             let experienceScore = 0;
-            if (experience === 'beginner') experienceScore = 3;
-            else if (experience === 'intermediate') experienceScore = 6;
-            else if (experience === 'advanced') experienceScore = 8;
+            if (experienceYears === 0) experienceScore = 3;
+            else if (experienceYears === 2) experienceScore = 5;
+            else if (experienceYears === 5) experienceScore = 7;
+            else if (experienceYears === 8) experienceScore = 9;
+            
+            let knowledgeScore = 0;
+            switch(data.knowledgeLevel) {
+                case 'basic': knowledgeScore = 3; break;
+                case 'intermediate': knowledgeScore = 5; break;
+                case 'advanced': knowledgeScore = 7; break;
+                case 'expert': knowledgeScore = 9; break;
+            }
             
             let lossReactionScore = 0;
-            if (lossReaction === 'panic') lossReactionScore = 2;
-            else if (lossReaction === 'hold') lossReactionScore = 5;
-            else if (lossReaction === 'buy_more') lossReactionScore = 8;
-            else if (lossReaction === 'rebalance') lossReactionScore = 7;
+            switch(data.lossReaction) {
+                case 'panic': lossReactionScore = 2; break;
+                case 'worry': lossReactionScore = 4; break;
+                case 'calm': lossReactionScore = 6; break;
+                case 'opportunistic': lossReactionScore = 8; break;
+            }
             
-            const trueRiskScore = Math.min(10, (riskAppetite * 0.6 + experienceScore * 0.3 + lossReactionScore * 0.1));
+            // Calculate true risk tolerance (weighted average)
+            const trueRiskTolerance = (
+                (riskTolerance * 0.4) +
+                (experienceScore * 0.3) +
+                (knowledgeScore * 0.2) +
+                (lossReactionScore * 0.1)
+            );
             
-            // Calculate feasible risk (capped by financial reality)
-            const familyFactor = familyStatus === 'single' ? 1 : familyStatus === 'married_no_kids' ? 0.8 : 0.6;
-            const feasibleRisk = Math.min(trueRiskScore, (savingsRate / 10) * familyFactor);
+            // Adjust for family responsibilities
+            let familyFactor = 1.0;
+            switch(data.familyStatus) {
+                case 'single': familyFactor = 1.0; break;
+                case 'married_no_kids': familyFactor = 0.9; break;
+                case 'married_kids': familyFactor = 0.7; break;
+                case 'single_parent': familyFactor = 0.6; break;
+            }
             
-            // Determine strategy based on inputs
-            let strategy = '';
-            let strategyDescription = '';
+            // Adjust for dependents
+            const dependentsFactor = Math.max(0.5, 1 - (dependents * 0.1));
+            
+            // Calculate feasible risk
+            const feasibleRisk = Math.min(10, trueRiskTolerance * familyFactor * dependentsFactor);
+            
+            // Determine investor type based on multiple factors
+            let investorType = '';
+            let investorDescription = '';
+            let strategyName = '';
             
             if (feasibleRisk <= 4) {
-                strategy = 'Capital Preservation';
-                strategyDescription = 'Fokus pada perlindungan modal dengan risiko minimal';
-            } else if (feasibleRisk <= 7) {
-                strategy = 'Growth Compounder';
-                strategyDescription = 'Pertumbuhan modal moderat dengan diversifikasi';
+                investorType = 'DEFENSIVE PRESERVER';
+                investorDescription = 'Fokus utama pada perlindungan modal dengan pertumbuhan stabil';
+                strategyName = 'Capital Preservation Core';
+            } else if (feasibleRisk <= 6) {
+                investorType = 'BALANCED GROWER';
+                investorDescription = 'Pertumbuhan moderat dengan manajemen risiko ketat';
+                strategyName = 'Balanced Growth Strategy';
+            } else if (feasibleRisk <= 8) {
+                investorType = 'GROWTH SEEKER';
+                investorDescription = 'Mencari pertumbuhan asimetris dengan risiko terukur';
+                strategyName = 'Asymmetric Growth Engine';
             } else {
-                strategy = 'Asymmetric Opportunity';
-                strategyDescription = 'Mencari peluang pertumbuhan tinggi dengan risiko terukur';
+                investorType = 'AGGRESSIVE BUILDER';
+                investorDescription = 'Membangun kekayaan dengan eksposur tinggi pada aset pertumbuhan';
+                strategyName = 'High Growth Acceleration';
             }
             
-            // Determine asset allocation (lebih banyak variasi)
-            let allocation = {};
+            // Dynamic asset allocation based on multiple factors
+            let assetAllocation = {};
+            const baseCapital = capital / 1000000; // Capital in millions for scaling
             
-            if (strategy === 'Capital Preservation') {
-                allocation = {
-                    'Saham Bluechip': { min: 15, max: 25, color: '#3b82f6' },
-                    'Obligasi Pemerintah': { min: 30, max: 40, color: '#10b981' },
-                    'Emas/Logam Mulia': { min: 15, max: 20, color: '#f59e0b' },
-                    'Deposito': { min: 10, max: 15, color: '#06b6d4' },
-                    'Reksadana Pasar Uang': { min: 10, max: 15, color: '#8b5cf6' },
-                    'Kas': { min: 5, max: 10, color: '#64748b' }
-                };
-            } else if (strategy === 'Growth Compounder') {
-                allocation = {
-                    'Saham Growth': { min: 40, max: 50, color: '#3b82f6' },
-                    'Bitcoin/Crypto': { min: 10, max: 15, color: '#f59e0b' },
-                    'Obligasi Korporasi': { min: 20, max: 25, color: '#10b981' },
-                    'Reksadana Campuran': { min: 10, max: 15, color: '#8b5cf6' },
-                    'Emas': { min: 5, max: 10, color: '#f59e0b' },
-                    'Kas': { min: 5, max: 10, color: '#64748b' }
-                };
-            } else {
-                allocation = {
-                    'Saham High Growth': { min: 50, max: 60, color: '#3b82f6' },
-                    'Bitcoin': { min: 15, max: 20, color: '#f59e0b' },
-                    'Crypto Altcoin': { min: 5, max: 10, color: '#ec4899' },
-                    'Obligasi High Yield': { min: 10, max: 15, color: '#10b981' },
-                    'Reksadana Saham': { min: 5, max: 10, color: '#8b5cf6' },
-                    'Kas': { min: 5, max: 10, color: '#64748b' }
-                };
+            if (investorType === 'DEFENSIVE PRESERVER') {
+                // For defensive investors with small capital
+                if (baseCapital < 50) {
+                    assetAllocation = {
+                        'Deposito/Reksadana Pasar Uang': 35,
+                        'Obligasi Pemerintah': 25,
+                        'Saham Bluechip Dividen': 20,
+                        'Emas/Logam Mulia': 15,
+                        'Kas Darurat': 5
+                    };
+                } else if (baseCapital < 200) {
+                    assetAllocation = {
+                        'Obligasi Pemerintah & Korporasi': 30,
+                        'Reksadana Pendapatan Tetap': 25,
+                        'Saham Bluechip High Dividend': 25,
+                        'Emas': 15,
+                        'Kas': 5
+                    };
+                } else {
+                    assetAllocation = {
+                        'Obligasi Berkualitas Tinggi': 35,
+                        'Saham Dividen Aristocrats': 30,
+                        'Reksadana Campuran Konservatif': 20,
+                        'Emas/Logam Mulia': 10,
+                        'Kas/Cash Equivalents': 5
+                    };
+                }
+            } else if (investorType === 'BALANCED GROWER') {
+                if (baseCapital < 50) {
+                    assetAllocation = {
+                        'Reksadana Saham': 30,
+                        'Saham Bluechip & Growth': 25,
+                        'Reksadana Pendapatan Tetap': 20,
+                        'Emas': 15,
+                        'Bitcoin (DCA kecil)': 5,
+                        'Kas': 5
+                    };
+                } else if (baseCapital < 200) {
+                    assetAllocation = {
+                        'Saham Quality Growth': 35,
+                        'Reksadana Index (LQ45, IDX30)': 25,
+                        'Obligasi Korporasi': 20,
+                        'Bitcoin (DCA reguler)': 10,
+                        'Emas': 5,
+                        'Kas': 5
+                    };
+                } else {
+                    assetAllocation = {
+                        'Saham Large-Mid Cap': 40,
+                        'ETF Global (S&P 500, MSCI World)': 20,
+                        'Obligasi Diversifikasi': 20,
+                        'Bitcoin': 10,
+                        'Alternatif (REIT, Commodities)': 5,
+                        'Kas': 5
+                    };
+                }
+            } else if (investorType === 'GROWTH SEEKER') {
+                if (baseCapital < 50) {
+                    assetAllocation = {
+                        'Saham Growth & Momentum': 40,
+                        'Bitcoin/Crypto Core': 20,
+                        'Reksadana Saham Agresif': 20,
+                        'Saham Sektor Teknologi': 10,
+                        'Kas': 10
+                    };
+                } else if (baseCapital < 200) {
+                    assetAllocation = {
+                        'Saham High Growth Potensial': 45,
+                        'Bitcoin (Core Holding)': 20,
+                        'Crypto Altcoin (Terpilih)': 10,
+                        'ETF Sektor Spesifik': 15,
+                        'Kas untuk Opportunitas': 10
+                    };
+                } else {
+                    assetAllocation = {
+                        'Saham Growth & Value Mix': 50,
+                        'Bitcoin (Strategic Allocation)': 20,
+                        'Crypto Projects (Diversified)': 10,
+                        'Alternatif & Private Equity': 10,
+                        'Kas Liquidity': 10
+                    };
+                }
+            } else { // AGGRESSIVE BUILDER
+                if (baseCapital < 50) {
+                    assetAllocation = {
+                        'Saham High Conviction': 50,
+                        'Bitcoin/Crypto Portfolio': 30,
+                        'Trading/Swing Opportunities': 15,
+                        'Kas untuk Averaging': 5
+                    };
+                } else if (baseCapital < 200) {
+                    assetAllocation = {
+                        'Portofolio Saham Aktif': 55,
+                        'Bitcoin & Major Cryptos': 25,
+                        'Crypto Altcoin Strategis': 10,
+                        'Derivatif/Opsi (Hedging)': 5,
+                        'Kas': 5
+                    };
+                } else {
+                    assetAllocation = {
+                        'Equity Concentrated Portfolio': 60,
+                        'Digital Assets (BTC/ETH/Alt)': 25,
+                        'Alternatif & Venture Exposure': 10,
+                        'Kas untuk Market Timing': 5
+                    };
+                }
             }
-            
-            // Calculate average allocation
-            const avgAllocation = {};
-            Object.keys(allocation).forEach(asset => {
-                avgAllocation[asset] = Math.round((allocation[asset].min + allocation[asset].max) / 2);
-            });
             
             // Calculate probability of success
             let successProbability = 0;
-            if (requiredCAGR <= 5) successProbability = 85;
-            else if (requiredCAGR <= 10) successProbability = 65;
-            else if (requiredCAGR <= 15) successProbability = 40;
-            else successProbability = 20;
-            
-            // Adjust for time horizon and savings rate
-            if (timeHorizon >= 15) successProbability = Math.min(90, successProbability + 15);
-            else if (timeHorizon <= 5) successProbability = Math.max(10, successProbability - 20);
-            
-            if (savingsRate >= 30) successProbability = Math.min(95, successProbability + 10);
-            else if (savingsRate <= 10) successProbability = Math.max(5, successProbability - 15);
-            
-            // Generate brutal truth message
-            let brutalTruth = '';
-            if (requiredCAGR > 15) {
-                brutalTruth = `Target CAGR ${requiredCAGR.toFixed(1)}% terlalu agresif. Pertimbangkan: (1) Menambah waktu investasi menjadi ${Math.ceil(timeHorizon * 1.5)} tahun, (2) Meningkatkan savings rate menjadi minimal 30%, atau (3) Menurunkan target finansial menjadi ${formatCurrency(targetAmount * 0.7)}.`;
-            } else if (savingsRate < 20) {
-                brutalTruth = `Savings rate ${Math.round(savingsRate)}% terlalu rendah untuk mencapai target. Fokus pada peningkatan income atau pengurangan expenses untuk mencapai minimal 20%.`;
-            } else if (lossReaction === 'panic') {
-                brutalTruth = `Risiko psikologis Anda tinggi (reaksi: panik). Consider starting with lower risk allocation or building emotional resilience before increasing exposure.`;
+            if (requiredCAGR <= 8) {
+                successProbability = 75 + (savingsRate > 30 ? 10 : 0);
+            } else if (requiredCAGR <= 12) {
+                successProbability = 55 + (timeHorizon > 10 ? 15 : 0);
+            } else if (requiredCAGR <= 18) {
+                successProbability = 35 + (experienceYears >= 5 ? 15 : 0);
             } else {
-                brutalTruth = `Profil Anda seimbang. Fokus pada konsistensi dan disiplin eksekusi. Jangan tergoda untuk mengambil risiko di luar rekomendasi.`;
+                successProbability = 15 + (knowledgeScore >= 7 ? 10 : 0);
+            }
+            
+            // Adjust based on experience and knowledge
+            if (experienceYears >= 5) successProbability += 5;
+            if (knowledgeScore >= 7) successProbability += 5;
+            
+            // Cap probability
+            successProbability = Math.min(95, Math.max(5, successProbability));
+            
+            // Generate recommendations based on input
+            const recommendations = [];
+            const warnings = [];
+            const positiveNotes = [];
+            
+            // Savings rate analysis
+            if (savingsRate < 20) {
+                recommendations.push(`<strong>Tingkatkan savings rate</strong> dari ${savingsRate}% menjadi minimal 25%. Fokus pada peningkatan income atau efisiensi pengeluaran.`);
+                warnings.push(`Savings rate yang rendah (${savingsRate}%) akan memperlambat pencapaian target finansial.`);
+            } else if (savingsRate >= 30) {
+                positiveNotes.push(`Savings rate Anda (${savingsRate}%) sangat baik! Ini memberikan runway yang kuat untuk investasi.`);
+            }
+            
+            // Capital size analysis
+            if (capital < 10000000) {
+                recommendations.push(`<strong>Fokus akumulasi modal</strong> terlebih dahulu sebelum diversifikasi agresif. Prioritaskan DCA (Dollar Cost Averaging) pada 2-3 aset utama.`);
+            } else if (capital >= 100000000) {
+                recommendations.push(`Dengan modal ${formatCurrency(capital)}, pertimbangkan <strong>diversifikasi internasional</strong> dan alokasi ke aset alternatif.`);
+            }
+            
+            // Experience analysis
+            if (experienceYears <= 1) {
+                recommendations.push(`Sebagai investor pemula, <strong>mulai dengan instrumen sederhana</strong> seperti reksadana atau saham bluechip sebelum ekspansi ke aset lebih kompleks.`);
+                warnings.push(`Pengalaman terbatas (${experienceYears} tahun) memerlukan pendekatan lebih hati-hati dan edukasi berkelanjutan.`);
+            } else if (experienceYears >= 5) {
+                positiveNotes.push(`Pengalaman ${experienceYears} tahun memberikan fondasi yang kuat untuk strategi lebih kompleks.`);
+            }
+            
+            // Time commitment analysis
+            if (data.timeCommitment === 'low') {
+                recommendations.push(`Dengan waktu terbatas, pertimbangkan <strong>investasi pasif</strong> melalui reksadana atau ETF untuk efisiensi manajemen.`);
+            } else if (data.timeCommitment === 'very_high') {
+                recommendations.push(`Dengan waktu yang cukup, Anda bisa melakukan <strong>analisis fundamental dan teknis</strong> secara reguler untuk opportunity picking.`);
+            }
+            
+            // Goal analysis
+            if (requiredCAGR > 15) {
+                recommendations.push(`Target CAGR ${requiredCAGR.toFixed(1)}% cukup agresif. Pertimbangkan: (1) Perpanjang timeline menjadi ${timeHorizon + 5} tahun, (2) Tingkatkan kontribusi reguler, atau (3) Diversifikasi ke aset pertumbuhan tinggi.`);
+                warnings.push(`Target return tinggi (${requiredCAGR.toFixed(1)}% CAGR) memerlukan eksposur risiko yang signifikan dan toleransi volatilitas.`);
+            }
+            
+            // Risk analysis
+            if (lossReactionScore <= 3) {
+                recommendations.push(`Profil psikologis menunjukkan <strong>low risk tolerance</strong>. Pertimbangkan strategi dengan drawdown control dan stop-loss discipline.`);
+            }
+            
+            // Time horizon analysis
+            if (timeHorizon < 5) {
+                recommendations.push(`Jangka waktu pendek (${timeHorizon} tahun) cocok untuk strategi <strong>income generation</strong> daripada capital growth agresif.`);
+            } else if (timeHorizon >= 15) {
+                recommendations.push(`Jangka waktu panjang (${timeHorizon} tahun) memungkinkan recovery dari siklus pasar dan compounding yang lebih optimal.`);
+                positiveNotes.push(`Time horizon yang panjang adalah advantage terbesar untuk investasi growth.`);
             }
             
             // Generate result HTML
             const resultHTML = `
-                <div class="results-grid">
-                    <div class="result-card">
-                        <h4>Investor Type</h4>
-                        <div class="result-value financial">${strategy.split(' ')[0]}</div>
-                        <p>${strategyDescription}</p>
+                <div class="results-container">
+                    <div class="result-header">
+                        <div class="investor-profile">${investorType}</div>
+                        <p style="color: var(--text-secondary);">${investorDescription}</p>
+                        <div style="margin-top: 1rem; font-size: 1.1rem; color: var(--accent-gold);">
+                            <i class="fas fa-chess-knight"></i> Strategi: ${strategyName}
+                        </div>
                     </div>
-                    <div class="result-card">
-                        <h4>Risk Score</h4>
-                        <div class="result-value risk">${feasibleRisk.toFixed(1)}/10</div>
-                        <p>Feasible Risk</p>
+                    
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <h4>Risk Score</h4>
+                            <div class="result-value risk">${feasibleRisk.toFixed(1)}/10</div>
+                            <p>Feasible Risk Profile</p>
+                        </div>
+                        <div class="result-card">
+                            <h4>Target CAGR</h4>
+                            <div class="result-value goal">${requiredCAGR.toFixed(1)}%</div>
+                            <p>Required Annual Return</p>
+                        </div>
+                        <div class="result-card">
+                            <h4>Success Probability</h4>
+                            <div class="result-value strategy">${Math.round(successProbability)}%</div>
+                            <p>Probability of Success</p>
+                        </div>
+                        <div class="result-card">
+                            <h4>Savings Rate</h4>
+                            <div class="result-value financial">${savingsRate}%</div>
+                            <p>Monthly Savings Rate</p>
+                        </div>
                     </div>
-                    <div class="result-card">
-                        <h4>Savings Rate</h4>
-                        <div class="result-value financial">${Math.round(savingsRate)}%</div>
-                        <p>Monthly Savings Rate</p>
-                    </div>
-                    <div class="result-card">
-                        <h4>Target CAGR</h4>
-                        <div class="result-value goal">${requiredCAGR.toFixed(1)}%</div>
-                        <p>Required Return</p>
-                    </div>
-                </div>
-                
-                <h3 style="margin-top: 2rem; color: var(--accent-gold);">Alokasi Aset Rekomendasi</h3>
-                <div class="asset-allocation">
-                    ${Object.keys(allocation).map(asset => `
-                        <div class="asset-item">
-                            <span>${asset}</span>
-                            <div class="asset-bar">
-                                <div class="asset-fill" style="width: ${avgAllocation[asset]}%; background: ${allocation[asset].color};"></div>
+                    
+                    <h3 style="margin-top: 2rem; color: var(--accent-gold);">
+                        <i class="fas fa-pie-chart"></i> Alokasi Aset Rekomendasi
+                    </h3>
+                    <div class="asset-allocation">
+                        ${Object.entries(assetAllocation).map(([asset, percentage]) => `
+                            <div class="asset-item">
+                                <div class="asset-name">${asset}</div>
+                                <div class="asset-bar">
+                                    <div class="asset-fill" style="width: ${percentage}%;"></div>
+                                </div>
+                                <div class="asset-percentage">${percentage}%</div>
                             </div>
-                            <span style="font-weight: bold; color: var(--accent-gold); min-width: 80px; text-align: right;">${avgAllocation[asset]}%</span>
+                        `).join('')}
+                    </div>
+                    
+                    ${positiveNotes.length > 0 ? `
+                        <div class="success-box">
+                            <h4 style="color: var(--success); margin-bottom: 0.5rem;">
+                                <i class="fas fa-check-circle"></i> Strengths & Advantages
+                            </h4>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                                ${positiveNotes.map(note => `<li style="margin-bottom: 0.5rem;">${note}</li>`).join('')}
+                            </ul>
                         </div>
-                    `).join('')}
-                </div>
-                
-                <h3 style="margin-top: 2rem; color: var(--accent-gold);">Probabilitas & Guardrail</h3>
-                <div style="background: rgba(212, 175, 55, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--accent-gold); margin: 1rem 0;">
-                    <div style="margin-bottom: 1rem;">
-                        <div class="progress-label">
-                            <span>Probabilitas Mencapai Target:</span>
-                            <span style="color: ${successProbability >= 70 ? 'var(--success)' : successProbability >= 40 ? 'var(--warning)' : 'var(--danger)'}; font-weight: bold;">
-                                ${successProbability}%
-                            </span>
+                    ` : ''}
+                    
+                    ${recommendations.length > 0 ? `
+                        <div class="recommendations">
+                            <h4 style="color: var(--info); margin-bottom: 0.5rem;">
+                                <i class="fas fa-lightbulb"></i> Rekomendasi Aksi
+                            </h4>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                                ${recommendations.map(rec => `<li style="margin-bottom: 0.5rem;">${rec}</li>`).join('')}
+                            </ul>
                         </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: ${successProbability}%;"></div>
+                    ` : ''}
+                    
+                    ${warnings.length > 0 ? `
+                        <div class="warning-box">
+                            <h4 style="color: var(--danger); margin-bottom: 0.5rem;">
+                                <i class="fas fa-exclamation-triangle"></i> Perhatian & Risiko
+                            </h4>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                                ${warnings.map(warning => `<li style="margin-bottom: 0.5rem;">${warning}</li>`).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+                    
+                    <h3 style="margin-top: 2rem; color: var(--accent-gold);">
+                        <i class="fas fa-shield-alt"></i> Guardrails & Risk Management
+                    </h3>
+                    <div style="background: rgba(212, 175, 55, 0.05); padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem;">
+                            <div>
+                                <span style="font-size: 0.9rem; color: var(--text-secondary);">Max Drawdown Tolerable:</span>
+                                <div style="font-size: 1.2rem; font-weight: bold; color: var(--warning);">${Math.round(30 - feasibleRisk * 2)}%</div>
+                            </div>
+                            <div>
+                                <span style="font-size: 0.9rem; color: var(--text-secondary);">Rebalance Threshold:</span>
+                                <div style="font-size: 1.2rem; font-weight: bold; color: var(--accent-gold);">±7% dari target</div>
+                            </div>
+                            <div>
+                                <span style="font-size: 0.9rem; color: var(--text-secondary);">Emergency Fund Required:</span>
+                                <div style="font-size: 1.2rem; font-weight: bold; color: var(--success);">${Math.max(3, Math.ceil(expenses * 6 / 1000000))} bulan</div>
+                            </div>
+                            <div>
+                                <span style="font-size: 0.9rem; color: var(--text-secondary);">Review Frequency:</span>
+                                <div style="font-size: 1.2rem; font-weight: bold; color: var(--info);">${feasibleRisk > 7 ? 'Bulanan' : feasibleRisk > 4 ? 'Triwulan' : 'Semester'}</div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1.5rem;">
+                            <div class="progress-label">
+                                <span>Portfolio Volatility Estimate:</span>
+                                <span style="color: ${feasibleRisk > 7 ? 'var(--warning)' : feasibleRisk > 4 ? 'var(--accent-gold)' : 'var(--success)'}; font-weight: bold;">
+                                    ${(feasibleRisk * 3).toFixed(1)}%
+                                </span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${feasibleRisk * 10}%;"></div>
+                            </div>
                         </div>
                     </div>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
-                        <div>
-                            <span style="font-size: 0.9rem; color: var(--text-secondary);">Max Drawdown Tolerable:</span>
-                            <div style="font-size: 1.2rem; font-weight: bold; color: var(--warning);">${Math.round(30 - feasibleRisk * 2)}%</div>
-                        </div>
-                        <div>
-                            <span style="font-size: 0.9rem; color: var(--text-secondary);">Rebalance Trigger:</span>
-                            <div style="font-size: 1.2rem; font-weight: bold; color: var(--accent-gold);">±5% dari target</div>
-                        </div>
-                        <div>
-                            <span style="font-size: 0.9rem; color: var(--text-secondary);">Emergency Fund:</span>
-                            <div style="font-size: 1.2rem; font-weight: bold; color: var(--success);">6-12 bulan</div>
-                        </div>
+                    
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(212, 175, 55, 0.05); border-radius: 8px; text-align: center;">
+                        <p style="color: var(--accent-gold); font-style: italic; margin-bottom: 0;">
+                            <i class="fas fa-info-circle"></i> Rekomendasi ini berdasarkan input Anda dan analisis data pasar terkini. 
+                            Lakukan review berkala setiap 6-12 bulan atau saat terjadi perubahan signifikan dalam kehidupan finansial.
+                        </p>
                     </div>
-                </div>
-                
-                <div class="brutal-truth">
-                    <h4 style="color: var(--danger); margin-bottom: 0.5rem;"><i class="fas fa-exclamation-triangle"></i> Brutal Truth</h4>
-                    <p style="color: var(--text-secondary);">
-                        ${brutalTruth}
-                    </p>
-                </div>
-                
-                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(212, 175, 55, 0.05); border-radius: 8px; text-align: center;">
-                    <p style="color: var(--accent-gold); font-style: italic; margin-bottom: 0;">
-                        <i class="fas fa-lightbulb"></i> Ingat: Hasil ini berdasarkan input Anda saat ini. 
-                        Profil investasi dapat berubah seiring perubahan kondisi finansial dan kehidupan.
-                    </p>
                 </div>
             `;
             
             // Display results
             document.getElementById('resultContent').innerHTML = resultHTML;
-            modal.style.display = 'flex';
             
-            // Animate progress bars
+            // Animate progress bars and asset fills
             setTimeout(() => {
                 document.querySelectorAll('.progress-fill, .asset-fill').forEach(el => {
                     const width = el.style.width;
@@ -1210,7 +1745,7 @@
                     }, 100);
                 });
             }, 300);
-        });
+        }
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
