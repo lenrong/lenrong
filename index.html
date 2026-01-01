@@ -318,6 +318,68 @@
             border-left: 3px solid var(--accent-gold);
         }
 
+        /* CTA Buttons */
+        .hero-cta {
+            margin-top: 3rem;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: var(--gradient-gold);
+            color: var(--primary-dark);
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            box-shadow: var(--shadow-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button:hover:before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .cta-button i {
+            font-size: 1.2rem;
+        }
+
+        .cta-button-secondary {
+            background: transparent;
+            color: var(--accent-gold);
+            border: 2px solid var(--accent-gold);
+        }
+
+        .cta-button-secondary:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
         /* Cards - Enhanced */
         .card {
             background-color: var(--card-bg);
@@ -621,6 +683,57 @@
             color: var(--text-primary);
         }
 
+        /* Financial Intelligence Engine Banner */
+        .engine-banner {
+            background: var(--gradient-gold);
+            color: var(--primary-dark);
+            padding: 3rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .engine-banner:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        .engine-banner h3 {
+            color: var(--primary-dark);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .engine-banner p {
+            color: rgba(10, 10, 10, 0.9);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .engine-banner .cta-button {
+            background: var(--primary-dark);
+            color: var(--accent-gold);
+            position: relative;
+            z-index: 1;
+        }
+
+        .engine-banner .cta-button:hover {
+            background: var(--secondary-dark);
+            color: var(--accent-gold-light);
+        }
+
         /* Responsive Design */
         @media (min-width: 1025px) {
             .bottom-nav {
@@ -660,6 +773,11 @@
             .language-switcher {
                 top: 1.5rem;
                 right: 1.5rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
 
@@ -707,6 +825,14 @@
             .investment-item {
                 flex-direction: column;
                 gap: 1rem;
+            }
+
+            .engine-banner {
+                padding: 2rem 1.5rem;
+            }
+
+            .engine-banner h3 {
+                font-size: 1.5rem;
             }
         }
 
@@ -761,6 +887,8 @@
                     <li><a href="#investment"><i class="fas fa-chart-line"></i> <span data-i18n="nav.investment">Investment</span></a></li>
                     <li><a href="#dont-do"><i class="fas fa-ban"></i> <span data-i18n="nav.dontdo">What We Don't Do</span></a></li>
                     <li><a href="#disclosure"><i class="fas fa-exclamation-triangle"></i> <span data-i18n="nav.disclosure">Disclosure</span></a></li>
+                    <!-- Tambah link ke calculator -->
+                    <li><a href="calculator.html"><i class="fas fa-calculator"></i> <span data-i18n="nav.calculator">Financial Engine</span></a></li>
                 </ul>
             </div>
         </div>
@@ -772,6 +900,7 @@
             <li><a href="#blueprint"><i class="fas fa-road"></i> <span data-i18n="nav.blueprint">Blueprint</span></a></li>
             <li><a href="#endgame"><i class="fas fa-flag-checkered"></i> <span data-i18n="nav.endgame">End Game</span></a></li>
             <li><a href="#contact"><i class="fas fa-envelope"></i> <span data-i18n="nav.contact">Contact</span></a></li>
+            <li><a href="calculator.html"><i class="fas fa-calculator"></i> <span data-i18n="nav.calculator">Calculator</span></a></li>
             <li><a href="#hero" class="back-to-top"><i class="fas fa-arrow-up"></i> <span data-i18n="nav.top">Top</span></a></li>
         </ul>
     </nav>
@@ -787,6 +916,7 @@
             <li><a href="#dont-do"><i class="fas fa-ban"></i> <span data-i18n="nav.dontdo">Don't Do</span></a></li>
             <li><a href="#blueprint"><i class="fas fa-road"></i> <span data-i18n="nav.blueprint">Blueprint</span></a></li>
             <li><a href="#contact"><i class="fas fa-envelope"></i> <span data-i18n="nav.contact">Contact</span></a></li>
+            <li><a href="calculator.html"><i class="fas fa-calculator"></i> <span data-i18n="nav.calculator">Engine</span></a></li>
         </ul>
     </nav>
 
@@ -800,6 +930,17 @@
                 </div>
                 <div class="hero-quote" data-i18n="hero.quote">
                     "We don't chase quick returns. We build resilience, discipline, and long-term freedom."
+                </div>
+                <!-- Tombol CTA untuk Financial Intelligence Engine -->
+                <div class="hero-cta fade-in stagger-delay-4">
+                    <a href="calculator.html" class="cta-button">
+                        <i class="fas fa-calculator"></i>
+                        <span data-i18n="hero.calcButton">Financial Intelligence Engine</span>
+                    </a>
+                    <a href="#endgame" class="cta-button cta-button-secondary">
+                        <i class="fas fa-flag-checkered"></i>
+                        <span data-i18n="hero.endgameButton">Explore End Game</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -906,6 +1047,16 @@
                     <h3 data-i18n="investment.item3.title">Trading & Derivatives (Cashflow Engine)</h3>
                     <p data-i18n="investment.item3.desc">Crypto futures and stock swings | Small risk, asymmetric reward | One position, one focus | Primary goal: increasing core asset ownership, not lifestyle</p>
                 </div>
+            </div>
+
+            <!-- Financial Intelligence Engine Banner -->
+            <div class="engine-banner fade-in stagger-delay-4">
+                <h3 data-i18n="engine.bannerTitle">Financial Intelligence Engine</h3>
+                <p data-i18n="engine.bannerDesc">Sistem profiling investasi AI 100% gratis untuk umum. Bukan janji kaya, tapi mesin pengambilan keputusan.</p>
+                <a href="calculator.html" class="cta-button">
+                    <i class="fas fa-rocket"></i>
+                    <span data-i18n="engine.bannerButton">Launch Financial Engine</span>
+                </a>
             </div>
         </div>
     </section>
@@ -1051,6 +1202,13 @@
             </div>
             <p>&copy; <span id="currentYear"></span> Lenrong Capital. All rights reserved.</p>
             <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">Independent Capital Management</p>
+            <!-- Tombol tambahan di footer -->
+            <div style="margin-top: 2rem;">
+                <a href="calculator.html" class="cta-button cta-button-secondary" style="padding: 0.8rem 2rem; font-size: 1rem;">
+                    <i class="fas fa-calculator"></i>
+                    <span data-i18n="footer.calcButton">Access Financial Intelligence Engine</span>
+                </a>
+            </div>
         </div>
     </footer>
 
@@ -1073,11 +1231,14 @@
                 "nav.endgame": "End Game",
                 "nav.contact": "Contact",
                 "nav.top": "Top",
+                "nav.calculator": "Financial Engine",
                 
                 // Hero
                 "hero.title": "Built for Freedom, Focus, and Long-Term Survival",
                 "hero.subtitle": "We don't chase returns. We build resilience, discipline, and long-term freedom.",
                 "hero.quote": '"We don\'t chase quick returns. We build resilience, discipline, and long-term freedom."',
+                "hero.calcButton": "Financial Intelligence Engine",
+                "hero.endgameButton": "Explore End Game",
                 
                 // About
                 "about.title": "About Lenrong Capital",
@@ -1126,6 +1287,11 @@
                 "investment.item3.title": "Trading & Derivatives (Cashflow Engine)",
                 "investment.item3.desc": "Crypto futures and stock swings | Small risk, asymmetric reward | One position, one focus | Primary goal: increasing core asset ownership, not lifestyle",
                 
+                // Engine Banner
+                "engine.bannerTitle": "Financial Intelligence Engine",
+                "engine.bannerDesc": "AI investment profiling system 100% free for public. Not a wealth promise, but a decision-making engine.",
+                "engine.bannerButton": "Launch Financial Engine",
+                
                 // Don't Do
                 "dontdo.title": "What We Don't Do",
                 "dontdo.li1": "Do not accept fund deposits",
@@ -1172,7 +1338,8 @@
                 "contact.desc": "These accounts are used to share macro thoughts, market reflections, and personal journey documentation. Not promotion, not solicitation, not investment services.",
                 
                 // Footer
-                "footer.quote": '"We don\'t invite anyone to join. We just walk, build, and take responsibility for our own decisions."'
+                "footer.quote": '"We don\'t invite anyone to join. We just walk, build, and take responsibility for our own decisions."',
+                "footer.calcButton": "Access Financial Intelligence Engine"
             },
             
             id: {
@@ -1188,11 +1355,14 @@
                 "nav.endgame": "Tujuan Akhir",
                 "nav.contact": "Kontak",
                 "nav.top": "Atas",
+                "nav.calculator": "Mesin Finansial",
                 
                 // Hero
                 "hero.title": "Dibangun untuk Kebebasan, Fokus, dan Ketahanan Jangka Panjang",
                 "hero.subtitle": "Kami tidak mengejar return. Kami membangun ketahanan, disiplin, dan kebebasan jangka panjang.",
                 "hero.quote": '"Kami tidak mengejar return cepat. Kami membangun ketahanan, disiplin, dan kebebasan jangka panjang."',
+                "hero.calcButton": "Financial Intelligence Engine",
+                "hero.endgameButton": "Jelajahi End Game",
                 
                 // About
                 "about.title": "Tentang Lenrong Capital",
@@ -1241,6 +1411,11 @@
                 "investment.item3.title": "Trading & Derivatif (Mesin Cashflow)",
                 "investment.item3.desc": "Futures crypto dan swing saham | Risk kecil, reward asimetris | Satu posisi, satu fokus | Tujuan utama: menambah kepemilikan aset inti, bukan gaya hidup",
                 
+                // Engine Banner
+                "engine.bannerTitle": "Financial Intelligence Engine",
+                "engine.bannerDesc": "Sistem profiling investasi AI 100% gratis untuk umum. Bukan janji kaya, tapi mesin pengambilan keputusan.",
+                "engine.bannerButton": "Jalankan Financial Engine",
+                
                 // Don't Do
                 "dontdo.title": "Yang Tidak Kami Lakukan",
                 "dontdo.li1": "Tidak menerima titip dana",
@@ -1287,7 +1462,8 @@
                 "contact.desc": "Akun ini digunakan untuk berbagi pemikiran makro, refleksi pasar, dan dokumentasi perjalanan personal. Bukan promosi, bukan ajakan, bukan layanan investasi.",
                 
                 // Footer
-                "footer.quote": '"Kami tidak mengajak siapa pun ikut. Kami hanya berjalan, membangun, dan bertanggung jawab atas keputusan sendiri."'
+                "footer.quote": '"Kami tidak mengajak siapa pun ikut. Kami hanya berjalan, membangun, dan bertanggung jawab atas keputusan sendiri."',
+                "footer.calcButton": "Akses Financial Intelligence Engine"
             }
         };
         
@@ -1366,6 +1542,11 @@
         // Smooth scroll untuk semua nav links
         allNavLinks.forEach(link => {
             link.addEventListener('click', (e) => {
+                // Skip smooth scroll untuk external links (calculator.html)
+                if (link.getAttribute('href').includes('.html') && !link.getAttribute('href').startsWith('#')) {
+                    return; // Allow default navigation
+                }
+                
                 e.preventDefault();
                 const targetId = link.getAttribute('href');
                 
@@ -1408,7 +1589,7 @@
         }, observerOptions);
 
         // Observe semua elemen yang perlu di-animate
-        document.querySelectorAll('.card, .timeline-item, .end-game-card, .end-game-closing, .investment-item, .philosophy-card').forEach((el) => {
+        document.querySelectorAll('.card, .timeline-item, .end-game-card, .end-game-closing, .investment-item, .philosophy-card, .engine-banner').forEach((el) => {
             observer.observe(el);
         });
     </script>
