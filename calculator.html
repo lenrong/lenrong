@@ -330,20 +330,36 @@
             margin-top: 0.25rem;
         }
 
-        /* Range Input Styling */
-        .range-container {
+        /* Currency Input */
+        .currency-input {
+            position: relative;
+        }
+
+        .currency-input span {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .currency-input input {
+            padding-left: 3.5rem;
+        }
+
+        /* Risk Input */
+        .risk-input {
             padding: 1rem;
             background: rgba(255, 255, 255, 0.03);
             border-radius: 8px;
             border: 1px solid var(--border-color);
         }
 
-        .range-labels {
-            display: flex;
-            justify-content: space-between;
+        .risk-explanation {
             font-size: 0.85rem;
             color: var(--text-secondary);
             margin-top: 0.5rem;
+            line-height: 1.5;
         }
 
         /* Calculate Button */
@@ -508,6 +524,14 @@
             text-align: right;
             font-weight: bold;
             color: var(--accent-gold);
+        }
+
+        /* Asset Details */
+        .asset-details {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
         }
 
         /* Progress Bars */
@@ -697,6 +721,16 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* Disclaimer */
+        .disclaimer-box {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 8px;
+            border: 1px solid var(--accent-gold);
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -796,24 +830,28 @@
                     </div>
                     
                     <div class="input-group">
-                        <div>
+                        <div class="currency-input">
                             <label class="input-label">Total Pendapatan Bulanan (Rp)</label>
-                            <input type="text" id="income" class="input-field" placeholder="Contoh: 15.000.000" required>
+                            <span>Rp</span>
+                            <input type="text" id="income" class="input-field" placeholder="15.000.000" required>
                             <div class="input-hint">Gaji + pendapatan lainnya</div>
                         </div>
-                        <div>
+                        <div class="currency-input">
                             <label class="input-label">Pengeluaran Wajib Bulanan (Rp)</label>
-                            <input type="text" id="expenses" class="input-field" placeholder="Contoh: 8.000.000" required>
+                            <span>Rp</span>
+                            <input type="text" id="expenses" class="input-field" placeholder="8.000.000" required>
                             <div class="input-hint">Cicilan, biaya hidup, dll</div>
                         </div>
-                        <div>
+                        <div class="currency-input">
                             <label class="input-label">Modal yang Siap Diinvestasikan (Rp)</label>
-                            <input type="text" id="capital" class="input-field" placeholder="Contoh: 50.000.000" required>
+                            <span>Rp</span>
+                            <input type="text" id="capital" class="input-field" placeholder="50.000.000" required>
                             <div class="input-hint">Dana yang benar-benar siap</div>
                         </div>
-                        <div>
+                        <div class="currency-input">
                             <label class="input-label">Aset Likuid Lainnya (Rp)</label>
-                            <input type="text" id="liquidAssets" class="input-field" placeholder="Contoh: 20.000.000">
+                            <span>Rp</span>
+                            <input type="text" id="liquidAssets" class="input-field" placeholder="20.000.000">
                             <div class="input-hint">Tabungan, deposito, emas</div>
                         </div>
                     </div>
@@ -849,6 +887,7 @@
                         <div>
                             <label class="input-label">Jenis Investasi yang Pernah Dicoba</label>
                             <select id="investmentTypes" class="input-field" required multiple style="height: 120px;">
+                                <option value="none">Belum pernah investasi</option>
                                 <option value="savings">Tabungan/Deposito</option>
                                 <option value="mutual_funds">Reksadana</option>
                                 <option value="stocks">Saham</option>
@@ -862,9 +901,10 @@
                         </div>
                     </div>
                     
-                    <div>
+                    <div class="currency-input">
                         <label class="input-label">Portofolio Terbesar yang Pernah Dikelola (Rp)</label>
-                        <input type="text" id="largestPortfolio" class="input-field" placeholder="Contoh: 100.000.000" required>
+                        <span>Rp</span>
+                        <input type="text" id="largestPortfolio" class="input-field" placeholder="100.000.000" required>
                         <div class="input-hint">Nilai tertinggi portofolio Anda</div>
                     </div>
                 </div>
@@ -880,9 +920,10 @@
                     </div>
                     
                     <div class="input-group">
-                        <div>
+                        <div class="currency-input">
                             <label class="input-label">Target Finansial (Rp)</label>
-                            <input type="text" id="targetAmount" class="input-field" placeholder="Contoh: 1.000.000.000" required>
+                            <span>Rp</span>
+                            <input type="text" id="targetAmount" class="input-field" placeholder="1.000.000.000" required>
                             <div class="input-hint">Jumlah yang ingin dicapai</div>
                         </div>
                         <div>
@@ -905,15 +946,12 @@
                         </select>
                     </div>
                     
-                    <div class="range-container">
+                    <div class="risk-input">
                         <label class="input-label">Toleransi Risiko (0-10)</label>
-                        <input type="range" id="riskTolerance" min="0" max="10" value="5" class="input-field" style="width: 100%;" required>
-                        <div class="range-labels">
-                            <span>Sangat Rendah</span>
-                            <span>Sedang</span>
-                            <span>Sangat Tinggi</span>
+                        <input type="number" id="riskTolerance" min="0" max="10" value="5" class="input-field" required>
+                        <div class="risk-explanation">
+                            <strong>Penjelasan:</strong> Skala 0-10 dimana 0 = sangat konservatif (tidak mau risiko sama sekali), 5 = moderat (risiko seimbang), 10 = sangat agresif (siap mengambil risiko tinggi untuk potensi return tinggi)
                         </div>
-                        <div id="riskValue" style="text-align: center; margin-top: 0.5rem; font-weight: bold; color: var(--accent-gold);">5</div>
                     </div>
                     
                     <div style="margin-top: 1.5rem;">
@@ -1054,15 +1092,7 @@
         // Set current year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Update risk tolerance value display
-        const riskSlider = document.getElementById('riskTolerance');
-        const riskValueDisplay = document.getElementById('riskValue');
-        
-        riskSlider.addEventListener('input', () => {
-            riskValueDisplay.textContent = riskSlider.value;
-        });
-
-        // Format number to Indonesian currency
+        // Format number to Indonesian currency with thousand separators
         function formatCurrency(num) {
             if (!num) return 'Rp 0';
             return new Intl.NumberFormat('id-ID', {
@@ -1073,11 +1103,28 @@
             }).format(num);
         }
 
+        // Format input with thousand separators
+        function formatNumberInput(input) {
+            let value = input.value.replace(/[^\d]/g, '');
+            if (value) {
+                value = parseInt(value, 10);
+                input.value = value.toLocaleString('id-ID');
+            } else {
+                input.value = '';
+            }
+        }
+
         // Parse currency input
         function parseCurrency(str) {
             if (!str) return 0;
             return parseFloat(str.replace(/[^\d]/g, '')) || 0;
         }
+
+        // Add thousand separator to all currency inputs
+        document.querySelectorAll('#income, #expenses, #capital, #liquidAssets, #largestPortfolio, #targetAmount').forEach(input => {
+            input.addEventListener('input', () => formatNumberInput(input));
+            input.addEventListener('blur', () => formatNumberInput(input));
+        });
 
         // Modal functionality
         const reviewModal = document.getElementById('reviewModal');
@@ -1289,21 +1336,129 @@
         // Save results button
         saveResultsBtn.addEventListener('click', () => {
             const resultContent = document.getElementById('resultContent').innerHTML;
+            const title = document.querySelector('.investor-profile')?.textContent || 'Profil Investasi';
+            const date = new Date().toLocaleDateString('id-ID', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
             const blob = new Blob([`
                 <!DOCTYPE html>
                 <html>
                 <head>
                     <title>Hasil Profil Investasi - Lenrong Capital</title>
                     <style>
-                        body { font-family: Arial, sans-serif; padding: 20px; }
-                        h1 { color: #d4af37; }
-                        .result-card { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px; }
+                        body { 
+                            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+                            padding: 30px; 
+                            max-width: 1000px; 
+                            margin: 0 auto; 
+                            background: #f8f9fa; 
+                            color: #333; 
+                            line-height: 1.6; 
+                        }
+                        .header { 
+                            text-align: center; 
+                            padding: 30px 0; 
+                            border-bottom: 3px solid #d4af37; 
+                            margin-bottom: 40px; 
+                        }
+                        h1 { 
+                            color: #d4af37; 
+                            font-size: 2.5rem; 
+                            margin-bottom: 10px; 
+                        }
+                        .date { 
+                            color: #666; 
+                            font-size: 1.1rem; 
+                            margin-bottom: 30px; 
+                        }
+                        .section { 
+                            background: white; 
+                            padding: 25px; 
+                            margin-bottom: 25px; 
+                            border-radius: 10px; 
+                            box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+                            border-left: 5px solid #d4af37; 
+                        }
+                        .section h2 { 
+                            color: #d4af37; 
+                            margin-top: 0; 
+                            margin-bottom: 20px; 
+                            font-size: 1.8rem; 
+                        }
+                        .result-grid { 
+                            display: grid; 
+                            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+                            gap: 20px; 
+                            margin: 20px 0; 
+                        }
+                        .result-card { 
+                            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); 
+                            padding: 20px; 
+                            border-radius: 8px; 
+                            text-align: center; 
+                            border: 1px solid #dee2e6; 
+                        }
+                        .result-value { 
+                            font-size: 2.2rem; 
+                            font-weight: bold; 
+                            margin: 10px 0; 
+                        }
+                        .financial { color: #d4af37; }
+                        .risk { color: #f59e0b; }
+                        .strategy { color: #10b981; }
+                        .asset-item { 
+                            display: flex; 
+                            justify-content: space-between; 
+                            align-items: center; 
+                            padding: 12px 0; 
+                            border-bottom: 1px solid #eee; 
+                        }
+                        .asset-bar { 
+                            flex-grow: 1; 
+                            height: 10px; 
+                            background: #e9ecef; 
+                            margin: 0 15px; 
+                            border-radius: 5px; 
+                            overflow: hidden; 
+                        }
+                        .asset-fill { 
+                            height: 100%; 
+                            background: linear-gradient(90deg, #d4af37, #e8d282); 
+                        }
+                        .disclaimer { 
+                            background: #fff3cd; 
+                            border: 1px solid #ffeaa7; 
+                            padding: 20px; 
+                            border-radius: 8px; 
+                            margin-top: 30px; 
+                            font-size: 0.95rem; 
+                        }
+                        @media print {
+                            body { padding: 0; }
+                            .section { break-inside: avoid; }
+                        }
                     </style>
                 </head>
                 <body>
-                    <h1>Hasil Profil Investasi Anda</h1>
-                    <p>Dihasilkan pada: ${new Date().toLocaleDateString('id-ID')}</p>
-                    ${resultContent.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ')}
+                    <div class="header">
+                        <h1>${title}</h1>
+                        <p class="date">Dihasilkan pada: ${date}</p>
+                        <p><strong>Disclaimer:</strong> Hasil ini merupakan rekomendasi berdasarkan input yang diberikan, bukan ajakan membeli atau menjual aset tertentu. Selalu lakukan riset sendiri (DYOR) sebelum mengambil keputusan investasi.</p>
+                    </div>
+                    ${resultContent}
+                    <div class="disclaimer">
+                        <h3>⚠️ Disclaimer Penting</h3>
+                        <p>1. Hasil analisis ini berdasarkan informasi yang Anda berikan dan algoritma yang telah ditetapkan.</p>
+                        <p>2. Ini <strong>bukan</strong> ajakan untuk membeli atau menjual aset investasi tertentu.</p>
+                        <p>3. Selalu lakukan riset sendiri (DYOR - Do Your Own Research) sebelum mengambil keputusan investasi.</p>
+                        <p>4. Investasi mengandung risiko, nilai investasi dapat naik atau turun.</p>
+                        <p>5. Hasil di masa lalu tidak menjamin hasil di masa depan.</p>
+                        <p>6. Konsultasikan dengan profesional keuangan jika diperlukan.</p>
+                    </div>
                 </body>
                 </html>
             `], { type: 'text/html' });
@@ -1315,7 +1470,7 @@
             a.click();
             URL.revokeObjectURL(url);
             
-            alert('Hasil telah disimpan!');
+            alert('Hasil telah disimpan dalam format HTML yang rapi!');
         });
 
         // Close modals when clicking outside
@@ -1324,6 +1479,80 @@
             if (e.target === resultModal) resultModal.style.display = 'none';
             if (e.target === loadingSpinner) loadingSpinner.style.display = 'none';
         });
+
+        // Advanced asset definitions with explanations
+        const assetDefinitions = {
+            'Deposito/Reksadana Pasar Uang': {
+                description: 'Instrumen rendah risiko dengan likuiditas tinggi, cocok untuk dana darurat atau tujuan jangka pendek.',
+                risk: 'Sangat Rendah',
+                expectedReturn: '4-6% per tahun'
+            },
+            'Obligasi Pemerintah': {
+                description: 'Surat utang negara dengan risiko rendah, memberikan pendapatan tetap yang stabil.',
+                risk: 'Rendah',
+                expectedReturn: '6-8% per tahun'
+            },
+            'Saham Bluechip Dividen': {
+                description: 'Saham perusahaan besar dan stabil yang rutin membagikan dividen, cocok untuk investasi jangka panjang.',
+                risk: 'Sedang',
+                expectedReturn: '8-12% per tahun (termasuk dividen)'
+            },
+            'Emas/Logam Mulia': {
+                description: 'Aset safe haven yang melindungi dari inflasi dan ketidakpastian ekonomi.',
+                risk: 'Rendah',
+                expectedReturn: '5-10% per tahun'
+            },
+            'Reksadana Saham': {
+                description: 'Dikelola profesional, diversifikasi otomatis, cocok untuk investor pemula.',
+                risk: 'Sedang-Tinggi',
+                expectedReturn: '10-15% per tahun'
+            },
+            'Bitcoin/Crypto Core': {
+                description: 'Aset digital dengan potensi pertumbuhan tinggi, cocok untuk diversifikasi portofolio.',
+                risk: 'Sangat Tinggi',
+                expectedReturn: '15-30%+ per tahun (volatilitas tinggi)'
+            },
+            'ETF Global': {
+                description: 'Diversifikasi internasional dengan biaya rendah, mengikuti indeks pasar global.',
+                risk: 'Sedang',
+                expectedReturn: '8-12% per tahun'
+            },
+            'Saham Growth': {
+                description: 'Perusahaan dengan pertumbuhan tinggi, potensi capital gain besar namun risiko lebih tinggi.',
+                risk: 'Tinggi',
+                expectedReturn: '12-20%+ per tahun'
+            },
+            'Kas Darurat': {
+                description: 'Dana likuid untuk kebutuhan mendesak, sebaiknya 3-12 bulan pengeluaran.',
+                risk: 'Sangat Rendah',
+                expectedReturn: '0-3% per tahun'
+            },
+            'Obligasi Korporasi': {
+                description: 'Surat utang perusahaan dengan yield lebih tinggi dari obligasi pemerintah.',
+                risk: 'Sedang',
+                expectedReturn: '7-10% per tahun'
+            },
+            'Reksadana Pendapatan Tetap': {
+                description: 'Portofolio obligasi yang dikelola profesional, risiko lebih terkontrol.',
+                risk: 'Rendah-Sedang',
+                expectedReturn: '6-9% per tahun'
+            },
+            'Saham Sektor Teknologi': {
+                description: 'Perusahaan teknologi dengan potensi disruptif dan pertumbuhan eksponensial.',
+                risk: 'Tinggi',
+                expectedReturn: '15-25%+ per tahun'
+            },
+            'Crypto Altcoin': {
+                description: 'Cryptocurrency selain Bitcoin, potensi tinggi namun risiko sangat tinggi.',
+                risk: 'Sangat Tinggi',
+                expectedReturn: '20-50%+ per tahun (volatilitas ekstrem)'
+            },
+            'Alternatif (REIT, Commodities)': {
+                description: 'Diversifikasi ke aset non-tradisional seperti properti atau komoditas.',
+                risk: 'Sedang-Tinggi',
+                expectedReturn: '7-12% per tahun'
+            }
+        };
 
         // Calculate profile function with advanced logic
         function calculateProfile(data) {
@@ -1340,23 +1569,30 @@
             const timeHorizon = parseInt(data.timeHorizon);
             const riskTolerance = parseInt(data.riskTolerance);
             const savingsRate = parseFloat(data.savingsRate);
+            const hasNoExperience = data.investmentTypes.includes('none');
 
             // Advanced calculations
             const monthlySavings = income - expenses;
             const annualSavings = monthlySavings * 12;
-            const netWorth = capital + liquidAssets + (annualSavings * Math.max(age - 25, 5) * 0.4);
+            const totalLiquid = capital + liquidAssets;
+            const netWorth = totalLiquid + (annualSavings * Math.max(age - 25, 5) * 0.4);
             
             // Calculate required CAGR with more sophisticated formula
             const yearsToRetirement = Math.max(65 - age, 10);
             const adjustedTimeHorizon = Math.min(timeHorizon, yearsToRetirement);
-            const requiredCAGR = (Math.pow(targetAmount / (netWorth + annualSavings * adjustedTimeHorizon * 0.5), 1/adjustedTimeHorizon) - 1) * 100;
+            const currentTotal = totalLiquid + (annualSavings * adjustedTimeHorizon * 0.6);
+            const requiredCAGR = targetAmount > currentTotal ? 
+                (Math.pow(targetAmount / currentTotal, 1/adjustedTimeHorizon) - 1) * 100 : 0;
             
             // Risk profile calculation with multiple factors
             let experienceScore = 0;
-            if (experienceYears === 0) experienceScore = 3;
-            else if (experienceYears === 2) experienceScore = 5;
-            else if (experienceYears === 5) experienceScore = 7;
-            else if (experienceYears === 8) experienceScore = 9;
+            if (experienceYears === 0) experienceScore = 2;
+            else if (experienceYears === 2) experienceScore = 4;
+            else if (experienceYears === 5) experienceScore = 6;
+            else if (experienceYears === 8) experienceScore = 8;
+            
+            // Penalize if no experience at all
+            if (hasNoExperience) experienceScore = Math.max(1, experienceScore - 2);
             
             let knowledgeScore = 0;
             switch(data.knowledgeLevel) {
@@ -1368,8 +1604,8 @@
             
             let lossReactionScore = 0;
             switch(data.lossReaction) {
-                case 'panic': lossReactionScore = 2; break;
-                case 'worry': lossReactionScore = 4; break;
+                case 'panic': lossReactionScore = 1; break;
+                case 'worry': lossReactionScore = 3; break;
                 case 'calm': lossReactionScore = 6; break;
                 case 'opportunistic': lossReactionScore = 8; break;
             }
@@ -1386,34 +1622,48 @@
             let familyFactor = 1.0;
             switch(data.familyStatus) {
                 case 'single': familyFactor = 1.0; break;
-                case 'married_no_kids': familyFactor = 0.9; break;
-                case 'married_kids': familyFactor = 0.7; break;
-                case 'single_parent': familyFactor = 0.6; break;
+                case 'married_no_kids': familyFactor = 0.8; break;
+                case 'married_kids': familyFactor = 0.6; break;
+                case 'single_parent': familyFactor = 0.5; break;
             }
             
             // Adjust for dependents
-            const dependentsFactor = Math.max(0.5, 1 - (dependents * 0.1));
+            const dependentsFactor = Math.max(0.4, 1 - (dependents * 0.15));
+            
+            // Adjust for capital size (less capital = more conservative)
+            const capitalFactor = capital < 10000000 ? 0.7 : 
+                                capital < 50000000 ? 0.8 : 
+                                capital < 200000000 ? 0.9 : 1.0;
             
             // Calculate feasible risk
-            const feasibleRisk = Math.min(10, trueRiskTolerance * familyFactor * dependentsFactor);
+            const feasibleRisk = Math.min(10, trueRiskTolerance * familyFactor * dependentsFactor * capitalFactor);
+            
+            // SPECIAL CASE: If capital < 5 juta AND experience < 2 years AND savings rate < 20%
+            const shouldLearnFirst = capital < 5000000 && experienceYears < 2 && savingsRate < 20;
             
             // Determine investor type based on multiple factors
             let investorType = '';
             let investorDescription = '';
             let strategyName = '';
+            let learningPhase = false;
             
-            if (feasibleRisk <= 4) {
-                investorType = 'DEFENSIVE PRESERVER';
-                investorDescription = 'Fokus utama pada perlindungan modal dengan pertumbuhan stabil';
+            if (shouldLearnFirst) {
+                investorType = 'LEARNING PHASE';
+                investorDescription = 'Fokus pada edukasi dan pengumpulan modal sebelum mulai berinvestasi secara signifikan';
+                strategyName = 'Capital Building & Education First';
+                learningPhase = true;
+            } else if (feasibleRisk <= 3) {
+                investorType = 'ULTRA CONSERVATIVE';
+                investorDescription = 'Prioritas utama melindungi modal dengan risiko minimal';
                 strategyName = 'Capital Preservation Core';
-            } else if (feasibleRisk <= 6) {
-                investorType = 'BALANCED GROWER';
-                investorDescription = 'Pertumbuhan moderat dengan manajemen risiko ketat';
+            } else if (feasibleRisk <= 5) {
+                investorType = 'CONSERVATIVE GROWER';
+                investorDescription = 'Pertumbuhan stabil dengan manajemen risiko ketat';
                 strategyName = 'Balanced Growth Strategy';
-            } else if (feasibleRisk <= 8) {
-                investorType = 'GROWTH SEEKER';
-                investorDescription = 'Mencari pertumbuhan asimetris dengan risiko terukur';
-                strategyName = 'Asymmetric Growth Engine';
+            } else if (feasibleRisk <= 7) {
+                investorType = 'MODERATE SEEKER';
+                investorDescription = 'Mencari pertumbuhan optimal dengan risiko terukur';
+                strategyName = 'Optimized Growth Engine';
             } else {
                 investorType = 'AGGRESSIVE BUILDER';
                 investorDescription = 'Membangun kekayaan dengan eksposur tinggi pada aset pertumbuhan';
@@ -1424,129 +1674,180 @@
             let assetAllocation = {};
             const baseCapital = capital / 1000000; // Capital in millions for scaling
             
-            if (investorType === 'DEFENSIVE PRESERVER') {
-                // For defensive investors with small capital
-                if (baseCapital < 50) {
+            if (learningPhase) {
+                // Special allocation for learning phase
+                assetAllocation = {
+                    'Deposito/Reksadana Pasar Uang': 50,
+                    'Edukasi & Simulasi Investasi': 30,
+                    'Kas untuk DCA Kecil': 20
+                };
+            } else if (investorType === 'ULTRA CONSERVATIVE') {
+                if (baseCapital < 10) {
                     assetAllocation = {
-                        'Deposito/Reksadana Pasar Uang': 35,
+                        'Deposito/Reksadana Pasar Uang': 60,
                         'Obligasi Pemerintah': 25,
-                        'Saham Bluechip Dividen': 20,
-                        'Emas/Logam Mulia': 15,
-                        'Kas Darurat': 5
+                        'Emas/Logam Mulia': 15
                     };
-                } else if (baseCapital < 200) {
+                } else if (baseCapital < 100) {
                     assetAllocation = {
+                        'Reksadana Pendapatan Tetap': 40,
                         'Obligasi Pemerintah & Korporasi': 30,
-                        'Reksadana Pendapatan Tetap': 25,
-                        'Saham Bluechip High Dividend': 25,
-                        'Emas': 15,
-                        'Kas': 5
+                        'Saham Bluechip Dividen': 20,
+                        'Kas Darurat': 10
                     };
                 } else {
                     assetAllocation = {
-                        'Obligasi Berkualitas Tinggi': 35,
+                        'Obligasi Berkualitas Tinggi': 50,
                         'Saham Dividen Aristocrats': 30,
-                        'Reksadana Campuran Konservatif': 20,
-                        'Emas/Logam Mulia': 10,
+                        'Reksadana Campuran Konservatif': 15,
                         'Kas/Cash Equivalents': 5
                     };
                 }
-            } else if (investorType === 'BALANCED GROWER') {
-                if (baseCapital < 50) {
+            } else if (investorType === 'CONSERVATIVE GROWER') {
+                if (baseCapital < 10) {
                     assetAllocation = {
-                        'Reksadana Saham': 30,
-                        'Saham Bluechip & Growth': 25,
-                        'Reksadana Pendapatan Tetap': 20,
-                        'Emas': 15,
-                        'Bitcoin (DCA kecil)': 5,
+                        'Reksadana Saham': 35,
+                        'Reksadana Pendapatan Tetap': 30,
+                        'Deposito': 25,
+                        'Emas': 10
+                    };
+                } else if (baseCapital < 50) {
+                    assetAllocation = {
+                        'Reksadana Saham': 40,
+                        'Saham Bluechip & Dividen': 25,
+                        'Obligasi Korporasi': 20,
+                        'Emas': 10,
                         'Kas': 5
                     };
                 } else if (baseCapital < 200) {
                     assetAllocation = {
-                        'Saham Quality Growth': 35,
-                        'Reksadana Index (LQ45, IDX30)': 25,
-                        'Obligasi Korporasi': 20,
-                        'Bitcoin (DCA reguler)': 10,
-                        'Emas': 5,
+                        'Saham Quality Bluechip': 45,
+                        'Reksadana Index (LQ45)': 25,
+                        'Obligasi Diversifikasi': 20,
+                        'Emas/Logam Mulia': 5,
                         'Kas': 5
                     };
                 } else {
                     assetAllocation = {
-                        'Saham Large-Mid Cap': 40,
-                        'ETF Global (S&P 500, MSCI World)': 20,
-                        'Obligasi Diversifikasi': 20,
-                        'Bitcoin': 10,
-                        'Alternatif (REIT, Commodities)': 5,
+                        'Saham Large-Mid Cap': 50,
+                        'ETF Global (S&P 500)': 20,
+                        'Obligasi Internasional': 20,
+                        'Alternatif (REIT)': 5,
                         'Kas': 5
                     };
                 }
-            } else if (investorType === 'GROWTH SEEKER') {
-                if (baseCapital < 50) {
+            } else if (investorType === 'MODERATE SEEKER') {
+                if (baseCapital < 10) {
                     assetAllocation = {
-                        'Saham Growth & Momentum': 40,
-                        'Bitcoin/Crypto Core': 20,
-                        'Reksadana Saham Agresif': 20,
-                        'Saham Sektor Teknologi': 10,
-                        'Kas': 10
+                        'Reksadana Saham Agresif': 45,
+                        'Saham Growth Potensial': 25,
+                        'Reksadana Campuran': 20,
+                        'Kas untuk Averaging': 10
+                    };
+                } else if (baseCapital < 50) {
+                    // Dynamic allocation based on experience
+                    const cryptoAllocation = experienceYears >= 2 ? 10 : 5;
+                    const stockAllocation = 50 - (cryptoAllocation / 2);
+                    
+                    assetAllocation = {
+                        'Saham Growth & Value': stockAllocation,
+                        'Reksadana Saham': 25,
+                        'Bitcoin (DCA reguler)': cryptoAllocation,
+                        'Obligasi High Yield': 15,
+                        'Kas': 10 - cryptoAllocation
                     };
                 } else if (baseCapital < 200) {
                     assetAllocation = {
-                        'Saham High Growth Potensial': 45,
-                        'Bitcoin (Core Holding)': 20,
-                        'Crypto Altcoin (Terpilih)': 10,
+                        'Saham Growth Potensial': 50,
+                        'Bitcoin (Core Holding)': 15,
                         'ETF Sektor Spesifik': 15,
-                        'Kas untuk Opportunitas': 10
+                        'Obligasi Korporasi': 10,
+                        'Crypto Altcoin (Terpilih)': 5,
+                        'Kas': 5
                     };
                 } else {
                     assetAllocation = {
-                        'Saham Growth & Value Mix': 50,
-                        'Bitcoin (Strategic Allocation)': 20,
-                        'Crypto Projects (Diversified)': 10,
+                        'Equity Portfolio Aktif': 55,
+                        'Bitcoin (Strategic)': 15,
+                        'Crypto Projects': 10,
                         'Alternatif & Private Equity': 10,
-                        'Kas Liquidity': 10
+                        'Obligasi Diversifikasi': 5,
+                        'Kas Liquidity': 5
                     };
                 }
             } else { // AGGRESSIVE BUILDER
-                if (baseCapital < 50) {
+                if (baseCapital < 10) {
                     assetAllocation = {
-                        'Saham High Conviction': 50,
-                        'Bitcoin/Crypto Portfolio': 30,
-                        'Trading/Swing Opportunities': 15,
-                        'Kas untuk Averaging': 5
+                        'Saham High Conviction': 60,
+                        'Bitcoin/Crypto Portfolio': 25,
+                        'Trading Opportunities': 10,
+                        'Kas': 5
+                    };
+                } else if (baseCapital < 50) {
+                    assetAllocation = {
+                        'Portofolio Saham Aktif': 65,
+                        'Bitcoin & Major Cryptos': 20,
+                        'Crypto Altcoin Strategis': 10,
+                        'Kas': 5
                     };
                 } else if (baseCapital < 200) {
                     assetAllocation = {
-                        'Portofolio Saham Aktif': 55,
-                        'Bitcoin & Major Cryptos': 25,
-                        'Crypto Altcoin Strategis': 10,
-                        'Derivatif/Opsi (Hedging)': 5,
-                        'Kas': 5
+                        'Equity Concentrated Portfolio': 60,
+                        'Digital Assets (BTC/ETH)': 25,
+                        'Crypto Altcoin': 10,
+                        'Derivatif/Opsi': 5
                     };
                 } else {
                     assetAllocation = {
-                        'Equity Concentrated Portfolio': 60,
-                        'Digital Assets (BTC/ETH/Alt)': 25,
-                        'Alternatif & Venture Exposure': 10,
+                        'Global Equity Portfolio': 55,
+                        'Digital Assets Core': 25,
+                        'Crypto & DeFi': 10,
+                        'Alternatif & Venture': 5,
                         'Kas untuk Market Timing': 5
                     };
                 }
             }
             
-            // Calculate probability of success
-            let successProbability = 0;
-            if (requiredCAGR <= 8) {
-                successProbability = 75 + (savingsRate > 30 ? 10 : 0);
-            } else if (requiredCAGR <= 12) {
-                successProbability = 55 + (timeHorizon > 10 ? 15 : 0);
-            } else if (requiredCAGR <= 18) {
-                successProbability = 35 + (experienceYears >= 5 ? 15 : 0);
-            } else {
-                successProbability = 15 + (knowledgeScore >= 7 ? 10 : 0);
+            // Adjust allocation based on time commitment
+            if (data.timeCommitment === 'low') {
+                // Reduce active management assets
+                Object.keys(assetAllocation).forEach(asset => {
+                    if (asset.includes('Aktif') || asset.includes('Trading') || asset.includes('Portofolio Aktif')) {
+                        assetAllocation[asset] *= 0.7;
+                    }
+                });
+                // Increase passive assets
+                assetAllocation['Reksadana/ETF Pasif'] = 20;
             }
             
-            // Adjust based on experience and knowledge
-            if (experienceYears >= 5) successProbability += 5;
-            if (knowledgeScore >= 7) successProbability += 5;
+            // Normalize allocation to 100%
+            const totalAllocation = Object.values(assetAllocation).reduce((a, b) => a + b, 0);
+            if (totalAllocation !== 100) {
+                Object.keys(assetAllocation).forEach(key => {
+                    assetAllocation[key] = Math.round((assetAllocation[key] / totalAllocation) * 100);
+                });
+            }
+            
+            // Calculate probability of success
+            let successProbability = 0;
+            if (requiredCAGR <= 5) {
+                successProbability = 85 + (savingsRate > 30 ? 10 : 0);
+            } else if (requiredCAGR <= 10) {
+                successProbability = 65 + (timeHorizon > 10 ? 15 : 0) + (experienceYears >= 3 ? 5 : 0);
+            } else if (requiredCAGR <= 15) {
+                successProbability = 40 + (knowledgeScore >= 6 ? 10 : 0) + (capital > 50000000 ? 5 : 0);
+            } else if (requiredCAGR <= 20) {
+                successProbability = 20 + (experienceYears >= 5 ? 10 : 0) + (data.timeCommitment === 'very_high' ? 5 : 0);
+            } else {
+                successProbability = 5 + (knowledgeScore >= 8 ? 5 : 0);
+            }
+            
+            // Adjust based on multiple factors
+            if (savingsRate >= 30) successProbability += 10;
+            if (savingsRate < 15) successProbability -= 15;
+            if (hasNoExperience && capital > 10000000) successProbability -= 10;
+            if (age < 30 && timeHorizon >= 15) successProbability += 10;
+            if (dependents >= 3) successProbability -= 5;
             
             // Cap probability
             successProbability = Math.min(95, Math.max(5, successProbability));
@@ -1556,63 +1857,83 @@
             const warnings = [];
             const positiveNotes = [];
             
-            // Savings rate analysis
-            if (savingsRate < 20) {
-                recommendations.push(`<strong>Tingkatkan savings rate</strong> dari ${savingsRate}% menjadi minimal 25%. Fokus pada peningkatan income atau efisiensi pengeluaran.`);
-                warnings.push(`Savings rate yang rendah (${savingsRate}%) akan memperlambat pencapaian target finansial.`);
-            } else if (savingsRate >= 30) {
-                positiveNotes.push(`Savings rate Anda (${savingsRate}%) sangat baik! Ini memberikan runway yang kuat untuk investasi.`);
-            }
-            
-            // Capital size analysis
-            if (capital < 10000000) {
-                recommendations.push(`<strong>Fokus akumulasi modal</strong> terlebih dahulu sebelum diversifikasi agresif. Prioritaskan DCA (Dollar Cost Averaging) pada 2-3 aset utama.`);
-            } else if (capital >= 100000000) {
-                recommendations.push(`Dengan modal ${formatCurrency(capital)}, pertimbangkan <strong>diversifikasi internasional</strong> dan alokasi ke aset alternatif.`);
-            }
-            
-            // Experience analysis
-            if (experienceYears <= 1) {
-                recommendations.push(`Sebagai investor pemula, <strong>mulai dengan instrumen sederhana</strong> seperti reksadana atau saham bluechip sebelum ekspansi ke aset lebih kompleks.`);
-                warnings.push(`Pengalaman terbatas (${experienceYears} tahun) memerlukan pendekatan lebih hati-hati dan edukasi berkelanjutan.`);
-            } else if (experienceYears >= 5) {
-                positiveNotes.push(`Pengalaman ${experienceYears} tahun memberikan fondasi yang kuat untuk strategi lebih kompleks.`);
-            }
-            
-            // Time commitment analysis
-            if (data.timeCommitment === 'low') {
-                recommendations.push(`Dengan waktu terbatas, pertimbangkan <strong>investasi pasif</strong> melalui reksadana atau ETF untuk efisiensi manajemen.`);
-            } else if (data.timeCommitment === 'very_high') {
-                recommendations.push(`Dengan waktu yang cukup, Anda bisa melakukan <strong>analisis fundamental dan teknis</strong> secara reguler untuk opportunity picking.`);
-            }
-            
-            // Goal analysis
-            if (requiredCAGR > 15) {
-                recommendations.push(`Target CAGR ${requiredCAGR.toFixed(1)}% cukup agresif. Pertimbangkan: (1) Perpanjang timeline menjadi ${timeHorizon + 5} tahun, (2) Tingkatkan kontribusi reguler, atau (3) Diversifikasi ke aset pertumbuhan tinggi.`);
-                warnings.push(`Target return tinggi (${requiredCAGR.toFixed(1)}% CAGR) memerlukan eksposur risiko yang signifikan dan toleransi volatilitas.`);
-            }
-            
-            // Risk analysis
-            if (lossReactionScore <= 3) {
-                recommendations.push(`Profil psikologis menunjukkan <strong>low risk tolerance</strong>. Pertimbangkan strategi dengan drawdown control dan stop-loss discipline.`);
-            }
-            
-            // Time horizon analysis
-            if (timeHorizon < 5) {
-                recommendations.push(`Jangka waktu pendek (${timeHorizon} tahun) cocok untuk strategi <strong>income generation</strong> daripada capital growth agresif.`);
-            } else if (timeHorizon >= 15) {
-                recommendations.push(`Jangka waktu panjang (${timeHorizon} tahun) memungkinkan recovery dari siklus pasar dan compounding yang lebih optimal.`);
-                positiveNotes.push(`Time horizon yang panjang adalah advantage terbesar untuk investasi growth.`);
+            // Special case for learning phase
+            if (learningPhase) {
+                recommendations.push(`<strong>FASE BELAJAR:</strong> Dengan modal ${formatCurrency(capital)} dan pengalaman terbatas, fokus utama adalah:`);
+                recommendations.push(`1. <strong>Edukasi</strong> - Pelajari dasar investasi melalui kursus online gratis (Youtube, MOOC)`);
+                recommendations.push(`2. <strong>Akumulasi Modal</strong> - Tingkatkan savings rate minimal 20% dari pendapatan`);
+                recommendations.push(`3. <strong>Simulasi</strong> - Gunakan paper trading/demo account untuk belajar tanpa risiko`);
+                recommendations.push(`4. <strong>Mulai Kecil</strong> - Alokasi Rp 100.000-500.000/bulan untuk praktik langsung`);
+                
+                warnings.push(`🚫 JANGAN terburu-buru berinvestasi besar sebelum memahami dasar-dasar dan memiliki emergency fund 3-6 bulan.`);
+                positiveNotes.push(`🎯 Target jangka pendek: Bangun emergency fund dan tingkatkan pengetahuan investasi dalam 6-12 bulan ke depan.`);
+            } else {
+                // Savings rate analysis
+                if (savingsRate < 20) {
+                    recommendations.push(`<strong>Tingkatkan savings rate</strong> dari ${savingsRate}% menjadi minimal 25%. Fokus pada peningkatan income atau efisiensi pengeluaran.`);
+                    warnings.push(`Savings rate ${savingsRate}% terlalu rendah untuk mencapai target yang ambisius.`);
+                } else if (savingsRate >= 30) {
+                    positiveNotes.push(`✅ Savings rate ${savingsRate}% sangat baik! Ini memberikan runway yang kuat untuk investasi.`);
+                }
+                
+                // Capital size analysis
+                if (capital < 10000000 && !hasNoExperience) {
+                    recommendations.push(`<strong>Fokus DCA (Dollar Cost Averaging)</strong> dengan modal ${formatCurrency(capital)}. Investasi rutin lebih efektif daripada timing the market.`);
+                } else if (capital >= 100000000) {
+                    recommendations.push(`Dengan modal ${formatCurrency(capital)}, pertimbangkan <strong>diversifikasi internasional</strong> dan konsultasi dengan financial advisor.`);
+                }
+                
+                // Experience analysis
+                if (hasNoExperience) {
+                    recommendations.push(`<strong>Mulai dengan instrumen sederhana</strong> seperti reksadana sebelum ekspansi ke saham/crypto.`);
+                    warnings.push(`Pengalaman nol memerlukan pendekatan lebih hati-hati. Mulai dengan 10-20% dari modal untuk praktik langsung.`);
+                } else if (experienceYears >= 5) {
+                    positiveNotes.push(`✅ Pengalaman ${experienceYears} tahun memberikan fondasi kuat untuk strategi kompleks.`);
+                }
+                
+                // Time commitment analysis
+                if (data.timeCommitment === 'low' && feasibleRisk > 6) {
+                    recommendations.push(`Dengan waktu terbatas, kurangi exposure pada aset yang butuh monitoring intensif.`);
+                } else if (data.timeCommitment === 'very_high' && feasibleRisk > 7) {
+                    positiveNotes.push(`✅ Waktu monitoring yang memadai memungkinkan strategi active management yang lebih agresif.`);
+                }
+                
+                // Goal analysis
+                if (requiredCAGR > 15) {
+                    recommendations.push(`Target CAGR ${requiredCAGR.toFixed(1)}% cukup ambisius. Pertimbangkan:`);
+                    recommendations.push(`1. Perpanjang timeline menjadi ${Math.min(40, timeHorizon + 7)} tahun`);
+                    recommendations.push(`2. Tingkatkan kontribusi bulanan sebesar ${Math.round(monthlySavings * 0.3)}`);
+                    recommendations.push(`3. Diversifikasi ke aset growth dengan risiko lebih tinggi`);
+                    
+                    warnings.push(`Target tinggi memerlukan eksposur risiko signifikan dan toleransi volatilitas yang kuat.`);
+                }
+                
+                // Risk psychology
+                if (lossReactionScore <= 2) {
+                    recommendations.push(`Profil psikologis menunjukkan <strong>low risk tolerance</strong>. Pertimbangkan stop-loss otomatis dan position sizing ketat.`);
+                }
+                
+                // Time horizon advantage
+                if (timeHorizon >= 15) {
+                    positiveNotes.push(`✅ Jangka waktu panjang (${timeHorizon} tahun) adalah advantage terbesar - bisa bertahan dari siklus pasar dan manfaatkan compounding.`);
+                }
+                
+                // Capital concentration vs diversification
+                if (capital < 50000000) {
+                    recommendations.push(`<strong>Fokus pada 3-5 aset berkualitas</strong> daripada diversifikasi berlebihan. Kualitas > kuantitas dengan modal terbatas.`);
+                } else if (capital >= 200000000) {
+                    recommendations.push(`<strong>Diversifikasi yang baik</strong> sangat penting dengan modal besar. Pertimbangkan alokasi ke kelas aset berbeda.`);
+                }
             }
             
             // Generate result HTML
-            const resultHTML = `
+            let resultHTML = `
                 <div class="results-container">
                     <div class="result-header">
                         <div class="investor-profile">${investorType}</div>
                         <p style="color: var(--text-secondary);">${investorDescription}</p>
                         <div style="margin-top: 1rem; font-size: 1.1rem; color: var(--accent-gold);">
-                            <i class="fas fa-chess-knight"></i> Strategi: ${strategyName}
+                            <i class="fas fa-chess-knight"></i> Strategi Rekomendasi: ${strategyName}
                         </div>
                     </div>
                     
@@ -1624,7 +1945,7 @@
                         </div>
                         <div class="result-card">
                             <h4>Target CAGR</h4>
-                            <div class="result-value goal">${requiredCAGR.toFixed(1)}%</div>
+                            <div class="result-value goal">${requiredCAGR > 0 ? requiredCAGR.toFixed(1) + '%' : 'Target tercapai'}</div>
                             <p>Required Annual Return</p>
                         </div>
                         <div class="result-card">
@@ -1638,83 +1959,132 @@
                             <p>Monthly Savings Rate</p>
                         </div>
                     </div>
-                    
+            `;
+            
+            if (learningPhase) {
+                resultHTML += `
+                    <div class="warning-box">
+                        <h4 style="color: var(--warning); margin-bottom: 0.5rem;">
+                            <i class="fas fa-graduation-cap"></i> FASE BELAJAR & AKUMULASI
+                        </h4>
+                        <p style="color: var(--text-secondary);">
+                            <strong>Analisis:</strong> Modal terbatas (${formatCurrency(capital)}) + pengalaman minim memerlukan pendekatan bertahap.
+                        </p>
+                        <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                            <strong>Prioritas 6-12 bulan ke depan:</strong>
+                        </p>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem; margin-top: 0.5rem;">
+                            <li>Bangun emergency fund 3-6 bulan pengeluaran</li>
+                            <li>Ikut kursus investasi dasar (gratis/berbayar)</li>
+                            <li>Praktik dengan paper trading/simulasi</li>
+                            <li>Tingkatkan income & savings rate minimal 20%</li>
+                        </ul>
+                    </div>
+                `;
+            }
+            
+            resultHTML += `
                     <h3 style="margin-top: 2rem; color: var(--accent-gold);">
                         <i class="fas fa-pie-chart"></i> Alokasi Aset Rekomendasi
                     </h3>
                     <div class="asset-allocation">
-                        ${Object.entries(assetAllocation).map(([asset, percentage]) => `
-                            <div class="asset-item">
-                                <div class="asset-name">${asset}</div>
-                                <div class="asset-bar">
-                                    <div class="asset-fill" style="width: ${percentage}%;"></div>
-                                </div>
-                                <div class="asset-percentage">${percentage}%</div>
+            `;
+            
+            // Add asset allocation with explanations
+            Object.entries(assetAllocation).forEach(([asset, percentage]) => {
+                const assetInfo = assetDefinitions[asset] || {
+                    description: 'Aset investasi diversifikasi',
+                    risk: 'Menyesuaikan',
+                    expectedReturn: 'Tergantung kondisi pasar'
+                };
+                
+                resultHTML += `
+                    <div class="asset-item">
+                        <div class="asset-name">
+                            <strong>${asset}</strong>
+                            <div class="asset-details">
+                                <small>${assetInfo.description}</small>
+                                <br><small>Risiko: ${assetInfo.risk} | Return: ${assetInfo.expectedReturn}</small>
                             </div>
-                        `).join('')}
+                        </div>
+                        <div class="asset-bar">
+                            <div class="asset-fill" style="width: ${percentage}%;"></div>
+                        </div>
+                        <div class="asset-percentage">${percentage}%</div>
                     </div>
-                    
-                    ${positiveNotes.length > 0 ? `
-                        <div class="success-box">
-                            <h4 style="color: var(--success); margin-bottom: 0.5rem;">
-                                <i class="fas fa-check-circle"></i> Strengths & Advantages
-                            </h4>
-                            <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
-                                ${positiveNotes.map(note => `<li style="margin-bottom: 0.5rem;">${note}</li>`).join('')}
-                            </ul>
-                        </div>
-                    ` : ''}
-                    
-                    ${recommendations.length > 0 ? `
-                        <div class="recommendations">
-                            <h4 style="color: var(--info); margin-bottom: 0.5rem;">
-                                <i class="fas fa-lightbulb"></i> Rekomendasi Aksi
-                            </h4>
-                            <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
-                                ${recommendations.map(rec => `<li style="margin-bottom: 0.5rem;">${rec}</li>`).join('')}
-                            </ul>
-                        </div>
-                    ` : ''}
-                    
-                    ${warnings.length > 0 ? `
-                        <div class="warning-box">
-                            <h4 style="color: var(--danger); margin-bottom: 0.5rem;">
-                                <i class="fas fa-exclamation-triangle"></i> Perhatian & Risiko
-                            </h4>
-                            <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
-                                ${warnings.map(warning => `<li style="margin-bottom: 0.5rem;">${warning}</li>`).join('')}
-                            </ul>
-                        </div>
-                    ` : ''}
-                    
+                `;
+            });
+            
+            resultHTML += `</div>`;
+            
+            if (positiveNotes.length > 0) {
+                resultHTML += `
+                    <div class="success-box">
+                        <h4 style="color: var(--success); margin-bottom: 0.5rem;">
+                            <i class="fas fa-check-circle"></i> Strengths & Advantages
+                        </h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            ${positiveNotes.map(note => `<li style="margin-bottom: 0.5rem;">${note}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+            
+            if (recommendations.length > 0) {
+                resultHTML += `
+                    <div class="recommendations">
+                        <h4 style="color: var(--info); margin-bottom: 0.5rem;">
+                            <i class="fas fa-lightbulb"></i> Rekomendasi Aksi Spesifik
+                        </h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            ${recommendations.map(rec => `<li style="margin-bottom: 0.5rem;">${rec}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+            
+            if (warnings.length > 0) {
+                resultHTML += `
+                    <div class="warning-box">
+                        <h4 style="color: var(--danger); margin-bottom: 0.5rem;">
+                            <i class="fas fa-exclamation-triangle"></i> Perhatian & Risiko
+                        </h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            ${warnings.map(warning => `<li style="margin-bottom: 0.5rem;">${warning}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+            
+            resultHTML += `
                     <h3 style="margin-top: 2rem; color: var(--accent-gold);">
-                        <i class="fas fa-shield-alt"></i> Guardrails & Risk Management
+                        <i class="fas fa-shield-alt"></i> Risk Management & Guardrails
                     </h3>
                     <div style="background: rgba(212, 175, 55, 0.05); padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
                         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem;">
                             <div>
                                 <span style="font-size: 0.9rem; color: var(--text-secondary);">Max Drawdown Tolerable:</span>
-                                <div style="font-size: 1.2rem; font-weight: bold; color: var(--warning);">${Math.round(30 - feasibleRisk * 2)}%</div>
+                                <div style="font-size: 1.2rem; font-weight: bold; color: var(--warning);">${Math.round(35 - feasibleRisk * 2.5)}%</div>
                             </div>
                             <div>
                                 <span style="font-size: 0.9rem; color: var(--text-secondary);">Rebalance Threshold:</span>
-                                <div style="font-size: 1.2rem; font-weight: bold; color: var(--accent-gold);">±7% dari target</div>
+                                <div style="font-size: 1.2rem; font-weight: bold; color: var(--accent-gold);">${feasibleRisk > 7 ? '±8%' : feasibleRisk > 4 ? '±6%' : '±5%'} dari target</div>
                             </div>
                             <div>
                                 <span style="font-size: 0.9rem; color: var(--text-secondary);">Emergency Fund Required:</span>
-                                <div style="font-size: 1.2rem; font-weight: bold; color: var(--success);">${Math.max(3, Math.ceil(expenses * 6 / 1000000))} bulan</div>
+                                <div style="font-size: 1.2rem; font-weight: bold; color: var(--success);">${Math.max(3, Math.min(12, Math.ceil(expenses * (8 - feasibleRisk/2) / 1000000)))} bulan</div>
                             </div>
                             <div>
                                 <span style="font-size: 0.9rem; color: var(--text-secondary);">Review Frequency:</span>
-                                <div style="font-size: 1.2rem; font-weight: bold; color: var(--info);">${feasibleRisk > 7 ? 'Bulanan' : feasibleRisk > 4 ? 'Triwulan' : 'Semester'}</div>
+                                <div style="font-size: 1.2rem; font-weight: bold; color: var(--info);">${feasibleRisk > 7 ? 'Bulanan' : feasibleRisk > 5 ? 'Triwulan' : 'Semester'}</div>
                             </div>
                         </div>
                         
                         <div style="margin-top: 1.5rem;">
                             <div class="progress-label">
                                 <span>Portfolio Volatility Estimate:</span>
-                                <span style="color: ${feasibleRisk > 7 ? 'var(--warning)' : feasibleRisk > 4 ? 'var(--accent-gold)' : 'var(--success)'}; font-weight: bold;">
-                                    ${(feasibleRisk * 3).toFixed(1)}%
+                                <span style="color: ${feasibleRisk > 7 ? 'var(--warning)' : feasibleRisk > 5 ? 'var(--accent-gold)' : 'var(--success)'}; font-weight: bold;">
+                                    ${(feasibleRisk * 2.8).toFixed(1)}%
                                 </span>
                             </div>
                             <div class="progress-bar">
@@ -1723,9 +2093,21 @@
                         </div>
                     </div>
                     
+                    <div class="disclaimer-box">
+                        <h4 style="color: var(--accent-gold); margin-bottom: 0.5rem;">
+                            <i class="fas fa-exclamation-circle"></i> DISCLAIMER PENTING
+                        </h4>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">
+                            <strong>INI BUKAN AJAKAN MEMBELI ATAU MENJUAL ASET TERTENTU.</strong>
+                        </p>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            Hasil analisis ini berdasarkan informasi yang Anda berikan. Selalu lakukan riset sendiri (DYOR - Do Your Own Research) sebelum mengambil keputusan investasi. Investasi mengandung risiko, nilai investasi dapat naik atau turun. Konsultasikan dengan profesional keuangan jika diperlukan.
+                        </p>
+                    </div>
+                    
                     <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(212, 175, 55, 0.05); border-radius: 8px; text-align: center;">
                         <p style="color: var(--accent-gold); font-style: italic; margin-bottom: 0;">
-                            <i class="fas fa-info-circle"></i> Rekomendasi ini berdasarkan input Anda dan analisis data pasar terkini. 
+                            <i class="fas fa-info-circle"></i> Rekomendasi ini personal berdasarkan profil unik Anda. 
                             Lakukan review berkala setiap 6-12 bulan atau saat terjadi perubahan signifikan dalam kehidupan finansial.
                         </p>
                     </div>
