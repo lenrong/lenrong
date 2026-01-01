@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Intelligence Engine | Lenrong Capital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --secondary: #8b5cf6;
+            --dark-bg: #0f172a;
+            --darker-bg: #020617;
+            --card-bg: #1e293b;
+            --card-border: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: var(--darker-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            font-size: 1.75rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: radial-gradient(circle at 30% 20%, rgba(14, 165, 233, 0.1), transparent 50%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--text-primary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Problem Solution */
+        .ps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .ps-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .problem-card {
+            border-top: 4px solid var(--danger);
+        }
+
+        .solution-card {
+            border-top: 4px solid var(--success);
+        }
+
+        /* System Flow */
+        .system-flow {
+            background: var(--dark-bg);
+        }
+
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Input System */
+        .input-tabs {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: rgba(14, 165, 233, 0.1);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .tab-content {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .input-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 6px;
+            color: var(--text-primary);
+        }
+
+        /* Modal Hasil */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            border: 1px solid var(--primary);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .result-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid var(--card-border);
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .financial { color: var(--primary); }
+        .risk { color: var(--warning); }
+        .strategy { color: var(--success); }
+        .goal { color: var(--secondary); }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            border-top: 1px solid var(--card-border);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .input-tabs {
+                flex-direction: column;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-brain-circuit logo-icon"></i>
+                <div class="logo-text">Lenrong Capital</div>
+            </div>
+            <nav class="nav-links">
+                <a href="#home">Beranda</a>
+                <a href="#problem">Masalah & Solusi</a>
+                <a href="#system">Sistem</a>
+                <a href="#input">Input System</a>
+            </nav>
+            <button class="cta-button" id="startBtn">Mulai Profil Gratis</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <i class="fas fa-gift"></i> Layanan Gratis untuk Umum
+            </div>
+            <h1 class="hero-title">FINANCIAL INTELLIGENCE ENGINE</h1>
+            <p class="hero-subtitle">
+                Sistem profiling investasi berbasis AI yang memetakan kondisi finansial + psikologi risiko Anda, 
+                menghitung kelayakan strategi, dan memberikan rekomendasi investasi yang boleh dan tidak boleh.
+            </p>
+            <button class="cta-button" id="heroCtaBtn">
+                <i class="fas fa-play"></i> Mulai Profil Investasi Anda
+            </button>
+        </div>
+    </section>
+
+    <!-- Problem & Solution -->
+    <section id="problem" class="problem-solution">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Masalah yang Diselesaikan</h2>
+                <p class="section-description">
+                    Identifikasi dan solusi untuk masalah umum dalam pengambilan keputusan investasi
+                </p>
+            </div>
+            
+            <div class="ps-grid">
+                <div class="ps-card problem-card">
+                    <h3 style="color: var(--danger); margin-bottom: 1rem;">
+                        <i class="fas fa-exclamation-triangle"></i> Masalah Umum
+                    </h3>
+                    <ul style="color: var(--text-secondary); list-style-position: inside;">
+                        <li style="margin-bottom: 0.5rem;">Salah menilai profil risiko diri sendiri</li>
+                        <li style="margin-bottom: 0.5rem;">Tidak mengetahui posisi finansial riil</li>
+                        <li style="margin-bottom: 0.5rem;">Lompat ke instrumen tanpa strategi hidup</li>
+                        <li>Terpengaruh emosi dan hype pasar</li>
+                    </ul>
+                </div>
+                
+                <div class="ps-card solution-card">
+                    <h3 style="color: var(--success); margin-bottom: 1rem;">
+                        <i class="fas fa-robot"></i> Solusi Kami
+                    </h3>
+                    <ul style="color: var(--text-secondary); list-style-position: inside;">
+                        <li style="margin-bottom: 0.5rem;">Memetakan kondisi finansial + psikologi risiko</li>
+                        <li style="margin-bottom: 0.5rem;">Menghitung kelayakan strategi berdasarkan realitas</li>
+                        <li style="margin-bottom: 0.5rem;">Rekomendasi investasi yang boleh dan tidak boleh</li>
+                        <li>Guardrail system pencegah kesalahan fatal</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Structure -->
+    <section id="system" class="system-flow">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Struktur Sistem</h2>
+                <p class="section-description">
+                    Alur kecerdasan sistem dalam memproses profil Anda
+                </p>
+            </div>
+            
+            <div class="flow-container">
+                <div class="flow-step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <h4>Input Pengguna</h4>
+                        <p style="color: var(--text-secondary);">Data finansial dan profil risiko</p>
+                    </div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <h4>Financial Reality Engine</h4>
+                        <p style="color: var(--text-secondary);">Analisis kondisi finansial riil</p>
+                    </div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <h4>Risk & Psychology Engine</h4>
+                        <p style="color: var(--text-secondary);">Pemetaan toleransi risiko psikologis</p>
+                    </div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <h4>Strategy Selection Engine</h4>
+                        <p style="color: var(--text-secondary);">Pemilihan strategi inti dan pendukung</p>
+                    </div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">5</div>
+                    <div>
+                        <h4>Asset Allocation Engine</h4>
+                        <p style="color: var(--text-secondary);">Alokasi aset optimal dengan guardrail</p>
+                    </div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">6</div>
+                    <div>
+                        <h4>Laporan Investor</h4>
+                        <p style="color: var(--text-secondary);">Blueprint investasi personal lengkap</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Input System -->
+    <section id="input" class="input-system">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Input System (Lengkap & Elegan)</h2>
+                <p class="section-description">
+                    Data yang diperlukan untuk membangun profil investasi akurat
+                </p>
+            </div>
+            
+            <div class="input-tabs">
+                <button class="tab-btn active" data-tab="financial">Finansial</button>
+                <button class="tab-btn" data-tab="goals">Tujuan</button>
+                <button class="tab-btn" data-tab="risk">Risiko</button>
+            </div>
+            
+            <div class="tab-content">
+                <div id="financial-tab">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--primary);">A. Financial Reality Layer</h3>
+                    <div class="input-group">
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem;">Umur</label>
+                            <input type="number" id="age" class="input-field" placeholder="Contoh: 35" min="18" max="70">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem;">Income Aktif (Bulanan)</label>
+                            <input type="text" id="income" class="input-field" placeholder="Contoh: 15000000">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem;">Status Keluarga</label>
+                            <select id="familyStatus" class="input-field">
+                                <option value="single">Lajang</option>
+                                <option value="married_no_kids">Menikah tanpa anak</option>
+                                <option value="married_kids">Menikah dengan anak</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem;">Pengeluaran Wajib (Bulanan)</label>
+                            <input type="text" id="expenses" class="input-field" placeholder="Contoh: 8000000">
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="goals-tab" style="display: none;">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--primary);">B. Goal & Time Layer</h3>
+                    <div class="input-group">
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem;">Target Finansial (Rp)</label>
+                            <input type="text" id="targetAmount" class="input-field" placeholder="Contoh: 5000000000">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem;">Horizon Waktu (Tahun)</label>
+                            <input type="number" id="timeHorizon" class="input-field" placeholder="Contoh: 10" min="1" max="40">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem;">Tujuan Utama</label>
+                            <select id="goalType" class="input-field">
+                                <option value="growth">Growth (Pertumbuhan)</option>
+                                <option value="income">Income (Pendapatan)</option>
+                                <option value="preservation">Preservation (Pelestarian)</option>
+                                <option value="hybrid">Hybrid (Kombinasi)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="risk-tab" style="display: none;">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--primary);">C. Risk & Psychology Layer</h3>
+                    <div class="input-group">
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem;">Risk Appetite (0-10)</label>
+                            <input type="range" id="riskAppetite" min="0" max="10" value="5" class="input-field">
+                            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-secondary);">
+                                <span>Konservatif</span>
+                                <span>Moderat</span>
+                                <span>Agresif</span>
+                            </div>
+                            <div id="riskValue" style="text-align: center; margin-top: 0.5rem;">5</div>
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem;">Pengalaman Investasi</label>
+                            <select id="experience" class="input-field">
+                                <option value="beginner">Pemula (< 2 tahun)</option>
+                                <option value="intermediate">Menengah (2-5 tahun)</option>
+                                <option value="advanced">Lanjutan (> 5 tahun)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem;">Reaksi terhadap Kerugian</label>
+                            <select id="lossReaction" class="input-field">
+                                <option value="panic">Panik & jual semua</option>
+                                <option value="hold">Hold & tunggu pulih</option>
+                                <option value="buy_more">Beli lebih banyak</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="cta-button" id="calculateBtn" style="width: 100%; margin-top: 2rem;">
+                    <i class="fas fa-calculator"></i> Hitung Profil Saya
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Hasil -->
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 style="color: var(--primary);">Hasil Profil Investasi Anda</h2>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            
+            <div id="resultContent">
+                <!-- Hasil akan ditampilkan di sini -->
+            </div>
+            
+            <button class="cta-button" style="width: 100%; margin-top: 1.5rem;" id="closeModalBtn">
+                <i class="fas fa-check"></i> Tutup
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
+                <i class="fas fa-brain-circuit logo-icon"></i>
+                <div class="logo-text">Lenrong Capital</div>
+            </div>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Financial Intelligence Engine - Layanan profiling investasi AI 100% gratis untuk umum.
+                <br><br>
+                <strong>Disclaimer:</strong> Sistem ini adalah alat bantu keputusan, bukan penasihat investasi. 
+                Investasi mengandung risiko, termasuk kehilangan sebagian atau seluruh modal.
+            </p>
+            <p style="color: var(--text-secondary);">
+                © 2023 Lenrong Capital. Semua hak dilindungi.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab System
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = {
+            'financial': document.getElementById('financial-tab'),
+            'goals': document.getElementById('goals-tab'),
+            'risk': document.getElementById('risk-tab')
+        };
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                tabBtns.forEach(b => b.classList.remove('active'));
+                
+                // Hide all tab contents
+                Object.values(tabContents).forEach(content => {
+                    content.style.display = 'none';
+                });
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Show corresponding tab content
+                const tabId = btn.getAttribute('data-tab');
+                if (tabContents[tabId]) {
+                    tabContents[tabId].style.display = 'block';
+                }
+            });
+        });
+
+        // Update risk appetite value display
+        const riskSlider = document.getElementById('riskAppetite');
+        const riskValueDisplay = document.getElementById('riskValue');
+        
+        riskSlider.addEventListener('input', () => {
+            riskValueDisplay.textContent = riskSlider.value;
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // CTA button functionality
+        document.getElementById('heroCtaBtn').addEventListener('click', () => {
+            document.querySelector('#input').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+        
+        document.getElementById('startBtn').addEventListener('click', () => {
+            document.querySelector('#input').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Modal functionality
+        const modal = document.getElementById('resultModal');
+        const closeModal = document.getElementById('closeModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const calculateBtn = document.getElementById('calculateBtn');
+        
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        closeModalBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Calculate Profile Function
+        calculateBtn.addEventListener('click', () => {
+            // Get all input values
+            const age = parseInt(document.getElementById('age').value) || 35;
+            const income = parseFloat(document.getElementById('income').value.replace(/\D/g, '')) || 15000000;
+            const familyStatus = document.getElementById('familyStatus').value;
+            const expenses = parseFloat(document.getElementById('expenses').value.replace(/\D/g, '')) || 8000000;
+            const targetAmount = parseFloat(document.getElementById('targetAmount').value.replace(/\D/g, '')) || 5000000000;
+            const timeHorizon = parseInt(document.getElementById('timeHorizon').value) || 10;
+            const goalType = document.getElementById('goalType').value;
+            const riskAppetite = parseInt(document.getElementById('riskAppetite').value);
+            const experience = document.getElementById('experience').value;
+            const lossReaction = document.getElementById('lossReaction').value;
+            
+            // Validasi input dasar
+            if (!age || !income || !expenses || !targetAmount || !timeHorizon) {
+                alert('Harap isi semua field yang diperlukan!');
+                return;
+            }
+            
+            // Calculate financial metrics
+            const monthlySavings = income - expenses;
+            const annualSavings = monthlySavings * 12;
+            const savingsRate = (monthlySavings / income) * 100;
+            
+            // Calculate net worth estimate (simplified)
+            const yearsWorking = age - 22;
+            const netWorth = yearsWorking > 0 ? annualSavings * yearsWorking * 0.7 : annualSavings * 0.7;
+            
+            // Calculate required CAGR
+            const requiredCAGR = (Math.pow(targetAmount / netWorth, 1/timeHorizon) - 1) * 100;
+            
+            // Calculate risk score
+            let experienceScore = 0;
+            if (experience === 'beginner') experienceScore = 3;
+            else if (experience === 'intermediate') experienceScore = 6;
+            else if (experience === 'advanced') experienceScore = 8;
+            
+            let lossReactionScore = 0;
+            if (lossReaction === 'panic') lossReactionScore = 2;
+            else if (lossReaction === 'hold') lossReactionScore = 5;
+            else if (lossReaction === 'buy_more') lossReactionScore = 8;
+            
+            const trueRiskScore = Math.min(10, (riskAppetite * 0.6 + experienceScore * 0.3 + lossReactionScore * 0.1));
+            
+            // Calculate feasible risk (capped by financial reality)
+            const familyFactor = familyStatus === 'single' ? 1 : familyStatus === 'married_no_kids' ? 0.8 : 0.6;
+            const feasibleRisk = Math.min(trueRiskScore, (savingsRate / 10) * familyFactor);
+            
+            // Determine strategy based on inputs
+            let strategy = '';
+            let strategyDescription = '';
+            
+            if (trueRiskScore <= 4) {
+                strategy = 'Capital Preservation';
+                strategyDescription = 'Fokus pada perlindungan modal dengan risiko minimal';
+            } else if (trueRiskScore <= 7) {
+                strategy = 'Growth Compounder';
+                strategyDescription = 'Pertumbuhan modal moderat dengan diversifikasi';
+            } else {
+                strategy = 'Asymmetric Opportunity';
+                strategyDescription = 'Mencari peluang pertumbuhan tinggi dengan risiko terukur';
+            }
+            
+            // Determine asset allocation
+            let equity = 0, defensive = 0, cash = 0;
+            
+            if (strategy === 'Capital Preservation') {
+                equity = 20;
+                defensive = 60;
+                cash = 20;
+            } else if (strategy === 'Growth Compounder') {
+                equity = 55;
+                defensive = 30;
+                cash = 15;
+            } else {
+                equity = 70;
+                defensive = 20;
+                cash = 10;
+            }
+            
+            // Calculate probability of success
+            let successProbability = 0;
+            if (requiredCAGR <= 5) successProbability = 85;
+            else if (requiredCAGR <= 10) successProbability = 65;
+            else if (requiredCAGR <= 15) successProbability = 40;
+            else successProbability = 20;
+            
+            // Adjust for time horizon
+            if (timeHorizon >= 15) successProbability = Math.min(90, successProbability + 15);
+            else if (timeHorizon <= 5) successProbability = Math.max(10, successProbability - 20);
+            
+            // Generate result HTML
+            const resultHTML = `
+                <div class="result-grid">
+                    <div class="result-card">
+                        <h4>Profil Finansial</h4>
+                        <div class="result-value financial">${Math.round(savingsRate)}%</div>
+                        <p>Savings Rate</p>
+                    </div>
+                    <div class="result-card">
+                        <h4>Risk Score</h4>
+                        <div class="result-value risk">${feasibleRisk.toFixed(1)}/10</div>
+                        <p>Feasible Risk</p>
+                    </div>
+                    <div class="result-card">
+                        <h4>Strategi</h4>
+                        <div class="result-value strategy">${strategy}</div>
+                        <p>${strategyDescription}</p>
+                    </div>
+                    <div class="result-card">
+                        <h4>Target CAGR</h4>
+                        <div class="result-value goal">${requiredCAGR.toFixed(1)}%</div>
+                        <p>Required Return</p>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 2rem; color: var(--primary);">Alokasi Aset Rekomendasi</h3>
+                <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    <div style="margin-bottom: 0.5rem;">
+                        <span>Equity (Saham):</span>
+                        <span style="float: right; color: var(--primary); font-weight: bold;">${equity}%</span>
+                    </div>
+                    <div style="margin-bottom: 0.5rem;">
+                        <span>Defensive (Obligasi/Emas):</span>
+                        <span style="float: right; color: var(--primary); font-weight: bold;">${defensive}%</span>
+                    </div>
+                    <div>
+                        <span>Cash (Likuid):</span>
+                        <span style="float: right; color: var(--primary); font-weight: bold;">${cash}%</span>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 1.5rem; color: var(--primary);">Probabilitas & Guardrail</h3>
+                <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    <div style="margin-bottom: 0.5rem;">
+                        <span>Probabilitas Mencapai Target:</span>
+                        <span style="float: right; color: ${successProbability >= 70 ? 'var(--success)' : successProbability >= 40 ? 'var(--warning)' : 'var(--danger)'}; font-weight: bold;">
+                            ${successProbability}%
+                        </span>
+                    </div>
+                    <div style="margin-bottom: 0.5rem;">
+                        <span>Max Drawdown Tolerable:</span>
+                        <span style="float: right; color: var(--warning); font-weight: bold;">${Math.round(30 - feasibleRisk * 2)}%</span>
+                    </div>
+                    <div>
+                        <span>Rebalance Trigger:</span>
+                        <span style="float: right; color: var(--primary); font-weight: bold;">±5% dari target alokasi</span>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--danger); padding: 1rem; margin-top: 1.5rem; border-radius: 4px;">
+                    <h4 style="color: var(--danger); margin-bottom: 0.5rem;"><i class="fas fa-exclamation-triangle"></i> Brutal Truth</h4>
+                    <p style="color: var(--text-secondary);">
+                        ${requiredCAGR > 15 ? 
+                            `Target CAGR ${requiredCAGR.toFixed(1)}% terlalu agresif. Pertimbangkan: (1) Menambah waktu investasi, (2) Meningkatkan savings rate, atau (3) Menurunkan target finansial.` : 
+                          savingsRate < 20 ?
+                            `Savings rate ${Math.round(savingsRate)}% terlalu rendah untuk mencapai target. Fokus pada peningkatan income atau pengurangan expenses.` :
+                            `Risiko psikologis Anda (${lossReaction}) mungkin lebih tinggi dari risiko finansial. Pastikan siap menghadapi volatilitas pasar.`
+                        }
+                    </p>
+                </div>
+            `;
+            
+            // Display results
+            document.getElementById('resultContent').innerHTML = resultHTML;
+            modal.style.display = 'flex';
+        });
+    </script>
+</body>
+</html>
